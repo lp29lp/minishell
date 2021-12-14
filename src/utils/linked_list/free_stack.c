@@ -6,11 +6,11 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:59:53 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/14 18:00:51 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/14 20:05:01 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	free_stack(t_mode *mode)
+void	free_stack(t_struct *mode)
 {
 	
 }
