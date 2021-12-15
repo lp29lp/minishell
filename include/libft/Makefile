@@ -1,14 +1,5 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/06/01 15:06:48 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/06/01 23:20:07 by lpaulo-d         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+
+NAME = libft.a
 
 FILES = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		ft_memchr.c ft_memcmp.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
@@ -24,10 +15,9 @@ BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstmap.c
 BONUS_SRC = $(BONUS:.c=.o)
 
-NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-RE = rm -f
+RM = rm -f
 
 all: $(NAME)
 

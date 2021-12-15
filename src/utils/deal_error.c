@@ -1,16 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stack.c                                       :+:      :+:    :+:   */
+/*   deal_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 17:59:53 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/14 20:05:01 by lpaulo-d         ###   ########.fr       */
+/*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
+/*   Updated: 2021/12/15 05:18:33 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	free_stack(t_struct *mode)
+#include <minishell.h>
+
+void	deal_error(t_struct *mode)
 {
-	
+	printf("deal_error\n");
+	if (mode->size_env > 0)
+		free_env(mode);
+	exit(1);
+}
+
+void	free_env(t_struct *mode)
+{
+	t_list_env	*temp;
+
+	temp = mode->env;
+	while (temp)
+	{
+		temp = temp->next;
+		free(mode->env);
+		mode->env = temp;
+	}
+	free(mode->env);
 }
