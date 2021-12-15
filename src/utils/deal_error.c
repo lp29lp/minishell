@@ -6,17 +6,18 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 05:18:33 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/15 22:49:48 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 void	deal_error(t_struct *mode)
 {
 	printf("deal_error\n");
 	if (mode->size_env > 0)
 		free_env(mode);
+	free(mode->env);
 	exit(1);
 }
 
@@ -31,5 +32,4 @@ void	free_env(t_struct *mode)
 		free(mode->env);
 		mode->env = temp;
 	}
-	free(mode->env);
 }

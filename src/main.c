@@ -6,11 +6,11 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 16:25:54 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/15 22:49:51 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 /**
  *todo:	see how to use readline to wait a input
@@ -23,4 +23,5 @@ int	main(int ac, char ** av, char **env)
 
 	init_struct(&mode);
 	save_env(&mode, env);
+	deal_error(&mode);
 }

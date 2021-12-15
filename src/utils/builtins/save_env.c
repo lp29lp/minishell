@@ -6,11 +6,11 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 16:23:15 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/15 22:49:56 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 void	save_env(t_struct *mode, char **env)
 {
@@ -30,10 +30,10 @@ void	filter_env(char *env, t_struct *mode)
 	int			size_key;
 	int			rest;
 	t_list_env	*temp;
+	t_list_env	*aux;
 
 	rest = -1;
 	size_key = 0;
-	temp = mode->env;
 	while (env[rest++] != '=')
 		size_key++; // Counting `=` (+1)
 	while (env[rest] != '\0')
@@ -44,10 +44,10 @@ void	filter_env(char *env, t_struct *mode)
 		mode->size_env++;
 		return ;
 	}
-	while (temp->next)
+	temp = mode->env;
+	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = new_node_env(env, mode, size_key, rest);
-	mode->size_env++;
 }
 
 /* Can have NULL return in strdup need check: deal_error */
@@ -57,11 +57,17 @@ t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 
 	new = (t_list_env *)ft_calloc(1, sizeof(t_list_env));
 	if (new == NULL)
+	{
+		free(new);
 		deal_error(mode);
+	}
+	new->next = NULL;
 	new->key = ft_substr(env, 0, size_key);
 	new->after = ft_substr(env, size_key, (rest - size_key));
 	if (new->key == NULL || new->after == NULL)
+	{
+		free(new);
 		deal_error(mode);
-	new->next = NULL;
+	}
 	return (new);
 }
