@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/14 22:42:48 by lpaulo-d         ###   ########.fr       */
+/*   Created: 2021/05/19 20:50:17 by lpaulo-d          #+#    #+#             */
+/*   Updated: 2021/06/01 23:15:05 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-typedef struct	s_list_env
+char	*ft_strchr(const char *s, int c)
 {
-	struct s_list_env	next;
-	char				*key; //antes
-	char				*after; //depois
-}	t_list_env;
+	int		i;
+	char	found;
 
-typedef struct	s_struct
-{
-	t_list_env	*env;
-	int			size_env;
-}	t_struct;
+	found = (char) c;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == found)
+		return ((char *)s + i);
+	return (NULL);
+}
 
-#endif
+/*
+	Procura a primeira ocorrencia 'c' na string passada e retorna do caracter
+achado adiante.
+
+	o segundo if é para se o 'c' for '\0'.
+*/

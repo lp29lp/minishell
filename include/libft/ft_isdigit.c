@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/14 22:42:48 by lpaulo-d         ###   ########.fr       */
+/*   Created: 2021/05/20 16:50:40 by lpaulo-d          #+#    #+#             */
+/*   Updated: 2021/06/01 22:22:10 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-typedef struct	s_list_env
+int	ft_isdigit(int c)
 {
-	struct s_list_env	next;
-	char				*key; //antes
-	char				*after; //depois
-}	t_list_env;
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
 
-typedef struct	s_struct
-{
-	t_list_env	*env;
-	int			size_env;
-}	t_struct;
-
-#endif
+/*
+se o parametro passado for um numero retorna 1 se nao 0
+*/

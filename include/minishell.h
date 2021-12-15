@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/14 17:46:04 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/14 21:38:17 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,6 @@
 # include <stdio.h>
 
 # include "./struct.h"
+# include "./libft/libft.h"
+
 #endif

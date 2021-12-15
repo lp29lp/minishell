@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/14 22:42:48 by lpaulo-d         ###   ########.fr       */
+/*   Created: 2021/05/31 00:33:56 by lpaulo-d          #+#    #+#             */
+/*   Updated: 2021/06/01 22:23:27 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-typedef struct	s_list_env
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	struct s_list_env	next;
-	char				*key; //antes
-	char				*after; //depois
-}	t_list_env;
+	if (lst == NULL || new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
 
-typedef struct	s_struct
-{
-	t_list_env	*env;
-	int			size_env;
-}	t_struct;
-
-#endif
+/*
+	adiciona um novo elemento no começo da lista.
+*/

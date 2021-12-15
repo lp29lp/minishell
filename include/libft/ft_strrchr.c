@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_env.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/14 20:28:38 by lpaulo-d         ###   ########.fr       */
+/*   Created: 2021/05/20 12:18:23 by lpaulo-d          #+#    #+#             */
+/*   Updated: 2021/06/01 23:16:45 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "libft.h"
 
-void	parse_env(t_struct *mode, char **env)
+char	*ft_strrchr(const char *s, int c)
 {
-	//TODO: --------------cut all env and put in stack--------------------------
-	int			i;
-	t_list_env	temp;
-
-	temp = mode->env;
-	i = 0;
-	while (env[i] != NULL)
-	{
-		filter_env(env[i], mode);
-		i++;
-	}
-}
-
-void	filter_env(char *env, t_struct *mode)
-{
-	int		size_key;
 	int		i;
+	char	found;
 
-	size_key = 0;
 	i = 0;
-	while (env[i++] != "=") // \n
-		size_key++;
-	i += 1;
-	while (env[i++] != NULL)
-
-	
+	found = (char) c;
+	while (s[i])
+		i++;
+	while (i >= 0)
+	{
+		if (s[i] == found)
+			return ((char *)s + i);
+		i--;
+	}
+	return (0);
 }
+
+/*
+	Procura a ultima ocorrencia de 'c' na string e retorna de lá adiante.
+
+	Pega o tamanho da string e vai de tras para frente '<-' pois assim se achar
+'c' em 's' ja sabe que é a ultima ocorrencia.
+*/

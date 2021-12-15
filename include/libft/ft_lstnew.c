@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/14 22:42:48 by lpaulo-d         ###   ########.fr       */
+/*   Created: 2021/05/31 00:13:27 by lpaulo-d          #+#    #+#             */
+/*   Updated: 2021/06/01 22:24:36 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-typedef struct	s_list_env
+t_list	*ft_lstnew(void *content)
 {
-	struct s_list_env	next;
-	char				*key; //antes
-	char				*after; //depois
-}	t_list_env;
+	t_list	*newNode;
 
-typedef struct	s_struct
-{
-	t_list_env	*env;
-	int			size_env;
-}	t_struct;
+	newNode = malloc(sizeof(t_list));
+	if (newNode == NULL)
+		return (NULL);
+	newNode->content = content;
+	newNode->next = NULL;
+	return (newNode);
+}
 
-#endif
+/*
+	Cria um novo 'node'/'elemento' com o content passado.
+*/
