@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 05:03:53 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:12:52 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "struct.h"
 # include "libft/libft.h"
 
-int			main(int ac, char **env);
+int	main(int ac, char ** av, char **env);
 
 /* Deal errors */
 void		free_env(t_struct *mode);

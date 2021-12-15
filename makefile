@@ -29,7 +29,7 @@ all:	$(NAME)
 $(NAME):	$(SRC)
 			@make --no-print-directory -C $(P_LIBFT)
 			@echo Folder for obj Created.
-			@$(CC) $(CFLAGS) $(SRC) $(LIBFT) -o $(NAME)
+			@$(CC) -g $(SRC) $(LIBFT) -o $(NAME)
 			@echo 'File(minishell) created.'
 
 $(P_OBJ)%.o:	$(P_SRC)%.c
@@ -37,7 +37,7 @@ $(P_OBJ)%.o:	$(P_SRC)%.c
 				@mkdir -p $(P_OBJ)utils
 				@mkdir -p $(P_OBJ)utils/builtins
 				@mkdir -p $(P_OBJ)utils/linked_list
-				$(CC) $(CFLAGS) $(INC) -c $< -o $@
+				$(CC) -g $(INC) -c $< -o $@
 
 #VALGRIND--|
 #val:

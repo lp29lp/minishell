@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 05:24:32 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:25:54 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
  **		do Makefile 
 */
 
-int	main(int ac, char **env)
+int	main(int ac, char ** av, char **env)
 {
 	t_struct	mode;
 
+	init_struct(&mode);
 	save_env(&mode, env);
 }

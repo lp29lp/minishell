@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 05:22:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:23:15 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ void	filter_env(char *env, t_struct *mode)
 	int			rest;
 	t_list_env	*temp;
 
-	rest = 0;
+	rest = -1;
 	size_key = 0;
 	temp = mode->env;
-	while (env[++rest] != '=')
+	while (env[rest++] != '=')
 		size_key++; // Counting `=` (+1)
-	while (env[rest++])
+	while (env[rest] != '\0')
+		rest++;
 	if (mode->size_env == 0)
 	{
 		mode->env = new_node_env(env, mode, size_key, rest);
@@ -59,7 +60,7 @@ t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 		deal_error(mode);
 	new->key = ft_substr(env, 0, size_key);
 	new->after = ft_substr(env, size_key, (rest - size_key));
-	if (new->key || new->after)
+	if (new->key == NULL || new->after == NULL)
 		deal_error(mode);
 	new->next = NULL;
 	return (new);
