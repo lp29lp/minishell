@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/16 02:13:40 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/16 03:38:30 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ F_SRC			=	main.c $(UTILS)
 
 F_BUILTINS		=	save_env.c
 
-F_UTILS			=	deal_error.c $(BUILTINS) $(LINKED_LIST)
+F_UTILS			=	do_free.c $(BUILTINS) $(LINKED_LIST)
 
 F_LINKED_LIST	=	list_aux.c
 
@@ -49,7 +49,7 @@ all:			$(NAME)
 $(NAME):		$(OBJ)
 				@make --no-print-directory -C $(P_LIBFT)
 				@echo '.o created and moved to obj folder'
-				@$(CC) -g $(INC) $(OBJ) $(LIBFT) -o $(NAME)
+				@$(CC) -g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
 				@echo 'File(minishell) created'
 
 $(P_OBJ)%.o:	$(P_SRC)%.c
@@ -68,9 +68,9 @@ re:				fclean all
 
 add:	fclean
 	git add .
-	git commit -m "."
+	git commit -m "Break for search; Start prompt"
 
 push:	add
 	git push
 
-.PHONY:			all clean fclean re deb
+.PHONY:			all clean fclean re add push

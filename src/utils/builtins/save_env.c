@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/16 02:08:55 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/16 03:00:50 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	filter_env(char *env, t_struct *mode)
 	temp->next = new_node_env(env, mode, size_key, rest);
 }
 
-/* Can have NULL return in strdup need check: deal_error */
+/* Can have NULL return in strdup need check: do_free */
 t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 {
 	t_list_env	*new;
@@ -59,7 +59,7 @@ t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 	if (new == NULL)
 	{
 		free(new);
-		deal_error(mode);
+		do_free(mode);
 	}
 	new->next = NULL;
 	new->key = ft_substr(env, 0, (size_key - 1));
@@ -67,7 +67,7 @@ t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 	if (new->key == NULL || new->after == NULL)
 	{
 		free(new);
-		deal_error(mode);
+		do_free(mode);
 	}
 	return (new);
 }

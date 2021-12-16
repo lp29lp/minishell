@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 18:50:38 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/06/01 23:15:22 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/16 03:12:32 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i1 = ft_strlen(s1);
 	i2 = ft_strlen(s2);
-	cc = (char *)malloc(sizeof(char) * (i1 + i2 + 1));
+	cc = (char *)ft_calloc((i1 + i2 + 1), sizeof(char));
 	if (cc == NULL)
 		return (NULL);
 	ft_strlcpy(cc, s1, i1 + 1);

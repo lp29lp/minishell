@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/16 02:10:03 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/16 03:37:08 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,24 @@ int	main(int ac, char ** av, char **env)
 	save_env(&mode, env);
 	while (1)
 	{
-		line = readline("oq isso faz?");
+		display_prompt(&mode);
 	}
-	deal_error(&mode);
+	do_free(&mode);
+}
+
+/* Prompt session (Should display a prompt while waiting) 
+add_history save command sent for use C+p or arrows
+todo: Deal with C+d / Clear history maybe don't use readline now just print normal
+*/
+void	display_prompt(t_struct *mode)
+{
+	char	buf[3000];
+	char	*line_read;
+	char	*prompt;
+
+	getcwd(buf, 3000);
+	prompt = ft_strjoin(buf, "$ ");
+	line_read = readline(prompt);
+	if (line_read && *line_read)
+		add_history(line_read);
 }

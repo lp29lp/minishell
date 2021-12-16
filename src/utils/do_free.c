@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deal_error.c                                       :+:      :+:    :+:   */
+/*   do_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,12 +12,11 @@
 
 #include "minishell.h"
 
-void	deal_error(t_struct *mode)
+void	do_free(t_struct *mode)
 {
-	printf("deal_error\n");
+	printf("do_free\n");
 	if (mode->size_env > 0)
 		free_env(mode);
-	free(mode->env);
 	exit(1);
 }
 
@@ -34,4 +33,5 @@ void	free_env(t_struct *mode)
 		free(mode->env);
 		mode->env = temp;
 	}
+	free(mode->env);
 }
