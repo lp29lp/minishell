@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/16 00:37:46 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/16 02:13:40 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,13 +48,13 @@ all:			$(NAME)
 
 $(NAME):		$(OBJ)
 				@make --no-print-directory -C $(P_LIBFT)
-				@echo 'Folder for obj created'
-				@$(CC) $(INC) $(OBJ) $(LIBFT) -o $(NAME)
+				@echo '.o created and moved to obj folder'
+				@$(CC) -g $(INC) $(OBJ) $(LIBFT) -o $(NAME)
 				@echo 'File(minishell) created'
 
 $(P_OBJ)%.o:	$(P_SRC)%.c
 				@$(P_GUARD)
-				@$(CC) $(INC) -c $< -o $@
+				@$(CC) -g $(INC) -c $< -o $@
 
 clean:
 				@$(RM) $(P_OBJ)
@@ -66,4 +66,11 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all clean fclean re
+add:	fclean
+	git add .
+	git commit -m "."
+
+push:	add
+	git push
+
+.PHONY:			all clean fclean re deb

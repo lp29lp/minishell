@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/16 01:42:57 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/16 02:08:55 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	save_env(t_struct *mode, char **env)
 	}
 }
 
-/* get size from env and add in stack 
-**Avoding alloc memory in temp LOL*/
+/* get size from env and add in stack / Couting '=' but don't save*/
 void	filter_env(char *env, t_struct *mode)
 {
 	int			size_key;
@@ -36,7 +35,7 @@ void	filter_env(char *env, t_struct *mode)
 	rest = -1;
 	size_key = 0;
 	while (env[rest++] != '=')
-		size_key++; // Counting `=` (+1)
+		size_key++;
 	while (env[rest] != '\0')
 		rest++;
 	if (mode->size_env == 0)
@@ -63,7 +62,7 @@ t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 		deal_error(mode);
 	}
 	new->next = NULL;
-	new->key = ft_substr(env, 0, size_key);
+	new->key = ft_substr(env, 0, (size_key - 1));
 	new->after = ft_substr(env, size_key, (rest - size_key));
 	if (new->key == NULL || new->after == NULL)
 	{
