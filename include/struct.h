@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 04:57:55 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:43:58 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct	s_struct
 {
 	t_list_env	*env;
 	int			size_env;
+	char		*line_read;//need free
+	char		**split_input;//need free
 }	t_struct;
 
 #endif

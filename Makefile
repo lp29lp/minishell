@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/16 03:38:30 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/16 23:01:27 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ P_SRC			=	src/
 P_INCLUDE		=	include/
 P_UTILS			=	utils/
 P_BUILTINS		=	builtins/
-P_LINKED_LIST	=	linked_list/
 P_OBJ			=	./obj/
 
 FT				=	ft
@@ -23,13 +22,10 @@ P_LIBFT			=	$(P_INCLUDE)libft/
 
 F_SRC			=	main.c $(UTILS)
 
-F_BUILTINS		=	save_env.c
+F_BUILTINS		=	save_env.c cd_input.c
 
-F_UTILS			=	do_free.c $(BUILTINS) $(LINKED_LIST)
+F_UTILS			=	do_free.c list_aux.c aux_0.c parse_input.c $(BUILTINS)
 
-F_LINKED_LIST	=	list_aux.c
-
-LINKED_LIST		=	$(addprefix $(P_LINKED_LIST), $(F_LINKED_LIST))
 BUILTINS		=	$(addprefix $(P_BUILTINS), $(F_BUILTINS))
 UTILS			=	$(addprefix $(P_UTILS), $(F_UTILS))
 
@@ -68,7 +64,7 @@ re:				fclean all
 
 add:	fclean
 	git add .
-	git commit -m "Break for search; Start prompt"
+	git commit -m "Start parse input (cd)"
 
 push:	add
 	git push

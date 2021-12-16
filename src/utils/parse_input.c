@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_free.c                                       :+:      :+:    :+:   */
+/*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/16 01:37:54 by lpaulo-d         ###   ########.fr       */
+/*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
+/*   Updated: 2021/12/16 22:57:00 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	do_free(t_struct *mode)
+/* See what was the input and redirect */
+int	parse_input_0(t_struct *mode)
 {
-	printf("do_free\n");
-	if (mode->size_env > 0)
-		free_env(mode);
-	rl_clear_history();//Testing
-	exit(1);
-}
-
-void	free_env(t_struct *mode)
-{
-	t_list_env	*temp;
-
-	temp = mode->env;
-	while (temp)
-	{
-		temp = temp->next;
-		free(mode->env->key);
-		free(mode->env->after);
-		free(mode->env);
-		mode->env = temp;
-	}
-	free(mode->env);
+	if (cmp(mode->split_input[0], "cd"))
+		
 }
