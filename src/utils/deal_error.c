@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 22:49:48 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/16 01:37:54 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	free_env(t_struct *mode)
 	while (temp)
 	{
 		temp = temp->next;
+		free(mode->env->key);
+		free(mode->env->after);
 		free(mode->env);
 		mode->env = temp;
 	}

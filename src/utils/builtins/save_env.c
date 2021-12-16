@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 22:49:56 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/16 01:34:36 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ void	filter_env(char *env, t_struct *mode)
 	temp = mode->env;
 	while (temp->next != NULL)
 		temp = temp->next;
-	temp->next = new_node_env(env, mode, size_key, rest);
+	aux = mode->env;
+	mode->env = temp;
+	mode->env->next = new_node_env(env, mode, size_key, rest);
+	mode->env = aux;
 }
 
 /* Can have NULL return in strdup need check: deal_error */
