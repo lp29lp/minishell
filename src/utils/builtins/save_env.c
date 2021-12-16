@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/16 01:34:36 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/16 01:42:57 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	save_env(t_struct *mode, char **env)
 	}
 }
 
-/* get size from env and add in stack */
+/* get size from env and add in stack 
+**Avoding alloc memory in temp LOL*/
 void	filter_env(char *env, t_struct *mode)
 {
 	int			size_key;
@@ -47,10 +48,7 @@ void	filter_env(char *env, t_struct *mode)
 	temp = mode->env;
 	while (temp->next != NULL)
 		temp = temp->next;
-	aux = mode->env;
-	mode->env = temp;
-	mode->env->next = new_node_env(env, mode, size_key, rest);
-	mode->env = aux;
+	temp->next = new_node_env(env, mode, size_key, rest);
 }
 
 /* Can have NULL return in strdup need check: deal_error */
