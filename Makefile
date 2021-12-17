@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/16 23:01:27 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/17 03:22:30 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ re:				fclean all
 
 add:	fclean
 	git add .
-	git commit -m "Start parse input (cd)"
+	git commit -m "deal with 'cd'"
 
 push:	add
 	git push

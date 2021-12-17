@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/16 22:46:54 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 03:21:14 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	display_prompt(t_struct *mode)
 	prompt = ft_strjoin(path, "$ "); //use malloc
 	prompt = ft_strjoin("minishell:", prompt); //use malloc
 	mode->line_read = readline(prompt); //need free line
-	if (mode->line_read && mode->*line_read)
+	if (mode->line_read)
 		add_history(mode->line_read);//need clear history
 	mode->split_input = ft_split(mode->line_read, ' ');
 	parse_input_0(mode);
-	//free(line_read);
-	//free(prompt);when c+d duplicate the path
+	free(mode->line_read);
+	free(prompt);//when c+d duplicate the path
 }
 /* Use readline to avoid blank path by influence from history (arrows) */

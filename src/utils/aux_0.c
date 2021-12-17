@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/16 22:58:23 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 02:00:48 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	cmp(const void *string1, const void *string2)
 			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (1);//can conflit with the other return NEED TEST
+	return (0);//can conflit with the other return NEED TEST
 }
 
-int	count_split(t_struct *mode)
-{
-
-}
+//int	count_split(t_struct *mode)
+//{
+//
+//}
