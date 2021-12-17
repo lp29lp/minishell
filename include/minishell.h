@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 08:02:02 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 04:48:41 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # include "struct.h"
 # include "libft/libft.h"
-# include "color.h"
+# include "ansi_color.h"
 
 int			main(int ac, char ** av, char **env);
 

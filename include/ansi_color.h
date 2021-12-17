@@ -6,13 +6,12 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 07:44:48 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 08:35:47 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 04:41:41 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef COLOR_H
-# define COLOR_H
+#ifndef ANSI_COLOR_H
+# define ANSI_COLOR_H
 
 //Regular text
 # define BLK "\e[0;30m"
