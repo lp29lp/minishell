@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 05:51:24 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 06:21:01 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	cmd_cd(t_struct *mode)
 	int	size_split_input;
 
 	size_split_input = count_split(mode, 1);
-	printf("%d\n", size_split_input);
 	if (size_split_input > 2)
 	{
 		ft_putendl_fd("minishell: cd: Too many arguments", 1);
