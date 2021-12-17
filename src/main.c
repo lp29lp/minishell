@@ -6,14 +6,14 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 08:26:40 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 08:39:31 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- *todo:	Need deal with close launch to start debug; Need new prompt function with colors and username; Start print env
+ *todo:	Need deal with close launch to start debug; Start print env
 */
 
 int	main(int ac, char ** av, char **env)
@@ -32,9 +32,7 @@ int	main(int ac, char ** av, char **env)
 }
 
 /* Prompt session (Should display a prompt while waiting) 
-add_history save command sent for use C+p or arrows
-todo: Deal with C+d c exit/ Clear history; free line_read; maybe don't use readline now just print normal
-*/
+add_history save command sent for use C+p or arrows */
 void	display_prompt(t_struct *mode)
 {
 	char	path[3000];
@@ -48,10 +46,9 @@ void	display_prompt(t_struct *mode)
 	mode->split_input = ft_split(mode->line_read, ' ');
 	parse_input_0(mode);
 	free(mode->line_read);
-	free(prompt);//when c+d duplicate the path
 }
-/* Use readline to avoid blank path by influence from history (arrows) */
 
+/* Get logname and print the path */
 void	put_some_colors(t_struct *mode)
 {
 	t_list_env	*temp;
@@ -69,5 +66,7 @@ void	put_some_colors(t_struct *mode)
 		temp = temp->next;
 	}
 	getcwd(path, 3000);
-	printf(YEL "%s" WHT "@" BGRN "minishell" WHT ":" BRED "%s" WHT " $ " RESET, logname, path);
+	printf(YEL "%s" WHT "@" GRN "minishell" WHT ":" BRED "%s" WHT " $ "
+			reset, logname, path);
+	free(logname);
 }
