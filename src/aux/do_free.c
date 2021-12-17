@@ -30,7 +30,7 @@ void	free_env(t_struct *mode)
 	{
 		temp = temp->next;
 		free(mode->env->key);
-		free(mode->env->after);
+		free(mode->env->value);
 		free(mode->env);
 		mode->env = temp;
 	}

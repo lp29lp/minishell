@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/16 03:00:50 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 04:47:42 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 	}
 	new->next = NULL;
 	new->key = ft_substr(env, 0, (size_key - 1));
-	new->after = ft_substr(env, size_key, (rest - size_key));
-	if (new->key == NULL || new->after == NULL)
+	new->value = ft_substr(env, size_key, (rest - size_key));
+	if (new->key == NULL || new->value == NULL)
 	{
 		free(new);
 		do_free(mode);

@@ -6,14 +6,14 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 03:21:14 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 06:11:34 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- *todo:	see how to use readline to wait a input
+ *todo:	Need deal with close launch to start debug; Need new prompt function with colors and username; Start print env
 */
 
 int	main(int ac, char ** av, char **env)

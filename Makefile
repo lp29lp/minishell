@@ -6,28 +6,31 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/17 03:22:30 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/17 06:11:50 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 P_SRC			=	src/
 P_INCLUDE		=	include/
-P_UTILS			=	utils/
+P_AUX			=	aux/
+P_PARSE			=	parse/
 P_BUILTINS		=	builtins/
 P_OBJ			=	./obj/
 
 FT				=	ft
 P_LIBFT			=	$(P_INCLUDE)libft/
 
-
-F_SRC			=	main.c $(UTILS)
+F_PARSE			=	parse_input.c
 
 F_BUILTINS		=	save_env.c cd_input.c
 
-F_UTILS			=	do_free.c list_aux.c aux_0.c parse_input.c $(BUILTINS)
+F_AUX			=	do_free.c aux_0.c
+
+F_SRC			=	main.c $(AUX) $(BUILTINS) $(PARSE)
 
 BUILTINS		=	$(addprefix $(P_BUILTINS), $(F_BUILTINS))
-UTILS			=	$(addprefix $(P_UTILS), $(F_UTILS))
+PARSE			=	$(addprefix $(P_PARSE), $(F_PARSE))
+AUX				=	$(addprefix $(P_AUX), $(F_AUX))
 
 OBJ				=	$(addprefix $(P_OBJ), $(F_SRC:.c=.o))
 
@@ -64,7 +67,7 @@ re:				fclean all
 
 add:	fclean
 	git add .
-	git commit -m "deal with 'cd'"
+	git commit -m "'cd' Done"
 
 push:	add
 	git push
