@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 19:12:46 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 19:32:28 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		init_struct(t_struct *mode);
 /* Prompt */
 void		display_prompt(t_struct *mode);
 char		*put_some_colors(t_struct *mode);
+char		*aux_colors(char *logname, char *path);
 
 /* Parse */
 void		parse_input_0(t_struct *mode);
