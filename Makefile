@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/17 19:33:43 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/17 19:45:22 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ re:				fclean all
 
 add:	fclean
 	git add .
-	git commit -m "colors fix bug prompt"
+	git commit -m "colors, fix bug prompt"
 
 push:	add
 	git push

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 19:33:03 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 19:44:25 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*put_some_colors(t_struct *mode)
 	char		*logname;
 	char		path[3000];
 	char		*aux;
+	char		*aux1;
 
 	temp = mode->env;
 	logname = NULL;
@@ -67,29 +68,12 @@ char	*put_some_colors(t_struct *mode)
 		temp = temp->next;
 	}
 	getcwd(path, 3000);
-	aux = aux_colors(logname, path);
-	free(logname);
-	return (aux);
-}
-
-/* need use less strjoin */
-char	*aux_colors(char *logname, char *path)
-{
-	char		*aux;
-	char		*aux1;
-
 	aux = ft_strjoin(YEL, logname);
-	aux1 = ft_strjoin(WHT, "@");
-	aux = ft_strjoin(aux, aux1);
-	aux1 = ft_strjoin(GRN, "minishell");
-	aux = ft_strjoin(aux, aux1);
-	aux1 = ft_strjoin(WHT, ":");
-	aux = ft_strjoin(aux, aux1);
+	aux = ft_strjoin(aux, "\033[0;37m@\033[0;32mminishell\033[0;37m:");
 	aux1 = ft_strjoin(BRED, path);
 	aux = ft_strjoin(aux, aux1);
-	aux1 = ft_strjoin(WHT, "$ ");
-	aux = ft_strjoin(aux, aux1);
-	aux = ft_strjoin(aux, reset);
-	free (aux1);
+	aux = ft_strjoin(aux, "\033[0;37m$ \033[0m");
+	free(logname);
+	free(aux1);
 	return (aux);
 }
