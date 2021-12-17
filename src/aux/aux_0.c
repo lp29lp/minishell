@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 05:45:04 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 18:42:27 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int	cmp(const void *string1, const void *string2)
 	return (0);//can conflit with the other return NEED TEST
 }
 
-int	count_split(t_struct *mode, int index)
+int	count_split(t_struct *mode)
 {
-	t_list_env	*temp;
 	int			size;
 
 	size = 0;

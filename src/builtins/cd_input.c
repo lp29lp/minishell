@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 06:21:24 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 19:02:38 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	cmd_cd(t_struct *mode)
 {
 	int	size_split_input;
 
-	size_split_input = count_split(mode, 1);
+	size_split_input = count_split(mode);
 	if (size_split_input > 2)
 	{
 		ft_putendl_fd("minishell: cd: Too many arguments", 1);
@@ -38,6 +38,24 @@ void	cmd_cd(t_struct *mode)
 	return ;
 }
 
+
+void	cd_normal(t_struct	*mode)
+{
+	char	old[3000];
+	char	new[3000];
+
+	getcwd(old, 3000);
+	if (chdir(mode->split_input[1]) != 0)
+		printf("minishell: cd: %s: No such file or directory\n",
+				mode->split_input[1]);
+	else
+	{
+		getcwd(new, 3000);
+		env_change_value(mode, "OLDPWD", old);
+		env_change_value(mode, "PWD", new);
+	}
+}
+
 /* move to old directory and change the value from env_stack */
 void	cd_oldpwd(t_struct *mode)
 {
@@ -46,6 +64,7 @@ void	cd_oldpwd(t_struct *mode)
 	t_list_env	*temp;
 
 	temp = mode->env;
+	new = NULL;
 	while (temp)
 	{
 		if (cmp(temp->key, "OLDPWD") == 0)
@@ -71,6 +90,7 @@ void	cd_home(t_struct *mode)
 	t_list_env	*temp;
 
 	temp = mode->env;
+	home = NULL;
 	while (temp)
 	{
 		if (cmp(temp->key, "HOME") == 0)

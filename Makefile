@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/17 06:11:50 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/17 18:37:34 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,12 +48,12 @@ all:			$(NAME)
 $(NAME):		$(OBJ)
 				@make --no-print-directory -C $(P_LIBFT)
 				@echo '.o created and moved to obj folder'
-				@$(CC) -g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
+				@$(CC) $(CFLAGS)-g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
 				@echo 'File(minishell) created'
 
 $(P_OBJ)%.o:	$(P_SRC)%.c
 				@$(P_GUARD)
-				@$(CC) -g $(INC) -c $< -o $@
+				@$(CC) $(CFLAGS) -g $(INC) -c $< -o $@
 
 clean:
 				@$(RM) $(P_OBJ)
