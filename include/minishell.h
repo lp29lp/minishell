@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 05:35:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 08:02:02 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # include "struct.h"
 # include "libft/libft.h"
+# include "color.h"
 
 int			main(int ac, char ** av, char **env);
 
@@ -35,6 +36,7 @@ void		init_struct(t_struct *mode);
 
 /* Prompt */
 void		display_prompt(t_struct *mode);
+void		put_some_colors(t_struct *mode);
 
 /* Parse */
 void		parse_input_0(t_struct *mode);

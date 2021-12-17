@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 06:11:34 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 08:26:40 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ void	display_prompt(t_struct *mode)
 	char	*prompt;
 	char	*input;
 
-	getcwd(path, 3000);
-	prompt = ft_strjoin(path, "$ "); //use malloc
-	prompt = ft_strjoin("minishell:", prompt); //use malloc
-	mode->line_read = readline(prompt); //need free line
+	put_some_colors(mode);
+	mode->line_read = readline(""); //need free line
 	if (mode->line_read)
 		add_history(mode->line_read);//need clear history
 	mode->split_input = ft_split(mode->line_read, ' ');
@@ -53,3 +51,23 @@ void	display_prompt(t_struct *mode)
 	free(prompt);//when c+d duplicate the path
 }
 /* Use readline to avoid blank path by influence from history (arrows) */
+
+void	put_some_colors(t_struct *mode)
+{
+	t_list_env	*temp;
+	char		*logname;
+	char		path[3000];
+
+	temp = mode->env;
+	while (temp)
+	{
+		if (cmp(temp->key, "LOGNAME") == 0)
+		{
+			logname = ft_strdup(temp->value);
+			break ;
+		}
+		temp = temp->next;
+	}
+	getcwd(path, 3000);
+	printf(YEL "%s" WHT "@" BGRN "minishell" WHT ":" BRED "%s" WHT " $ " RESET, logname, path);
+}
