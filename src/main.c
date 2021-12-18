@@ -6,14 +6,14 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 19:44:25 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 23:14:19 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- *todo:	Need deal with close launch to start debug; Start print env
+ *todo:	Need deal with close launch to start debug; signal to close could need do another things first;
 */
 
 int	main(int ac, char ** av, char **env)
@@ -54,7 +54,6 @@ char	*put_some_colors(t_struct *mode)
 	char		*logname;
 	char		path[3000];
 	char		*aux;
-	char		*aux1;
 
 	temp = mode->env;
 	logname = NULL;
@@ -70,10 +69,9 @@ char	*put_some_colors(t_struct *mode)
 	getcwd(path, 3000);
 	aux = ft_strjoin(YEL, logname);
 	aux = ft_strjoin(aux, "\033[0;37m@\033[0;32mminishell\033[0;37m:");
-	aux1 = ft_strjoin(BRED, path);
-	aux = ft_strjoin(aux, aux1);
+	logname = ft_strjoin(BRED, path);
+	aux = ft_strjoin(aux, logname);
 	aux = ft_strjoin(aux, "\033[0;37m$ \033[0m");
 	free(logname);
-	free(aux1);
 	return (aux);
 }

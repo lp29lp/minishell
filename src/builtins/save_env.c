@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 18:42:44 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 22:51:08 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,24 @@ t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 		do_free(mode);
 	}
 	return (new);
+}
+
+void	print_env(t_struct *mode)
+{
+	t_list_env	*temp;
+
+	if (count_split(mode) != 1)
+	{
+		ft_putendl_fd("minishell: wrong usage from env command", 1);
+		return ;
+	}
+	temp = mode->env;
+	while (temp)
+	{
+		ft_putstr_fd(temp->key, 1);
+		ft_putchar_fd('=', 1);
+		ft_putendl_fd(temp->value, 1);
+		temp = temp->next;
+	}
+	return ;
 }

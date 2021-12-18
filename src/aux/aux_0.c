@@ -6,13 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 18:42:27 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 23:11:14 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* aux to compare 2 string; maybe const char */
+/* aux to compare 2 string */
 int	cmp(const void *string1, const void *string2)
 {
 	unsigned char	*s1;
@@ -30,7 +30,7 @@ int	cmp(const void *string1, const void *string2)
 			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (0);//can conflit with the other return NEED TEST
+	return (0);
 }
 
 int	count_split(t_struct *mode)
@@ -43,7 +43,7 @@ int	count_split(t_struct *mode)
 	return (size);
 }
 
-/* unecessary moves to avoid a possibility of wrong free */
+/* change the value from env variables */
 void	env_change_value(t_struct *mode, char *target, char *change)
 {
 	t_list_env	*temp;
@@ -56,7 +56,6 @@ void	env_change_value(t_struct *mode, char *target, char *change)
 		if (cmp(temp->key, target) == 0)
 		{
 			mode->env = temp;
-			free(mode->env->value);
 			mode->env->value = ft_strdup(change);
 			mode->env = aux;
 			return ;

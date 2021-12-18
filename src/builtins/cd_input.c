@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 19:02:38 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 23:06:41 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ void	cmd_cd(t_struct *mode)
 		cd_oldpwd(mode);
 		return ;
 	}
-	if (chdir(mode->split_input[1]) != 0)
-		printf("minishell: cd: %s: No such file or directory\n",
-				mode->split_input[1]);
+	else
+		cd_normal(mode);
 	return ;
 }
 
-
+/* go to a certain directory */
 void	cd_normal(t_struct	*mode)
 {
 	char	old[3000];
@@ -46,8 +45,11 @@ void	cd_normal(t_struct	*mode)
 
 	getcwd(old, 3000);
 	if (chdir(mode->split_input[1]) != 0)
+	{
 		printf("minishell: cd: %s: No such file or directory\n",
 				mode->split_input[1]);
+		return ;
+	}
 	else
 	{
 		getcwd(new, 3000);
