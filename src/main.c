@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 23:14:19 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/17 23:18:12 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	display_prompt(t_struct *mode)
 	free(path);
 }
 
-/* Get logname and print the path */
+/* Get logname, path and put colors */
 char	*put_some_colors(t_struct *mode)
 {
 	t_list_env	*temp;
