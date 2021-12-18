@@ -14,7 +14,6 @@
 
 void	do_free(t_struct *mode)
 {
-	printf("do_free\n");
 	if (mode->size_env > 0)
 		free_env(mode);
 	rl_clear_history();//Testing
