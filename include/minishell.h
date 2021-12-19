@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 23:13:58 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/18 22:22:09 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include "ansi_color.h"
 
 int			main(int ac, char ** av, char **env);
+void		test_sig(int sig, void (*handler)(int), struct sigaction *sa);
+void		handle_sigint(int num);
+
 
 /* env */
 t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 23:18:12 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/18 22:24:11 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@
 
 int	main(int ac, char ** av, char **env)
 {
-	t_struct	mode;
+	t_struct			mode;
+	struct sigaction	sa; 
 
 	if (ac != 1 || av[1])
 		return (0);
 	init_struct(&mode);
 	save_env(&mode, env);
-	while (1)
+	test_sig(SIGINT, handle_sigint, &sa);
+	//test_sig(SIGTSTP, SIG_IGN, &sa);
+	while (1)//could be a global when need close use 0 and send to do_free
 	{
 		display_prompt(&mode);
 	}
