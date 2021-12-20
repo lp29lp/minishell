@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:29:07 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 22:02:39 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/20 04:58:52 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s)
 	cont2 = 0;
 	while (s[cont1])
 		cont1++;
-	a = (char *)ft_calloc((cont1 + 1), sizeof(char));
+	a = (char *)malloc(sizeof(char) * (cont1 + 1));
 	if (a == NULL)
 	{
 		free(a);

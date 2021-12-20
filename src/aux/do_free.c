@@ -14,10 +14,30 @@
 
 void	do_free(t_struct *mode)
 {
+	free(mode->line_read);
 	if (mode->size_env > 0)
 		free_env(mode);
+	if (mode->split_input != NULL)
+		free_split(mode);
 	rl_clear_history();//Testing
 	exit(1);
+
+}
+
+void	free_split(t_struct *mode)
+{
+	int	size;
+
+	size = count_split(mode);
+	if (size > 0)
+	{
+		while (mode->split_input[size] > 0)
+		{
+			free(mode->split_input[size]);
+			size--;
+		}
+	}
+	free(mode->split_input);
 }
 
 void	free_env(t_struct *mode)

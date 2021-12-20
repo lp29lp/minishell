@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 23:11:14 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/20 05:45:29 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	env_change_value(t_struct *mode, char *target, char *change)
 		if (cmp(temp->key, target) == 0)
 		{
 			mode->env = temp;
+			free(mode->env->value); //teste!
 			mode->env->value = ft_strdup(change);
 			mode->env = aux;
 			return ;
@@ -67,6 +68,8 @@ void	env_change_value(t_struct *mode, char *target, char *change)
 
 void	init_struct(t_struct *mode)
 {
+	mode->split_input = NULL;
+	mode->line_read = NULL;
 	mode->size_env = 0;
 	mode->env = NULL;
 }

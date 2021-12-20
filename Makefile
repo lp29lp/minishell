@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/18 22:25:12 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/20 06:02:03 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,16 +58,18 @@ $(P_OBJ)%.o:	$(P_SRC)%.c
 clean:
 				@$(RM) $(P_OBJ)
 				@make --no-print-directory -C $(P_LIBFT) clean
+				@echo 'All clean dude'
 
 fclean:			clean
 				@$(RM) $(NAME)
+				@$(RM) vgcore*
 				@make --no-print-directory -C $(P_LIBFT) fclean
 
 re:				fclean all
 
 add:	fclean
 	git add .
-	git commit -m "c+c"
+	git commit -m "Update"
 
 push:	add
 	git push

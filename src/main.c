@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/18 22:24:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/20 06:01:55 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /**
  *todo:	Need deal with close launch to start debug; signal to close could need do another things first;
+ *!logname wasn't working i think now don't have leak only in readline but 'split' and 'join' can have some leak
 */
 
 int	main(int ac, char ** av, char **env)
@@ -25,7 +26,11 @@ int	main(int ac, char ** av, char **env)
 		return (0);
 	init_struct(&mode);
 	save_env(&mode, env);
+
+	/* Tem alguma magica nesses sinais q funfa usando a mesma variavel */
 	test_sig(SIGINT, handle_sigint, &sa);
+	//test_sig(SIGKILL, SIG_IGN, &sa);
+	test_sig(SIGQUIT, SIG_IGN, &sa);
 	//test_sig(SIGTSTP, SIG_IGN, &sa);
 	while (1)//could be a global when need close use 0 and send to do_free
 	{
@@ -38,43 +43,28 @@ int	main(int ac, char ** av, char **env)
 add_history save command sent for use C+p or arrows */
 void	display_prompt(t_struct *mode)
 {
-	char	*path;
+	char	path[3000];
+	char	*temp;
+	char	*aux;
+	char	*aux1;
 
-	path = put_some_colors(mode);
-	mode->line_read = readline(path); //need free line
-	if (mode->line_read)
-		add_history(mode->line_read);//need clear history
-	mode->split_input = ft_split(mode->line_read, ' ');//check if null free
-	parse_input_0(mode);
-	free(mode->line_read);
-	free(path);
-}
-
-/* Get logname, path and put colors */
-char	*put_some_colors(t_struct *mode)
-{
-	t_list_env	*temp;
-	char		*logname;
-	char		path[3000];
-	char		*aux;
-
-	temp = mode->env;
-	logname = NULL;
-	while (temp)
-	{
-		if (cmp(temp->key, "LOGNAME") == 0)
-		{
-			logname = ft_strdup(temp->value);
-			break ;
-		}
-		temp = temp->next;
-	}
 	getcwd(path, 3000);
-	aux = ft_strjoin(YEL, logname);
-	aux = ft_strjoin(aux, "\033[0;37m@\033[0;32mminishell\033[0;37m:");
-	logname = ft_strjoin(BRED, path);
-	aux = ft_strjoin(aux, logname);
-	aux = ft_strjoin(aux, "\033[0;37m$ \033[0m");
-	free(logname);
-	return (aux);
+	aux = ft_strdup("\033[0;32mmini\033[0;37m@\033[0;32mshell\033[0;37m:");
+	aux1 = ft_strjoin("\033[0;31m", path);
+	temp = ft_strjoin(aux, aux1);
+	free(aux);
+	free(aux1);
+	aux = ft_strjoin(temp, "\033[0;37m$\033[0m ");
+	mode->line_read = readline(aux);
+	free(temp);
+	if (mode->line_read == NULL)
+	{
+		ft_putchar_fd('\n', 1);
+		do_free(mode);
+	}
+	if (mode->line_read)
+		add_history(mode->line_read);
+	mode->split_input = ft_split(mode->line_read, ' ');
+	free(mode->line_read);
+	parse_input_0(mode);
 }

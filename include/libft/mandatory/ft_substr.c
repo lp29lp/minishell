@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:18:37 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/15 22:01:56 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/20 05:58:03 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	nlen = ft_strlen(s + start);
 	if (nlen < len)
 		len = nlen;
-	ns = (char *)ft_calloc((len + 1), sizeof(char));
+	ns = (char *)malloc(sizeof(char) * (len + 1));
 	if (ns == NULL)
 	{
 		free(ns);

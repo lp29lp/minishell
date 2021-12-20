@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 18:21:00 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/18 22:24:46 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/20 03:53:00 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	test_sig(int sig, void (*handler)(int), struct sigaction *sa)
 {
 	sa->sa_handler = handler;
 	sa->sa_flags = 0;
+	sigemptyset(&sa->sa_mask);
 	sigaction(sig, sa, NULL);
 }
 

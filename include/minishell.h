@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/18 22:22:09 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/20 05:49:33 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ void		display_prompt(t_struct *mode);
 void		parse_input_0(t_struct *mode);
 
 /* Deal errors */
+void		free_split(t_struct *mode);
 void		free_env(t_struct *mode);
 void		do_free(t_struct *mode);
+
 
 /* Aux */
 int			cmp(const void *string1, const void *string2);
