@@ -6,13 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 06:17:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/21 06:20:01 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/21 09:18:27 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	print_pwd(t_struct *mode)
+void	print_pwd()
 {
 	char	path[3000];
 

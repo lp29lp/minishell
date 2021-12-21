@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/21 06:16:37 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/21 09:19:43 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ void	parse_input_0(t_struct *mode)
 	size = count_split(mode);
 	if (cmp(mode->split_input[0], "cd") == 0)
 		cmd_cd(mode);
+	if (cmp(mode->split_input[0], "env") == 0)
+		print_env(mode);
 	if (size == 1)
 	{
-		if (cmp(mode->split_input[0], "env") == 0)
-			print_env(mode);
-		if (cmp(mode->split_input[0], "pwd"))
-			print_pwd(mode);
+		if (cmp(mode->split_input[0], "pwd") == 0)
+			print_pwd();
 	}
-	else
-		printf("not done yet or invalid input\n");
 }

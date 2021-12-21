@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/21 06:23:05 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/21 09:21:17 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ re:				fclean all
 
 add:	fclean
 	git add .
-	git commit -m "Update"
+	git commit -m "add pwd"
 
 push:	add
 	git push
