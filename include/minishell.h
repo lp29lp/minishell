@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/20 05:49:33 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/21 06:22:32 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void		cd_oldpwd(t_struct *mode);
 void		cd_home(t_struct *mode);
 void		cmd_cd(t_struct *mode);
 
+/* pwd */
+void		print_pwd(t_struct *mode);
 
 /* Struct */
 void		init_struct(t_struct *mode);
