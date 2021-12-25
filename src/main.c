@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/21 05:22:08 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/25 18:10:20 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int ac, char ** av, char **env)
 
 	/* Tem alguma magica nesses sinais q funfa usando a mesma variavel */
 	test_sig(SIGINT, handle_sigint, &sa);
-	//test_sig(SIGKILL, SIG_IGN, &sa);
-	test_sig(SIGQUIT, SIG_IGN, &sa);
+	test_sig(SIGKILL, SIG_IGN, &sa);
+	// test_sig(SIGQUIT, SIG_IGN, &sa);
 	//test_sig(SIGTSTP, SIG_IGN, &sa);
 	while (1)//could be a global when need close use 0 and send to do_free
 	{
@@ -55,8 +55,9 @@ void	display_prompt(t_struct *mode)
 	free(aux);
 	free(aux1);
 	aux = ft_strjoin(temp, "\033[0;37m$\033[0m ");
-	mode->line_read = readline(aux);
 	free(temp);
+	mode->line_read = (char *)readline(aux);
+	free(aux);
 	if (mode->line_read == NULL)
 	{
 		ft_putchar_fd('\n', 1);
@@ -64,6 +65,8 @@ void	display_prompt(t_struct *mode)
 	}
 	if (mode->line_read)
 		add_history(mode->line_read);
+	// if (mode->split_input != NULL)
+	free_split(mode);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	free(mode->line_read);
 	parse_input_0(mode);

@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/21 09:21:17 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2021/12/25 16:10:08 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,12 +66,5 @@ fclean:			clean
 				@make --no-print-directory -C $(P_LIBFT) fclean
 
 re:				fclean all
-
-add:	fclean
-	git add .
-	git commit -m "add pwd"
-
-push:	add
-	git push
 
 .PHONY:			all clean fclean re add push
