@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/25 18:10:20 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/30 18:42:45 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	main(int ac, char ** av, char **env)
 {
 	t_struct			mode;
-	struct sigaction	sa; 
+	struct sigaction	sa;
 
 	if (ac != 1 || av[1])
 		return (0);
@@ -30,8 +30,8 @@ int	main(int ac, char ** av, char **env)
 	/* Tem alguma magica nesses sinais q funfa usando a mesma variavel */
 	test_sig(SIGINT, handle_sigint, &sa);
 	test_sig(SIGKILL, SIG_IGN, &sa);
-	// test_sig(SIGQUIT, SIG_IGN, &sa);
-	//test_sig(SIGTSTP, SIG_IGN, &sa);
+	test_sig(SIGQUIT, SIG_IGN, &sa);
+	test_sig(SIGTSTP, SIG_IGN, &sa);
 	while (1)//could be a global when need close use 0 and send to do_free
 	{
 		display_prompt(&mode);
@@ -39,7 +39,7 @@ int	main(int ac, char ** av, char **env)
 	do_free(&mode);
 }
 
-/* Prompt session (Should display a prompt while waiting) 
+/* Prompt session (Should display a prompt while waiting)
 add_history save command sent for use C+p or arrows */
 void	display_prompt(t_struct *mode)
 {
@@ -71,3 +71,5 @@ void	display_prompt(t_struct *mode)
 	free(mode->line_read);
 	parse_input_0(mode);
 }
+
+

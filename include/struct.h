@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 04:47:42 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/30 18:06:35 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct	s_list_env
 	struct s_list_env	*next;
 	char				*key; //antes
 	char				*value; //depois
+	int					info;
 }	t_list_env;
 
 typedef struct	s_struct
@@ -29,3 +30,4 @@ typedef struct	s_struct
 }	t_struct;
 
 #endif
+
