@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/02 23:54:40 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/03 06:36:34 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,9 @@ void	init_struct(t_struct *mode)
 	mode->env = NULL;
 }
 
+void	free_null(char **s)
+{
+	if (*s)
+		free(*s);
+	*s = NULL;
+}

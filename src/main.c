@@ -6,16 +6,11 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/31 12:25:40 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/03 05:21:32 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/**
- *todo:	Need deal with close launch to start debug; signal to close could need do another things first;
- *!logname wasn't working i think now don't have leak only in readline but 'split' and 'join' can have some leak
-*/
 
 int	main(int ac, char ** av, char **env)
 {
@@ -26,8 +21,6 @@ int	main(int ac, char ** av, char **env)
 		return (0);
 	init_struct(&mode);
 	save_env(&mode, env);
-
-	/* Tem alguma magica nesses sinais q funfa usando a mesma variavel */
 	test_sig(SIGINT, handle_sigint, &sa);
 	test_sig(SIGKILL, SIG_IGN, &sa);
 	test_sig(SIGQUIT, SIG_IGN, &sa);
@@ -65,12 +58,9 @@ void	display_prompt(t_struct *mode)
 	}
 	if (mode->line_read)
 		add_history(mode->line_read);
-	// if (mode->split_input != NULL)
 	free_split(mode);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	free(mode->line_read);
 	parse_input_0(mode);
 }
-
-
 

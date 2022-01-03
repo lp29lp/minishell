@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/02 23:34:46 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/03 06:28:15 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,8 @@ OBJ				=	$(addprefix $(P_OBJ), $(F_SRC:.c=.o))
 NAME			=	minishell
 
 INC				=	-I $(P_INCLUDE) -I $(P_LIBFT)
-LIBFT			=	-L $(P_LIBFT) -l $(FT)#$(P_LIBFT)libft.a
-CFLAGS			=	-Wall -Wextra -Werror
+LIBFT			=	-L $(P_LIBFT) -l $(FT) #$(P_LIBFT)libft.a
+CFLAGS			=	-Wall -Wextra -Werror  #-fsanitize=address
 P_GUARD			=	mkdir -p $(@D)
 RM				=	rm -rf
 CC				=	clang
@@ -48,7 +48,7 @@ all:			$(NAME)
 $(NAME):		$(OBJ)
 				@make --no-print-directory -C $(P_LIBFT)
 				@echo '.o created and moved to obj folder'
-				@$(CC) $(CFLAGS)-g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
+				@$(CC) $(CFLAGS) -g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
 				@echo 'File(minishell) created'
 
 $(P_OBJ)%.o:	$(P_SRC)%.c

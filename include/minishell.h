@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/02 23:50:54 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/03 06:42:09 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
 # include "libft/libft.h"
 # include "ansi_color.h"
 
-int			main(int ac, char ** av, char **env);
 void		test_sig(int sig, void (*handler)(int), struct sigaction *sa);
+int			main(int ac, char ** av, char **env);
 void		handle_sigint(int num);
 
 /* Export */
-void		cmd_export(t_struct *mode);
-void		format_input(char *var, t_struct *mode);
 void		check_var(char *var, t_struct *mode, int size_key, int rest);
 t_list_env	*new_node_export(t_struct *mode, char *key_v, char *c_temp);
+void		format_input(char *var, t_struct *mode);
+void		cmd_export(t_struct *mode);
 
 /* env */
 t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest);
@@ -47,13 +47,12 @@ void		cd_home(t_struct *mode);
 void		cmd_cd(t_struct *mode);
 
 /* pwd */
-void		print_pwd();
+void		print_pwd(t_struct *mode);
 
 /* Struct */
 void		init_struct(t_struct *mode);
 
 /* Prompt */
-char		*put_some_colors(t_struct *mode);
 void		display_prompt(t_struct *mode);
 
 /* Parse */
@@ -66,18 +65,10 @@ void		free_split(t_struct *mode);
 void		free_env(t_struct *mode);
 void		do_free(t_struct *mode);
 
-
 /* Aux */
 int			cmp(const void *string1, const void *string2);
 int			count_split(t_struct *mode);
+void		free_null(char **s);
 
 #endif
-
-
-
-
-
-
-
-
 
