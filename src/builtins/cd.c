@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_input.c                                         :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 23:06:41 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/03 19:46:16 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,27 @@ void	cmd_cd(t_struct *mode)
 }
 
 /* go to a certain directory */
-void	cd_normal(t_struct	*mode)
+void	cd_normal(t_struct *mode)
 {
 	char	old[3000];
 	char	new[3000];
+	char	*c_temp;
+	char	*c_aux;
 
+	c_temp = ft_strtrim(mode->split_input[1], "\'");
+	c_aux = ft_strtrim(c_temp, "\"");
+	free_null(&c_temp);
 	getcwd(old, 3000);
-	if (chdir(mode->split_input[1]) != 0)
+	if (chdir(c_aux) != 0)
 	{
 		printf("minishell: cd: %s: No such file or directory\n",
 				mode->split_input[1]);
+		free_null(&c_aux);
 		return ;
 	}
 	else
 	{
+		free_null(&c_aux);
 		getcwd(new, 3000);
 		env_change_value(mode, "OLDPWD", old);
 		env_change_value(mode, "PWD", new);
@@ -108,3 +115,4 @@ void	cd_home(t_struct *mode)
 	env_change_value(mode, "PWD", home);
 	free(home);
 }
+
