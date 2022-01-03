@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/25 16:10:08 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/02 23:34:46 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ P_LIBFT			=	$(P_INCLUDE)libft/
 
 F_PARSE			=	parse_input.c
 
-F_BUILTINS		=	save_env.c cd_input.c signal.c pwd_input.c
+F_BUILTINS		=	save_env.c cd_input.c signal.c pwd_input.c export.c
 
 F_AUX			=	do_free.c aux_0.c
 
@@ -54,6 +54,9 @@ $(NAME):		$(OBJ)
 $(P_OBJ)%.o:	$(P_SRC)%.c
 				@$(P_GUARD)
 				@$(CC) $(CFLAGS) -g $(INC) -c $< -o $@
+
+val:
+				valgrind --leak-check=full --show-leak-kinds=all -s --track-origins=yes --trace-children=yes --suppressions=readline.supp ./minishell
 
 clean:
 				@$(RM) $(P_OBJ)

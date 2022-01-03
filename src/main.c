@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/30 18:42:45 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2021/12/31 12:25:40 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main(int ac, char ** av, char **env)
 	test_sig(SIGINT, handle_sigint, &sa);
 	test_sig(SIGKILL, SIG_IGN, &sa);
 	test_sig(SIGQUIT, SIG_IGN, &sa);
-	test_sig(SIGTSTP, SIG_IGN, &sa);
-	while (1)//could be a global when need close use 0 and send to do_free
+	//test_sig(SIGTSTP, SIG_IGN, &sa);
+	while (1)
 	{
 		display_prompt(&mode);
 	}
@@ -71,5 +71,6 @@ void	display_prompt(t_struct *mode)
 	free(mode->line_read);
 	parse_input_0(mode);
 }
+
 
 

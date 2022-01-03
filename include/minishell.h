@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/30 18:26:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/02 23:50:54 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void		test_sig(int sig, void (*handler)(int), struct sigaction *sa);
 void		handle_sigint(int num);
 
 /* Export */
-
-t_list_env	*new_node_export(char *env, t_struct *mode, int size_key, int rest);
-int			format_input(char *var, t_struct *mode);
 void		cmd_export(t_struct *mode);
+void		format_input(char *var, t_struct *mode);
+void		check_var(char *var, t_struct *mode, int size_key, int rest);
+t_list_env	*new_node_export(t_struct *mode, char *key_v, char *c_temp);
 
 /* env */
 t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest);
@@ -47,7 +47,7 @@ void		cd_home(t_struct *mode);
 void		cmd_cd(t_struct *mode);
 
 /* pwd */
-void	print_pwd();
+void		print_pwd();
 
 /* Struct */
 void		init_struct(t_struct *mode);
@@ -57,7 +57,9 @@ char		*put_some_colors(t_struct *mode);
 void		display_prompt(t_struct *mode);
 
 /* Parse */
+void		convert_input(int i, t_struct *mode);
 void		parse_input_0(t_struct *mode);
+void		check_dollar(t_struct *mode);
 
 /* Deal errors */
 void		free_split(t_struct *mode);
@@ -70,6 +72,11 @@ int			cmp(const void *string1, const void *string2);
 int			count_split(t_struct *mode);
 
 #endif
+
+
+
+
+
 
 
 
