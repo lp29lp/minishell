@@ -2,3 +2,5 @@
 ./obj
 ./minishell
 vgcore*
+.vscode
+readline.supp
