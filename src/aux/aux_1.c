@@ -6,11 +6,10 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/05 19:00:19 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:32:44 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 /* Deal with some specific errors of usage from builtins */
@@ -47,18 +46,14 @@ void	treatment(t_struct *mode)
 	{
 		while (mode->line_read[i] == ' ')
 			i++;
-		cat_jump(mode->line_read, i + 1, 0);
+		cat_jump(mode, i, 0);
 	}//tira espaco do comeco
 	i = 0;
-	mode->quote = NULL;
+	mode->quote = '1';
 	while (mode->line_read[i] != '\0')
 	{
-		if (mode->line_read[i] == '$' && mode->line_read[i - 1] != '\''
-				|| mode->line_read[i - 1] != '\"')//se for somente dollar pode  dar erro com espaco
-		{
-			if (mode->quote == NULL)
+		if (mode->line_read[i] == '$' && mode->quote == '1')
 				convert_dollar(mode, i);
-		}
 		if (mode->line_read[i] == '\'' || mode->line_read[i] == '\"')
 		{
 			mode->quote = mode->line_read[i];
@@ -114,7 +109,7 @@ char	*fix_dollar(t_struct *mode, char *name)
 	return (info);
 }
 
-void	d_quotes(t_struct *mode, int i, char quote)
+void	d_quotes(t_struct *mode, int i)
 {
 	cat_jump(mode, i, 1);
 	while (mode->line_read[i] != mode->quote)

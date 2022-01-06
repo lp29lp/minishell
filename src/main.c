@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/03 05:21:32 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:09:11 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	display_prompt(t_struct *mode)
 	}
 	if (mode->line_read)
 		add_history(mode->line_read);
+	treatment(mode);
 	free_split(mode);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	free(mode->line_read);

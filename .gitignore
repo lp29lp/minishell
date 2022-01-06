@@ -1,8 +1,9 @@
-*.o
 ./obj
-./minishell
+*.o
+minishell
 vgcore*
 .vscode
 readline.supp
 compile_flags.txt
 tags
+todo.txt
