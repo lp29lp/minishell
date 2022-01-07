@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/06 23:54:39 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/07 18:05:25 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,21 @@ void	treatment(t_struct *mode)
 	{
 		while (mode->line_read[i] == ' ')
 			i++;
-		cat_jump(mode, i, 0);
+		cat_jump(mode, i, 0);//ta funfando?
 	}//tira espaco do comeco
 	i = 0;
 	mode->quote = '1';
 	while (mode->line_read[i] != '\0')
 	{
-		if (mode->line_read[i] == '$' && mode->quote == '1')
-				convert_dollar(mode, i);
 		if (mode->line_read[i] == '\'' || mode->line_read[i] == '\"')
 		{
 			mode->quote = mode->line_read[i];
-			d_quotes(mode, i);
-			i++;
-			continue ;
+			i = d_quotes(mode, i);
 		}
-		i++;
+		else if (mode->line_read[i] == '$' && mode->quote == '1')
+				convert_dollar(mode, i);
+		else
+			i++;
 	}
 }
 
@@ -71,13 +70,14 @@ void	convert_dollar(t_struct *mode, int i)
 	char	*name;
 	char	*temp;
 
-	cat_jump(mode, (i + 1), 1);//tira dollar
+	name = NULL;
+	cat_jump(mode, i, 1);//tira dollar
+	//i +=1;
 	bkp = i;
-	while(mode->line_read[i] != '\''|| mode->line_read[i] != '\"' || mode->line_read[i] != ' ')
-	{
-		i++;
-	}
-	name = ft_substr(mode->line_read, bkp, i);//cria a variavel
+	while (mode->line_read[i] != 32 && mode->line_read[i] != 34
+			&& mode->line_read[i] != 39 && mode->line_read[i] != '\0')
+				i++;
+	name = ft_substr(mode->line_read, bkp, (i - bkp));//cria a variavel
 	temp = fix_dollar(mode, name);
 	free_null(&name);
 	mode->left = ft_substr(mode->line_read, 0, bkp);
@@ -96,7 +96,9 @@ char	*fix_dollar(t_struct *mode, char *name)
 {
 	t_list_env	*temp;
 	char		*info;
+	int			tag;
 
+	tag = 0;
 	temp = mode->env;
 	while (temp != NULL)
 	{
@@ -107,23 +109,31 @@ char	*fix_dollar(t_struct *mode, char *name)
 		}
 		temp = temp->next;
 	}
-	info = ft_strjoin("$", name);
+	info = ft_strdup("");
 	return (info);
 }
 
-void	d_quotes(t_struct *mode, int i)
+int	d_quotes(t_struct *mode, int i)
 {
-	if (mode->line_read[i + 1] == '$' && mode->line_read[i] == '\"')
-			convert_dollar(mode, i);
 	cat_jump(mode, i, 1);
+	if (mode->quote == '\'' && mode->line_read[i] == '$')
+	{
+		while (mode->line_read[i] != mode->quote)
+			i++;
+	}
 	while (mode->line_read[i] != mode->quote)
 	{
-		if (mode->line_read[i + 1] == '$' && mode->line_read[i] == '\"')
+		if (mode->quote == '\"' && mode->line_read[i] == '$')
 			convert_dollar(mode, i);
-		i++;
+		else if (mode->line_read[i] == '$' && mode->line_read[i - 1] != '\''
+				&& mode->line_read[i - 1] != '\"')
+			convert_dollar(mode, i);
+		else
+			i++;
 	}
 	cat_jump(mode, i, 1);// -1 talvez nao seja necessario
 	mode->quote = '1';
+	return (i);
 }
 
 /* tag == 0 is space */

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/06 15:06:01 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/07 15:54:27 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		free_null(char **s);
 
 /* dollar */
 void	cat_jump(t_struct *mode, int i, int tag);
-void	d_quotes(t_struct *mode, int i);
+int		d_quotes(t_struct *mode, int i);
 char	*fix_dollar(t_struct *mode, char *name);
 void	convert_dollar(t_struct *mode, int i);
 void	treatment(t_struct *mode);
