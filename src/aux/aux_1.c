@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/06 16:32:44 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/06 23:54:39 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	treatment(t_struct *mode)
 		{
 			mode->quote = mode->line_read[i];
 			d_quotes(mode, i);
+			i++;
 			continue ;
 		}
 		i++;
@@ -70,23 +71,24 @@ void	convert_dollar(t_struct *mode, int i)
 	char	*name;
 	char	*temp;
 
-	cat_jump(mode, i, 1);//tira dollar
-		bkp = i;
-		while(mode->line_read[i] != ' ' || mode->line_read[i] != '\''
-				|| mode->line_read[i] != '\"')
-			i++;
-		name = ft_substr(mode->line_read, bkp, i);//cria a variavel
-		temp = fix_dollar(mode, name);
-		free_null(&name);
-		mode->left = ft_substr(mode->line_read, 0, bkp);
-		name = ft_strjoin(mode->left, temp);
-		free_null(&mode->left);
-		free_null(&temp);
-		mode->right = ft_substr(mode->line_read, i, ft_strlen(mode->line_read));
-		free_null(&mode->line_read);
-		mode->line_read = ft_strjoin(name, mode->right);
-		free_null(&name);
-		free_null(&mode->right);
+	cat_jump(mode, (i + 1), 1);//tira dollar
+	bkp = i;
+	while(mode->line_read[i] != '\''|| mode->line_read[i] != '\"' || mode->line_read[i] != ' ')
+	{
+		i++;
+	}
+	name = ft_substr(mode->line_read, bkp, i);//cria a variavel
+	temp = fix_dollar(mode, name);
+	free_null(&name);
+	mode->left = ft_substr(mode->line_read, 0, bkp);
+	name = ft_strjoin(mode->left, temp);
+	free_null(&mode->left);
+	free_null(&temp);
+	mode->right = ft_substr(mode->line_read, i, ft_strlen(mode->line_read));
+	free_null(&mode->line_read);
+	mode->line_read = ft_strjoin(name, mode->right);
+	free_null(&name);
+	free_null(&mode->right);
 }
 
 /* get value from key but if doesn't exist just return the key with $ */
@@ -111,6 +113,8 @@ char	*fix_dollar(t_struct *mode, char *name)
 
 void	d_quotes(t_struct *mode, int i)
 {
+	if (mode->line_read[i + 1] == '$' && mode->line_read[i] == '\"')
+			convert_dollar(mode, i);
 	cat_jump(mode, i, 1);
 	while (mode->line_read[i] != mode->quote)
 	{
@@ -118,7 +122,8 @@ void	d_quotes(t_struct *mode, int i)
 			convert_dollar(mode, i);
 		i++;
 	}
-	cat_jump(mode, (i - 1), 1);// -1 talvez nao seja necessario
+	cat_jump(mode, i, 1);// -1 talvez nao seja necessario
+	mode->quote = '1';
 }
 
 /* tag == 0 is space */
