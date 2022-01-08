@@ -6,11 +6,10 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 00:29:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 06:57:54 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 void	cmd_echo(t_struct *mode)
@@ -21,7 +20,7 @@ void	cmd_echo(t_struct *mode)
 	n = 0;
 	if (cmp(mode->split_input[1], "-n") == 0)
 		n = 1;
-	if (n == 1)//bommini@sheel...
+	if (n == 1)
 		i = find_start(mode, 1);
 	else
 		i = find_start(mode, 0);
@@ -32,6 +31,7 @@ void	cmd_echo(t_struct *mode)
 		ft_putendl_fd(mode->line_read, 1);
 }
 
+/* remove echo and -n and space from start and end */
 void	fix_print(t_struct *mode, int start)
 {
 	int	i;
@@ -43,11 +43,12 @@ void	fix_print(t_struct *mode, int start)
 		while (mode->line_read[i] == ' ')
 			i++;
 		cat_jump(mode, i, 0);
-	}//tira espaco do comeco
+	}
 	trim_back(mode);
 	return ;
 }
 
+/* find where the print start removing echo and -n if exist */
 int	find_start(t_struct *mode, int tag)
 {
 	int	i;
@@ -78,6 +79,7 @@ int	find_start(t_struct *mode, int tag)
 	return (0);
 }
 
+/* remove space from the end of the string */
 void	trim_back(t_struct *mode)
 {
 	int	size;
@@ -90,3 +92,4 @@ void	trim_back(t_struct *mode)
 	mode->line_read = ft_strdup(mode->right);
 	free_null(&mode->right);
 }
+

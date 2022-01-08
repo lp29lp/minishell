@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 12:25:43 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/03 06:40:03 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 07:01:37 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	cmd_export(t_struct *mode)
 	}
 }
 
- /* 39 '    34 "    36 $ */
+ /* 39 '    34 "    36 $ / count how much is need to create a variable */
 void	format_input(char *var, t_struct *mode)
 {
 	int	size_key;
@@ -44,15 +44,15 @@ void	format_input(char *var, t_struct *mode)
 	size_key = 0;
 	while (var[rest] != '=')
 	{
-/* 		if (var[rest] == 39 || var[rest] == 34 || var[rest] == 36)
-			return ; */
+ 		if (var[rest] == 39 || var[rest] == 34 || var[rest] == 36)
+			return ;
 		rest++;
 		size_key++;
 	}
 	while (var[rest] != '\0')
 	{
-/* 		if (var[rest] == 36)
-			return ; */
+ 		if (var[rest] == 36)
+			return ;
 		rest++;
 	}
 	check_var(var, mode, size_key, rest);

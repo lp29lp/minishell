@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   save_env.c                                         :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/02 23:32:53 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 06:59:16 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* create a list of environment variable */
 void	save_env(t_struct *mode, char **env)
 {
 	int	i;
@@ -24,7 +25,7 @@ void	save_env(t_struct *mode, char **env)
 	}
 }
 
-/* get size from env and add in stack / Couting '=' but don't save*/
+/* get size from env and add in stack / Counting '=' but don't save*/
 void	filter_env(char *env, t_struct *mode)
 {
 	int			size_key;

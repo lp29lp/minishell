@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 18:00:55 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/03 19:56:32 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 07:04:22 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	cmd_unset(t_struct *mode)
 	}
 }
 
+/* delete one variable in linked list from env */
 void	unset_aux(int i, t_struct *mode)
 {
 	char		*c_temp;

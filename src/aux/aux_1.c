@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 00:10:54 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 07:15:50 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	dollar_error(char *var, t_struct *mode, char *builtin)
 	free_null(&info);
 }
 
+/* Do a treatment on string input dealing with quote and dollar sing */
 void	treatment(t_struct *mode)
 {
 	int		i;
@@ -46,8 +47,8 @@ void	treatment(t_struct *mode)
 	{
 		while (mode->line_read[i] == ' ')
 			i++;
-		cat_jump(mode, i, 0);//ta funfando?
-	}//tira espaco do comeco
+		cat_jump(mode, i, 0);
+	}
 	i = 0;
 	mode->quote = '1';
 	while (mode->line_read[i + 1] != '\0')
@@ -64,6 +65,7 @@ void	treatment(t_struct *mode)
 	}
 }
 
+/* Conver the dollar sign variable into the value stored in linked list */
 void	convert_dollar(t_struct *mode, int i)
 {
 	int		bkp;
@@ -71,13 +73,12 @@ void	convert_dollar(t_struct *mode, int i)
 	char	*temp;
 
 	name = NULL;
-	cat_jump(mode, i, 1);//tira dollar
-	//i +=1;
+	cat_jump(mode, i, 1);
 	bkp = i;
 	while (mode->line_read[i] != 32 && mode->line_read[i] != 34
 			&& mode->line_read[i] != 39 && mode->line_read[i] != '\0')
 				i++;
-	name = ft_substr(mode->line_read, bkp, (i - bkp));//cria a variavel
+	name = ft_substr(mode->line_read, bkp, (i - bkp));
 	temp = fix_dollar(mode, name);
 	free_null(&name);
 	mode->left = ft_substr(mode->line_read, 0, bkp);
@@ -91,7 +92,8 @@ void	convert_dollar(t_struct *mode, int i)
 	free_null(&mode->right);
 }
 
-/* get value from key but if doesn't exist just return the key with $ */
+/* get value from key but if doesn't exist return void string but this
+ * condition just exist when the previous position is double quote or nothing*/
 char	*fix_dollar(t_struct *mode, char *name)
 {
 	t_list_env	*temp;
@@ -113,6 +115,7 @@ char	*fix_dollar(t_struct *mode, char *name)
 	return (info);
 }
 
+/* Treatment when one quote is open */
 int	d_quotes(t_struct *mode, int i)
 {
 	cat_jump(mode, i, 1);
@@ -132,14 +135,13 @@ int	d_quotes(t_struct *mode, int i)
 			i++;
 	}
 	if (mode->line_read[i + 1] != '\0')
-		cat_jump(mode, i, 1);// -1 talvez nao seja necessario
+		cat_jump(mode, i, 1);
 	mode->quote = '1';
 	return (i);
 }
 
-/* tag == 0 is space */
-/* tag == 1 is d_quotes */
-/* tag == 2 */
+/* Tag != 1 when need remove space from beginning
+ * if one will remove one character in specific in the string */
 void	cat_jump(t_struct *mode, int i, int tag)
 {
 
