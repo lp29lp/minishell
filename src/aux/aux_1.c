@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/07 18:05:25 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 00:10:54 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	treatment(t_struct *mode)
 	}//tira espaco do comeco
 	i = 0;
 	mode->quote = '1';
-	while (mode->line_read[i] != '\0')
+	while (mode->line_read[i + 1] != '\0')
 	{
 		if (mode->line_read[i] == '\'' || mode->line_read[i] == '\"')
 		{
@@ -121,7 +121,7 @@ int	d_quotes(t_struct *mode, int i)
 		while (mode->line_read[i] != mode->quote)
 			i++;
 	}
-	while (mode->line_read[i] != mode->quote)
+	while (mode->line_read[i] != mode->quote && mode->line_read[i + 1] != '\0')
 	{
 		if (mode->quote == '\"' && mode->line_read[i] == '$')
 			convert_dollar(mode, i);
@@ -131,7 +131,8 @@ int	d_quotes(t_struct *mode, int i)
 		else
 			i++;
 	}
-	cat_jump(mode, i, 1);// -1 talvez nao seja necessario
+	if (mode->line_read[i + 1] != '\0')
+		cat_jump(mode, i, 1);// -1 talvez nao seja necessario
 	mode->quote = '1';
 	return (i);
 }

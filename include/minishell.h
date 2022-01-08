@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/07 15:54:27 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 00:21:26 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,18 @@ void		test_sig(int sig, void (*handler)(int), struct sigaction *sa);
 int			main(int ac, char ** av, char **env);
 void		handle_sigint(int num);
 
+/* Echo */
+void		cmd_echo(t_struct *mode);
+void		fix_print(t_struct *mode, int start);
+int			find_start(t_struct *mode, int tag);
+void		trim_back(t_struct *mode);
+
 /* Unset */
-void	delete_mid(t_struct *mode, int posi);
-void	unset_aux(int i, t_struct *mode);
-void	delete_first(t_struct *mode);
-void	delete_end(t_struct *mode);
-void	cmd_unset(t_struct *mode);
+void		delete_mid(t_struct *mode, int posi);
+void		unset_aux(int i, t_struct *mode);
+void		delete_first(t_struct *mode);
+void		delete_end(t_struct *mode);
+void		cmd_unset(t_struct *mode);
 
 /* Export */
 void		check_var(char *var, t_struct *mode, int size_key, int rest);
@@ -64,8 +70,6 @@ void		display_prompt(t_struct *mode);
 
 /* Parse */
 void		parse_input_0(t_struct *mode);
-/* void		convert_input(int i, t_struct *mode); */
-/* void		check_dollar(t_struct *mode); */
 
 /* Deal errors */
 void		free_split(t_struct *mode);
@@ -78,12 +82,12 @@ int			cmp(const void *string1, const void *string2);
 int			count_split(t_struct *mode);
 void		free_null(char **s);
 
-/* dollar */
-void	cat_jump(t_struct *mode, int i, int tag);
-int		d_quotes(t_struct *mode, int i);
-char	*fix_dollar(t_struct *mode, char *name);
-void	convert_dollar(t_struct *mode, int i);
-void	treatment(t_struct *mode);
+/* Treatment */
+void		cat_jump(t_struct *mode, int i, int tag);
+int			d_quotes(t_struct *mode, int i);
+char		*fix_dollar(t_struct *mode, char *name);
+void		convert_dollar(t_struct *mode, int i);
+void		treatment(t_struct *mode);
 
 #endif
 

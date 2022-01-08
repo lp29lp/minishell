@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/03 19:51:33 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/07 23:52:52 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ P_LIBFT			=	$(P_INCLUDE)libft/
 
 F_PARSE			=	parse_input.c
 
-F_BUILTINS		=	env.c cd.c signal.c pwd.c export.c unset.c
+F_BUILTINS		=	env.c cd.c signal.c pwd.c export.c unset.c echo.c
 
 F_AUX			=	do_free.c aux_0.c aux_1.c
 
