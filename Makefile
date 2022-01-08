@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/08 18:52:47 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/08 18:58:52 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ NAME			=	minishell
 
 INC				=	-I $(P_INCLUDE) -I $(P_LIBFT)
 LIBFT			=	-L $(P_LIBFT) -l $(FT) 		#$(P_LIBFT)libft.a
-CFLAGS			=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror #-fsanitize=address
 P_GUARD			=	mkdir -p $(@D)
 RM				=	rm -rf
 CC				=	clang

@@ -6,10 +6,11 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 18:31:46 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 19:10:52 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minishell.h"
 
 void	cmd_echo(t_struct *mode)
@@ -20,6 +21,13 @@ void	cmd_echo(t_struct *mode)
 	n = 0;
 	if (cmp(mode->split_input[1], "-n") == 0)
 		n = 1;
+	if (count_split(mode) == 2 && n == 1)
+		return ;
+	if (count_split(mode) == 1 && n == 0)
+	{
+		ft_putendl_fd("", 1);
+		return ;
+	}
 	if (n == 1)
 		i = find_start(mode, 1);
 	else
