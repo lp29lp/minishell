@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 06:57:54 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 18:31:46 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,11 @@ void	cmd_echo(t_struct *mode)
 		i = find_start(mode, 1);
 	else
 		i = find_start(mode, 0);
-	fix_print(mode, i);
+	cat_jump(mode, i, 0);
 	if (n == 1)
 		ft_putstr_fd(mode->line_read, 1);
 	else
 		ft_putendl_fd(mode->line_read, 1);
-}
-
-/* remove echo and -n and space from start and end */
-void	fix_print(t_struct *mode, int start)
-{
-	int	i;
-
-	i = 0;
-	cat_jump(mode, start, 0);
-	if (mode->line_read[i] == ' ')
-	{
-		while (mode->line_read[i] == ' ')
-			i++;
-		cat_jump(mode, i, 0);
-	}
-	trim_back(mode);
-	return ;
 }
 
 /* find where the print start removing echo and -n if exist */
@@ -77,19 +60,5 @@ int	find_start(t_struct *mode, int tag)
 		i++;
 	}
 	return (0);
-}
-
-/* remove space from the end of the string */
-void	trim_back(t_struct *mode)
-{
-	int	size;
-
-	size = ft_strlen(mode->line_read);
-	while (mode->line_read[size] == ' ')
-		size--;
-	mode->right = ft_substr(mode->line_read, 0, size);
-	free_null(&mode->line_read);
-	mode->line_read = ft_strdup(mode->right);
-	free_null(&mode->right);
 }
 

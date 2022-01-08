@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/07 23:54:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 17:51:09 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	parse_input_0(t_struct *mode)
 {
 	free_split(mode);
 	treatment(mode);
+	printf("|%s|\n", mode->line_read);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	if (cmp(mode->split_input[0], "cd") == 0)
 		cmd_cd(mode);

@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/07 23:52:52 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/08 18:52:47 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ F_PARSE			=	parse_input.c
 
 F_BUILTINS		=	env.c cd.c signal.c pwd.c export.c unset.c echo.c
 
-F_AUX			=	do_free.c aux_0.c aux_1.c
+F_AUX			=	do_free.c aux_0.c aux_1.c errors.c
 
 F_SRC			=	main.c $(AUX) $(BUILTINS) $(PARSE)
 
@@ -37,8 +37,8 @@ OBJ				=	$(addprefix $(P_OBJ), $(F_SRC:.c=.o))
 NAME			=	minishell
 
 INC				=	-I $(P_INCLUDE) -I $(P_LIBFT)
-LIBFT			=	-L $(P_LIBFT) -l $(FT) #$(P_LIBFT)libft.a
-CFLAGS			=	-Wall -Wextra -Werror  #-fsanitize=address
+LIBFT			=	-L $(P_LIBFT) -l $(FT) 		#$(P_LIBFT)libft.a
+CFLAGS			=	-Wall -Wextra -Werror -fsanitize=address
 P_GUARD			=	mkdir -p $(@D)
 RM				=	rm -rf
 CC				=	clang
@@ -65,9 +65,9 @@ clean:
 
 fclean:			clean
 				@$(RM) $(NAME)
-				@$(RM) vgcore*
+				@$(RM) vgcore* #remover depois
 				@make --no-print-directory -C $(P_LIBFT) fclean
 
 re:				fclean all
 
-.PHONY:			all clean fclean re add push
+.PHONY:			all clean fclean val

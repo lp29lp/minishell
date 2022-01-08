@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 07:05:08 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/08 18:12:03 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,28 @@ void	init_struct(t_struct *mode)
 	mode->env = NULL;
 }
 
-/* Free and set has null */
-void	free_null(char **s)
+/* Tag != 1 when need remove space from beginning
+ * if one will remove one character in specific in the string */
+void	cat_jump(t_struct *mode, int i, int tag)
 {
-	if (*s)
-		free(*s);
-	*s = NULL;
+
+	if (tag == 1)
+	{
+		mode->left = ft_substr(mode->line_read, 0, i);
+		mode->right = ft_substr(mode->line_read, (i+1), ft_strlen(mode->line_read));
+		free_null(&mode->line_read);
+		mode->line_read = ft_strjoin(mode->left, mode->right);
+		free_null(&mode->left);
+		free_null(&mode->right);
+		return ;
+	}
+	else
+	{
+		mode->right = ft_substr(mode->line_read, i, ft_strlen(mode->line_read));
+		free_null(&mode->line_read);
+		mode->line_read = ft_strdup(mode->right);
+		free_null(&mode->right);
+		return ;
+	}
 }
+
