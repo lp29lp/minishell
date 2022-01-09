@@ -6,18 +6,36 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 19:08:45 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 04:33:11 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Deal with void input or redirect */
+void index_parse(t_struct *mode)
+{
+	int	i;
+
+	free_split(mode);
+	if(cmp(mode->line_read, "") == 0)
+		return ;
+	i = 0;
+	if (mode->line_read[i] == ' ')
+	{
+		while (mode->line_read[i] == ' ')
+			i++;
+		cat_jump(mode, i, 0);
+		if(cmp(mode->line_read, "") == 0)
+			return ;
+	}
+	parse_input_0(mode);
+}
+
 /* See what was the input and redirect */
 void	parse_input_0(t_struct *mode)
 {
-	free_split(mode);
 	treatment(mode);
-	/* printf("|%s|\n", mode->line_read); */
 	mode->split_input = ft_split(mode->line_read, ' ');
 	if (cmp(mode->split_input[0], "cd") == 0)
 		cmd_cd(mode);
@@ -32,3 +50,4 @@ void	parse_input_0(t_struct *mode)
 	if (cmp(mode->split_input[0], "echo") == 0)
 		cmd_echo(mode);
 }
+

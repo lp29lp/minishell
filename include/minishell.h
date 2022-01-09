@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 18:31:48 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 04:48:10 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include "libft/libft.h"
 # include "ansi_color.h"
 
-void		test_sig(int sig, void (*handler)(int), struct sigaction *sa);
+void	sig_handler(int sig);
+void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
 int			main(int ac, char ** av, char **env);
 void		handle_sigint(int num);
 
@@ -68,6 +69,7 @@ void		display_prompt(t_struct *mode);
 
 /* Parse */
 void		parse_input_0(t_struct *mode);
+void		index_parse(t_struct *mode);
 
 /* Deal errors */
 void		free_split(t_struct *mode);
@@ -85,7 +87,7 @@ int			d_quotes(t_struct *mode, int i);
 char		*fix_dollar(t_struct *mode, char *name);
 void		convert_dollar(t_struct *mode, int i);
 void		treatment(t_struct *mode);
-void		jump_space(t_struct *mode, int i);
+int			jump_space(t_struct *mode, int i);
 
 #endif
 

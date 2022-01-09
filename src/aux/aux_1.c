@@ -6,24 +6,18 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 18:30:12 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 04:20:03 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Do a treatment on string input dealing with quote and dollar sing */
+/* Do a treatment on string input dealing with quote and dollar sing and space
+ * for echo */
 void	treatment(t_struct *mode)
 {
-	int		i;
+	int	i;
 
-	i = 0;
-	if (mode->line_read[i] == ' ')
-	{
-		while (mode->line_read[i] == ' ')
-			i++;
-		cat_jump(mode, i, 0);
-	}
 	i = 0;
 	mode->quote = '1';
 	while (mode->line_read[i + 1] != '\0')
@@ -35,23 +29,30 @@ void	treatment(t_struct *mode)
 		}
 		else if (mode->line_read[i] == '$' && mode->quote == '1')
 				convert_dollar(mode, i);
-		else if (mode->line_read[i] == ' ' && mode->line_read[i + 1] == ' '
-				&& mode->quote == '1')
-			jump_space(mode, i + 1);
 		else
 			i++;
+		if (mode->line_read[i] == ' ' && mode->quote == '1')
+			i = jump_space(mode, i + 1);
+		if (mode->line_read[0] == '\0')
+			return ;
+		else if (mode->line_read[i] == '\0')
+			return ;
 	}
 }
 
-/* remove space out of quotes and just leaves only one space        */
-void	jump_space(t_struct *mode, int i)
+/* remove space out of quotes and just leaves only one space or no space */
+int	jump_space(t_struct *mode, int i)
 {
 	while (mode->line_read[i] == ' ')
 	{
 		cat_jump(mode, i, 1);
 	}
 	if (mode->line_read[i] == '\0')
+	{
 		cat_jump(mode, (i - 1), 1);
+		return (i -= 2);
+	}
+	return (i);
 }
 
 /* Convert the dollar sign variable into the value stored in linked list */
@@ -107,6 +108,9 @@ char	*fix_dollar(t_struct *mode, char *name)
 /* Treatment when one quote is open */
 int	d_quotes(t_struct *mode, int i)
 {
+	int bkp;
+
+	bkp = i;
 	cat_jump(mode, i, 1);
 	if (mode->quote == '\'' && mode->line_read[i] == '$')
 	{
@@ -123,7 +127,14 @@ int	d_quotes(t_struct *mode, int i)
 		else
 			i++;
 	}
-	if (mode->line_read[i + 1] != '\0')
+	if (mode->line_read[i + 1] == '\0' &&	mode->line_read[i] == mode->quote
+		&& bkp == i)
+	{
+		free(mode->line_read);
+		mode->line_read = ft_strdup("");
+		i = 0;
+	}
+	else if (mode->line_read[i] == mode->quote)
 		cat_jump(mode, i, 1);
 	mode->quote = '1';
 	return (i);

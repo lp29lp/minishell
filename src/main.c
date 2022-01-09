@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/07 16:32:50 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 05:25:08 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,20 @@ int	main(int ac, char ** av, char **env)
 	t_struct			mode;
 	struct sigaction	sa;
 
+	ft_memset(&sa, 0, sizeof(sa));
 	if (ac != 1 || av[1])
 		return (0);
 	init_struct(&mode);
 	save_env(&mode, env);
-	test_sig(SIGINT, handle_sigint, &sa);
-	test_sig(SIGKILL, SIG_IGN, &sa);
-	test_sig(SIGQUIT, SIG_IGN, &sa);
-	//test_sig(SIGTSTP, SIG_IGN, &sa);
+	jump_sig(SIGINT, handle_sigint, &sa);
+	jump_sig(SIGQUIT, SIG_IGN, &sa);
 	while (1)
 	{
 		display_prompt(&mode);
 	}
-	do_free(&mode);
 }
 
-/* Prompt session (Should display a prompt while waiting)
-add_history save command sent for use C+p or arrows */
+/* Display the prompt get input and send to parse */
 void	display_prompt(t_struct *mode)
 {
 	char	path[3000];
@@ -59,6 +56,5 @@ void	display_prompt(t_struct *mode)
 	}
 	if (mode->line_read)
 		add_history(mode->line_read);
-	parse_input_0(mode);
+	index_parse(mode);
 }
-
