@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 04:48:10 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 19:00:15 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@
 # include "libft/libft.h"
 # include "ansi_color.h"
 
-void	sig_handler(int sig);
 void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
 int			main(int ac, char ** av, char **env);
 void		handle_sigint(int num);
+void		get_space(t_struct *mode, int i);
 
 /* Echo */
 void		cmd_echo(t_struct *mode);
 int			find_start(t_struct *mode, int tag);
+void		echo_print(t_struct *mode, int n);
+int			echo_check(t_struct *mode, int i, int n);
 
 /* Unset */
 void		delete_mid(t_struct *mode, int posi);

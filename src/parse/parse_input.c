@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 04:33:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 18:34:07 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void index_parse(t_struct *mode)
 /* See what was the input and redirect */
 void	parse_input_0(t_struct *mode)
 {
+	mode->split_two = ft_split(mode->line_read, ' ');
 	treatment(mode);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	if (cmp(mode->split_input[0], "cd") == 0)

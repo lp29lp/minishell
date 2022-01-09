@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/07 17:19:40 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 18:23:55 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct	s_struct
 	char		quote;
 	char		*left;
 	char		*right;
+	int			space;
+	int			tag;
+	char		**split_two;
 }	t_struct;
 
 #endif

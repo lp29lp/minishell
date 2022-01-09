@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 19:10:52 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 18:59:36 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,63 @@ void	cmd_echo(t_struct *mode)
 	n = 0;
 	if (cmp(mode->split_input[1], "-n") == 0)
 		n = 1;
-	if (count_split(mode) == 2 && n == 1)
+	i = count_split(mode);
+	if (i == 2 && n == 1 && mode->space == 0)
 		return ;
-	if (count_split(mode) == 1 && n == 0)
+	if (i == 1 && n == 0 && mode->space == 0)
 	{
 		ft_putendl_fd("", 1);
 		return ;
 	}
+	if (echo_check(mode, i, n) == 1)
+		return ;
 	if (n == 1)
 		i = find_start(mode, 1);
 	else
 		i = find_start(mode, 0);
 	cat_jump(mode, i, 0);
-	if (n == 1)
-		ft_putstr_fd(mode->line_read, 1);
+	echo_print(mode, n);
+}
+
+int echo_check(t_struct *mode, int i, int n)
+{
+	if ((i == 2 && n == 1 && mode->space != 0) || (i == 1 && n == 0
+			&& mode->space != 0))
+	{
+		free_null(&mode->line_read);
+		mode->line_read = ft_strdup("");
+		echo_print(mode, n);
+		return (1) ;
+	}
 	else
-		ft_putendl_fd(mode->line_read, 1);
+		return (0);
+}
+
+/* Print echo but deal with space when if printable */
+void	echo_print(t_struct *mode, int n)
+{
+	if (n == 1)
+	{
+		if (mode->split_two[2][0] == '\'' || mode->split_two[2][0] == '\"')
+		{
+			while (mode->space-- > 0)
+				ft_putchar_fd(' ', 1);
+			ft_putstr_fd(mode->line_read, 1);
+		}
+		else
+			ft_putstr_fd(mode->line_read, 1);
+	}
+	else
+	{
+		if (mode->split_two[1][0] == '\'' || mode->split_two[1][0] == '\"')
+		{
+			while (mode->space-- > 0)
+				ft_putchar_fd(' ', 1);
+			ft_putendl_fd(mode->line_read, 1);
+		}
+		else
+			ft_putendl_fd(mode->line_read, 1);
+	}
 }
 
 /* find where the print start removing echo and -n if exist */

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 18:12:03 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 18:23:49 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	env_change_value(t_struct *mode, char *target, char *change)
 void	init_struct(t_struct *mode)
 {
 	mode->split_input = NULL;
+	mode->split_two = NULL;
 	mode->line_read = NULL;
 	mode->size_env = 0;
 	mode->env = NULL;

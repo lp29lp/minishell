@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 04:20:03 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 18:33:54 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	treatment(t_struct *mode)
 	int	i;
 
 	i = 0;
+	mode->space = 0;
+	mode->tag = 1;
 	mode->quote = '1';
 	while (mode->line_read[i + 1] != '\0')
 	{
 		if (mode->line_read[i] == '\'' || mode->line_read[i] == '\"')
 		{
+			get_space(mode, (i + 1));
 			mode->quote = mode->line_read[i];
 			i = d_quotes(mode, i);
 		}
@@ -105,11 +108,24 @@ char	*fix_dollar(t_struct *mode, char *name)
 	return (info);
 }
 
+void	get_space(t_struct *mode, int i)
+{
+	if (mode->tag == 1)
+	{
+		while (mode->line_read[i] == ' ')
+		{
+			i++;
+			mode->space++;
+		}
+		mode->tag = 0;
+	}
+	return ;
+}
+
 /* Treatment when one quote is open */
 int	d_quotes(t_struct *mode, int i)
 {
 	int bkp;
-
 	bkp = i;
 	cat_jump(mode, i, 1);
 	if (mode->quote == '\'' && mode->line_read[i] == '$')
