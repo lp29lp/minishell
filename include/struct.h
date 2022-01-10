@@ -6,21 +6,22 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 19:06:04 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:27:45 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef struct	s_list_env
+int	g_status;
+typedef struct s_list_env
 {
 	struct s_list_env	*next;
-	char				*key; //antes
-	char				*value; //depois
+	char				*key;
+	char				*value;
 }	t_list_env;
 
-typedef struct	s_struct
+typedef struct s_struct
 {
 	t_list_env	*env;
 	int			size_env;

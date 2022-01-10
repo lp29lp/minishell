@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux_1.c                                            :+:      :+:    :+:   */
+/*   treatment.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 22:31:36 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:30:18 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 
+#include "minishell.h"
 /* Do a treatment on string input dealing with quote and dollar sing and space
  * for echo */
 void	treatment(t_struct *mode)
@@ -31,7 +31,7 @@ void	treatment(t_struct *mode)
 			i = d_quotes(mode, i);
 		}
 		else if (mode->line_read[i] == '$' && mode->quote == '1')
-				convert_dollar(mode, i);
+			convert_dollar(mode, i);
 		else
 			i++;
 		if (mode->line_read[i] == ' ' && mode->quote == '1')
@@ -41,21 +41,6 @@ void	treatment(t_struct *mode)
 		else if (mode->line_read[i] == '\0')
 			return ;
 	}
-}
-
-/* remove space out of quotes and just leaves only one space or no space */
-int	jump_space(t_struct *mode, int i)
-{
-	while (mode->line_read[i] == ' ')
-	{
-		cat_jump(mode, i, 1);
-	}
-	if (mode->line_read[i] == '\0')
-	{
-		cat_jump(mode, (i - 1), 1);
-		return (i -= 2);
-	}
-	return (i);
 }
 
 /* Convert the dollar sign variable into the value stored in linked list */
@@ -68,7 +53,7 @@ void	convert_dollar(t_struct *mode, int i)
 	cat_jump(mode, i, 1);
 	mode->bkp = i;
 	while (mode->line_read[i] != 32 && mode->line_read[i] != 34
-			&& mode->line_read[i] != 39 && mode->line_read[i] != '\0')
+		&& mode->line_read[i] != 39 && mode->line_read[i] != '\0')
 				i++;
 	name = ft_substr(mode->line_read, mode->bkp, (i - mode->bkp));
 	temp = fix_dollar(mode, name);
@@ -94,6 +79,8 @@ char	*fix_dollar(t_struct *mode, char *name)
 
 	tag = 0;
 	temp = mode->env;
+	if (cmp(name, "?") == 0)
+		return (ft_itoa(g_status));
 	while (temp != NULL)
 	{
 		if (cmp(temp->key, name) == 0)
@@ -107,35 +94,21 @@ char	*fix_dollar(t_struct *mode, char *name)
 	return (info);
 }
 
-void	get_space(t_struct *mode, int i)
-{
-	if (mode->tag == 1)
-	{
-		while (mode->line_read[i] == ' ')
-		{
-			i++;
-			mode->space++;
-		}
-		mode->tag = 0;
-	}
-	return ;
-}
-
-/* Treatment when one quote is open */
+/* Treatment when a quote is open */
 int	d_quotes(t_struct *mode, int i)
 {
 	mode->bkp = i;
 	cat_jump(mode, i, 1);
 	if (mode->quote == '\'' && mode->line_read[i] == '$'
 		&& mode->line_read[i + 1] != '\0')
-		{
-			while (mode->line_read[i] != mode->quote
+	{
+		while (mode->line_read[i] != mode->quote
 			&& mode->line_read[i + 1] != '\0')
-				i++;
-		}
+			i++;
+	}
 	i = d_quote_cont(mode, i);
-	if (mode->line_read[i + 1] == '\0' &&	mode->line_read[i] == mode->quote
-		&& mode->line_read[i - 1] == 2)//&& mode->bkp == i)
+	if (mode->line_read[i + 1] == '\0' && mode->line_read[i] == mode->quote
+		&& mode->line_read[i - 1] == 2)
 	{
 		free(mode->line_read);
 		mode->line_read = ft_strdup("");
@@ -147,14 +120,18 @@ int	d_quotes(t_struct *mode, int i)
 	return (i);
 }
 
-int d_quote_cont(t_struct *mode, int i)
+int	d_quote_cont(t_struct *mode, int i)
 {
 	while (mode->line_read[i] != mode->quote && mode->line_read[i + 1] != '\0')
 	{
-		if (mode->quote == '\"' && mode->line_read[i] == '$')
+		if (mode->quote == '\"' && mode->line_read[i] == '$'
+			&& mode->line_read[i + 1] != ' '
+			&& mode->line_read[i + 1] != mode->quote)
 			convert_dollar(mode, i);
 		else if (mode->line_read[i] == '$' && mode->line_read[i - 1] != '\''
-				&& mode->line_read[i - 1] != '\"')
+			&& mode->line_read[i - 1] != '\"'
+			&& mode->line_read[i + 1] != ' '
+			&& mode->line_read[i + 1] != mode->quote)
 			convert_dollar(mode, i);
 		else
 			i++;

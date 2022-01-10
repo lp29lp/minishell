@@ -6,13 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 18:23:51 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 14:47:38 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void do_free(t_struct *mode)
+void	do_free(t_struct *mode)
 {
 	rl_clear_history();
 	free(mode->line_read);
@@ -73,4 +73,3 @@ void	free_null(char **s)
 		free(*s);
 	*s = NULL;
 }
-

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 19:09:58 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:31:21 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,23 @@ int	cmp(const void *string1, const void *string2)
 	return (0);
 }
 
-int	count_split(t_struct *mode)
+int	count_split(t_struct *mode, int tag)
 {
 	int			size;
 
 	size = 0;
-	while (mode->split_input[size] != NULL)
-		size++;
-	return (size);
+	if (tag == 1)
+	{
+		while (mode->split_input[size] != NULL)
+			size++;
+		return (size);
+	}
+	else
+	{
+		while (mode->split_two[size] != NULL)
+			size++;
+		return (size);
+	}
 }
 
 /* change the value from env variables */
@@ -68,32 +77,9 @@ void	env_change_value(t_struct *mode, char *target, char *change)
 
 void	init_struct(t_struct *mode)
 {
+	g_status = 0;
 	mode->split_input = NULL;
 	mode->split_two = NULL;
 	mode->line_read = NULL;
-	mode->size_env = 0;
 	mode->env = NULL;
-}
-
-/* Tag != 1 when need remove space from beginning
- * if 1 will remove one character in specific in the string */
-void	cat_jump(t_struct *mode, int i, int tag)
-{
-	if (tag == 1)
-	{
-		mode->left = ft_substr(mode->line_read, 0, i);
-		mode->right = ft_substr(mode->line_read, (i+1), ft_strlen(mode->line_read));
-		free_null(&mode->line_read);
-		mode->line_read = ft_strjoin(mode->left, mode->right);
-		free_null(&mode->left);
-		free_null(&mode->right);
-	}
-	else
-	{
-		mode->right = ft_substr(mode->line_read, i, ft_strlen(mode->line_read));
-		free_null(&mode->line_read);
-		mode->line_read = ft_strdup(mode->right);
-		free_null(&mode->right);
-	}
-	return ;
 }

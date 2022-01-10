@@ -6,22 +6,19 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:51:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 16:52:54 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:00:46 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /* Deal with some specific errors of usage from builtins */
-void	dollar_error(char *var, t_struct *mode, char *builtin)
+void	dollar_error(char *name, t_struct *mode, char *builtin)
 {
 	t_list_env	*temp;
-	char		*name;
 	char		*info;
 
 	info = NULL;
-	name = ft_strtrim(var, "$");
-	free_null(&var);
 	temp = mode->env;
 	while (temp != NULL)
 	{

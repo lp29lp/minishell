@@ -6,18 +6,19 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 05:25:08 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:26:03 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char ** av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	t_struct			mode;
 	struct sigaction	sa;
 
 	ft_memset(&sa, 0, sizeof(sa));
+	ft_memset(&mode, 0, sizeof(mode));
 	if (ac != 1 || av[1])
 		return (0);
 	init_struct(&mode);

@@ -6,19 +6,22 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 19:06:58 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:08:35 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "struct.h"
 
 void	cmd_cd(t_struct *mode)
 {
 	int	size_split_input;
 
+	g_status = 0;
 	size_split_input = count_split(mode);
 	if (size_split_input > 2)
 	{
+		g_status = 1;
 		ft_putendl_fd("minishell: cd: Too many arguments", 1);
 		return ;
 	}
@@ -51,8 +54,9 @@ void	cd_normal(t_struct *mode)
 	getcwd(old, 3000);
 	if (chdir(c_aux) != 0)
 	{
+		g_status = 1;
 		printf("minishell: cd: %s: No such file or directory\n",
-				mode->split_input[1]);
+			mode->split_input[1]);
 		free_null(&c_aux);
 		return ;
 	}

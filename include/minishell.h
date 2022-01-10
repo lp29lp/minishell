@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 19:15:43 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:30:21 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "ansi_color.h"
 
 void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
-int			main(int ac, char ** av, char **env);
+int			main(int ac, char **av, char **env);
 void		handle_sigint(int num);
 void		get_space(t_struct *mode, int i);
 
@@ -44,7 +44,7 @@ void		cmd_unset(t_struct *mode);
 /* Export */
 void		check_var(char *var, t_struct *mode, int size_key, int rest);
 t_list_env	*new_node_export(t_struct *mode, char *key_v, char *c_temp);
-void		format_input(char *var, t_struct *mode);
+int			format_input(char *var, t_struct *mode);
 void		cmd_export(t_struct *mode);
 
 /* env */
@@ -79,9 +79,9 @@ void		free_env(t_struct *mode);
 void		do_free(t_struct *mode);
 
 /* Aux */
-void		dollar_error(char *var, t_struct *mode, char *builtin);
+void		dollar_error(char *name, t_struct *mode, char *builtin);
 int			cmp(const void *string1, const void *string2);
-int			count_split(t_struct *mode);
+int			count_split(t_struct *mode, int tag);
 void		free_null(char **s);
 /* Treatment */
 void		cat_jump(t_struct *mode, int i, int tag);
@@ -93,4 +93,3 @@ int			jump_space(t_struct *mode, int i);
 int			d_quote_cont(t_struct *mode, int i);
 
 #endif
-

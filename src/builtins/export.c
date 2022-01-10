@@ -6,18 +6,23 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 12:25:43 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 19:02:53 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:41:01 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "struct.h"
+#include <stdio.h>
 
 void	cmd_export(t_struct *mode)
 {
 	int	i;
 	int	j;
+	int	tag;
 
 	i = 1;
+	g_status = 0;
+	tag = 0;
 	while (mode->split_input[i] != NULL)
 	{
 		j = 0;
@@ -25,17 +30,24 @@ void	cmd_export(t_struct *mode)
 		{
 			if (mode->split_input[i][j] == '=')
 			{
-				format_input(mode->split_input[i], mode);
-				break;
+				tag = 1;
+				j = format_input(mode->split_input[i], mode);
+				break ;
 			}
 			j++;
 		}
 		i++;
-	}
+	}//split_two;
+	/* if (count_split(mode, 0) > 1 && count_split(mode, 1) == 1) */
+	/* { */
+	/* 	g_status = 1; */
+	/* 	printf("minishell: export: not a valid a identifier"); */
+	/* 	return ; */
+	/* } */
 }
 
- /* 39 '    34 "    36 $ / count how much is need to create a variable */
-void	format_input(char *var, t_struct *mode)
+/* 39 '    34 "    36 $ / count how much is need to create a variable */
+int	format_input(char *var, t_struct *mode)
 {
 	int	size_key;
 	int	rest;
@@ -44,18 +56,19 @@ void	format_input(char *var, t_struct *mode)
 	size_key = 0;
 	while (var[rest] != '=')
 	{
-		if (var[rest] == 39 || var[rest] == 34 || var[rest] == 36)
-			return ;
+		if (var[rest] == '$')
+			return (0);
 		rest++;
 		size_key++;
 	}
 	while (var[rest] != '\0')
 	{
-		if (var[rest] == 36)
-			return ;
+		if (var[rest] == '$')
+			return (0);
 		rest++;
 	}
 	check_var(var, mode, size_key, rest);
+	return (1);
 }
 
 /* if the variable already exist change it or if doesn't, create a new node */
@@ -64,14 +77,9 @@ void	check_var(char *var, t_struct *mode, int size_key, int rest)
 	t_list_env	*temp;
 	char		*key_v;
 	char		*c_temp;
-	char		*c_aux;
 
 	key_v = ft_substr(var, 0, size_key);
 	c_temp = ft_substr(var, (size_key + 1), (rest - 1));
-	c_aux = ft_strtrim(c_temp, "\'");
-	free_null(&c_temp);
-	c_temp = ft_strtrim(c_aux, "\"");
-	free_null(&c_aux);
 	temp = mode->env;
 	while (temp->next != NULL)
 	{

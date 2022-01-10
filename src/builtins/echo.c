@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 19:06:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 14:51:44 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	cmd_echo(t_struct *mode)
 	echo_print(mode, n);
 }
 
-int echo_check(t_struct *mode, int i, int n)
+int	echo_check(t_struct *mode, int i, int n)
 {
 	if ((i == 2 && n == 1 && mode->space != 0) || (i == 1 && n == 0
 			&& mode->space != 0))
@@ -46,7 +46,7 @@ int echo_check(t_struct *mode, int i, int n)
 		free_null(&mode->line_read);
 		mode->line_read = ft_strdup("");
 		echo_print(mode, n);
-		return (1) ;
+		return (1);
 	}
 	else
 		return (0);

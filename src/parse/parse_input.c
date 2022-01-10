@@ -6,28 +6,36 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 18:34:07 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:38:34 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minishell.h"
+#include "struct.h"
 
 /* Deal with void input or redirect */
-void index_parse(t_struct *mode)
+void	index_parse(t_struct *mode)
 {
 	int	i;
 
 	free_split(mode);
-	if(cmp(mode->line_read, "") == 0)
+	if (cmp(mode->line_read, "") == 0)
+	{
+		g_status = 0;
 		return ;
+	}
 	i = 0;
 	if (mode->line_read[i] == ' ')
 	{
 		while (mode->line_read[i] == ' ')
 			i++;
 		cat_jump(mode, i, 0);
-		if(cmp(mode->line_read, "") == 0)
+		if (cmp(mode->line_read, "") == 0)
+		{
+			g_status = 0;
 			return ;
+		}
 	}
 	parse_input_0(mode);
 }
@@ -37,18 +45,23 @@ void	parse_input_0(t_struct *mode)
 {
 	mode->split_two = ft_split(mode->line_read, ' ');
 	treatment(mode);
+	printf("%s\n" ,mode->line_read);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	if (cmp(mode->split_input[0], "cd") == 0)
 		cmd_cd(mode);
-	if (cmp(mode->split_input[0], "env") == 0)
+	else if (cmp(mode->split_input[0], "env") == 0)
 		print_env(mode);
-	if (cmp(mode->split_input[0], "pwd") == 0)
+	else if (cmp(mode->split_input[0], "pwd") == 0)
 		print_pwd(mode);
-	if (cmp(mode->split_input[0], "export") == 0)
+	else if (cmp(mode->split_input[0], "export") == 0)
 		cmd_export(mode);
-	if (cmp(mode->split_input[0], "unset") == 0)
+	else if (cmp(mode->split_input[0], "unset") == 0)
 		cmd_unset(mode);
-	if (cmp(mode->split_input[0], "echo") == 0)
+	else if (cmp(mode->split_input[0], "echo") == 0)
 		cmd_echo(mode);
+	else
+	{
+		g_status = 127;
+		printf("minishell: %s: command not found\n", mode->split_two[0]);
+	}
 }
-
