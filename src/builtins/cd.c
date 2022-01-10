@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/03 19:46:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 19:06:58 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,3 @@ void	cd_home(t_struct *mode)
 	env_change_value(mode, "PWD", home);
 	free(home);
 }
-

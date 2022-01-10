@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 18:23:55 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 19:06:04 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,15 @@ typedef struct	s_struct
 {
 	t_list_env	*env;
 	int			size_env;
-	char		*line_read;//need free
-	char		**split_input;//need free
+	char		*line_read;
+	char		**split_input;
+	char		**split_two;
 	char		quote;
 	char		*left;
 	char		*right;
 	int			space;
 	int			tag;
-	char		**split_two;
+	int			bkp;
 }	t_struct;
 
 #endif
-
-

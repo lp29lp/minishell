@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 12:25:43 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 07:01:37 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 19:02:53 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	format_input(char *var, t_struct *mode)
 	size_key = 0;
 	while (var[rest] != '=')
 	{
- 		if (var[rest] == 39 || var[rest] == 34 || var[rest] == 36)
+		if (var[rest] == 39 || var[rest] == 34 || var[rest] == 36)
 			return ;
 		rest++;
 		size_key++;
 	}
 	while (var[rest] != '\0')
 	{
- 		if (var[rest] == 36)
+		if (var[rest] == 36)
 			return ;
 		rest++;
 	}
@@ -108,4 +108,3 @@ t_list_env	*new_node_export(t_struct *mode, char *key_v, char *c_temp)
 	}
 	return (new);
 }
-

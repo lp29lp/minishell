@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 18:00:55 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/08 07:04:22 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 19:02:30 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,3 @@ void	delete_end(t_struct *mode)
 	free(temp);
 	temp = NULL;
 }
-

@@ -6,11 +6,10 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 18:59:36 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 19:06:16 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 void	cmd_echo(t_struct *mode)
@@ -53,7 +52,7 @@ int echo_check(t_struct *mode, int i, int n)
 		return (0);
 }
 
-/* Print echo but deal with space when if printable */
+/* Print echo but deal with space when is printable */
 void	echo_print(t_struct *mode, int n)
 {
 	if (n == 1)
@@ -86,7 +85,6 @@ int	find_start(t_struct *mode, int tag)
 	int	i;
 	int	posi;
 	int	j;
-	int	bkp;
 
 	posi = 1;
 	if (tag == 1)
@@ -97,12 +95,12 @@ int	find_start(t_struct *mode, int tag)
 		j = 0;
 		if (mode->line_read[i] == mode->split_input[posi][j])
 		{
-			bkp = i;
-			while (mode->line_read[bkp] == mode->split_input[posi][j])
+			mode->bkp = i;
+			while (mode->line_read[mode->bkp] == mode->split_input[posi][j])
 			{
-				if (mode->split_input[posi][j + 1] == '\0')//j+1
+				if (mode->split_input[posi][j + 1] == '\0')
 					return (i);
-				bkp++;
+				mode->bkp++;
 				j++;
 			}
 		}
@@ -110,4 +108,3 @@ int	find_start(t_struct *mode, int tag)
 	}
 	return (0);
 }
-

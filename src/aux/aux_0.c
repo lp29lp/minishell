@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 18:23:49 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/09 19:09:58 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,9 @@ void	init_struct(t_struct *mode)
 }
 
 /* Tag != 1 when need remove space from beginning
- * if one will remove one character in specific in the string */
+ * if 1 will remove one character in specific in the string */
 void	cat_jump(t_struct *mode, int i, int tag)
 {
-
 	if (tag == 1)
 	{
 		mode->left = ft_substr(mode->line_read, 0, i);
@@ -88,7 +87,6 @@ void	cat_jump(t_struct *mode, int i, int tag)
 		mode->line_read = ft_strjoin(mode->left, mode->right);
 		free_null(&mode->left);
 		free_null(&mode->right);
-		return ;
 	}
 	else
 	{
@@ -96,7 +94,6 @@ void	cat_jump(t_struct *mode, int i, int tag)
 		free_null(&mode->line_read);
 		mode->line_read = ft_strdup(mode->right);
 		free_null(&mode->right);
-		return ;
 	}
+	return ;
 }
-
