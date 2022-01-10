@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 17:31:21 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:10:54 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,25 @@ void	init_struct(t_struct *mode)
 	mode->split_two = NULL;
 	mode->line_read = NULL;
 	mode->env = NULL;
+}
+
+/* The variable will be stored in the same stack that env are stored */
+t_list_env	*new_node_export(t_struct *mode, char *key_v, char *c_temp)
+{
+	t_list_env	*new;
+
+	new = (t_list_env *)ft_calloc(1, sizeof(t_list_env));
+	new->next = NULL;
+	new->key = ft_strdup(key_v);
+	free_null(&key_v);
+	new->value = ft_strdup(c_temp);
+	free_null(&c_temp);
+	if (new->key == NULL || new->value == NULL || new == NULL)
+	{
+		free(new->key);
+		free(new->value);
+		free(new);
+		do_free(mode);
+	}
+	return (new);
 }
