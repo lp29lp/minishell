@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 06:17:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 16:22:07 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 18:59:40 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_pwd(t_struct *mode)
 	int		i;
 
 	g_status = 0;
-	i = count_split(mode);
+	i = count_split(mode, 0);
 	getcwd(path, 3000);
 	ft_putendl_fd(path, 1);
 }

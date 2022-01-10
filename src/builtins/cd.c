@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 16:08:35 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 18:59:27 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	cmd_cd(t_struct *mode)
 	int	size_split_input;
 
 	g_status = 0;
-	size_split_input = count_split(mode);
+	size_split_input = count_split(mode, 0);
 	if (size_split_input > 2)
 	{
 		g_status = 1;

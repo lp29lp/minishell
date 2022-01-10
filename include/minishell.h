@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 17:30:21 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:01:39 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void		check_var(char *var, t_struct *mode, int size_key, int rest);
 t_list_env	*new_node_export(t_struct *mode, char *key_v, char *c_temp);
 int			format_input(char *var, t_struct *mode);
 void		cmd_export(t_struct *mode);
+int			export_valid(t_struct *mode);
+void		do_export(t_struct *mode);
 
 /* env */
 t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest);

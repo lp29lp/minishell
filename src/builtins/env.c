@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 16:20:31 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:00:19 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	print_env(t_struct *mode)
 	t_list_env	*temp;
 
 	g_status = 0;
-	if (count_split(mode) != 1)
+	if (count_split(mode, 0) != 1)
 	{
 		g_status = 127;
 		ft_putendl_fd("minishell: wrong usage from env command", 1);

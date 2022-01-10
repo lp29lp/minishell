@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 14:51:44 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/10 18:59:57 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	cmd_echo(t_struct *mode)
 	n = 0;
 	if (cmp(mode->split_input[1], "-n") == 0)
 		n = 1;
-	i = count_split(mode);
+	i = count_split(mode, 0);
 	if (i == 2 && n == 1 && mode->space == 0)
 		return ;
 	if (i == 1 && n == 0 && mode->space == 0)
