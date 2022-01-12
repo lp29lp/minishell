@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/12 17:54:41 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/12 19:45:27 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 void	cmd_execve(t_struct *mode)
 {
 	char	*path;
-	/* char	**env; */
+	char	**env;
 	char	**arg;
 	int		pid;
 
 	path = create_path(mode);
-	/* env = pointer_env(mode); */
-	arg = create_arg(mode);
+	env = (char **)pointer_env(mode);
+	arg = (char **)create_arg(mode);
+	// printf("%s\n", arg[1]);
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(path, arg, NULL) == -1)
+		if (execve(path, arg, env) == -1)
 			printf("minishell: %s: command not found\n", mode->split_two[0]);
 	}
 	free_null(&path);
-	/* free_null(env); */
+	free_null(env);
 	free_null(arg);
 	waitpid(pid, &g_status, 0);
 }
@@ -40,13 +41,12 @@ char	**create_arg(t_struct *mode)
 	int		i;
 
 	i = 0;
-	ret = NULL;
+	ret = ft_calloc(count_split(mode, 1) + 1, sizeof(char*));
 	while (mode->split_input[i] != NULL)
 	{
 		ret[i] = ft_strdup(mode->split_input[i]);
 		i++;
 	}
-	ret[i] = NULL;
 	return (ret);
 }
 
@@ -85,8 +85,8 @@ char	**pointer_env(t_struct *mode)
 	int			i;
 
 	i = 0;
-	ret = NULL;
 	temp = mode->env;
+	ret = (char **)ft_calloc(mode->size_env, sizeof(char*));
 	while (temp->next != NULL)
 	{
 		aux = ft_strjoin(temp->key, "=");
@@ -97,6 +97,5 @@ char	**pointer_env(t_struct *mode)
 		temp = temp->next;
 		i++;
 	}
-	ret[i] = NULL;
 	return (ret);
 }

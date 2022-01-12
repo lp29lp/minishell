@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 19:00:19 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/12 18:39:57 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	filter_env(char *env, t_struct *mode)
 	temp = mode->env;
 	while (temp->next != NULL)
 		temp = temp->next;
+	mode->size_env++;
 	temp->next = new_node_env(env, mode, size_key, rest);
 }
 
