@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/11 23:36:41 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:42:16 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <readline/history.h>
 # include <unistd.h>
 # include <signal.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
 
 # include "struct.h"
 # include "libft/libft.h"
@@ -27,6 +29,13 @@ void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
 int			main(int ac, char **av, char **env);
 void		handle_sigint(int num);
 void		get_space(t_struct *mode, int i);
+
+/* Execve */
+void		cmd_execve(t_struct *mode);
+char		**create_arg(t_struct *mode);
+char		*create_path(t_struct *mode);
+char		**pointer_env(t_struct *mode);
+char		**split_path(t_struct *mode);
 
 /* Echo */
 void		cmd_echo(t_struct *mode);
