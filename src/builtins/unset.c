@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 18:00:55 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 19:02:30 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/11 16:27:17 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,54 @@
 void	cmd_unset(t_struct *mode)
 {
 	int	i;
+	int	j;
 
 	i = 1;
+	g_status = 0;
 	while (mode->split_input[i] != NULL)
 	{
-		if (mode->split_input[i][0] == '$')
-			dollar_error(mode->split_input[i], mode, "unset");
-		else
+		j = 0;
+		while (mode->split_input[i][j] != '\0')
 		{
-			unset_aux(i, mode);
-			i++;
+			if (mode->split_input[i][j] == '$'
+				|| mode->split_input[i][j] == '\''
+				|| mode->split_input[i][j] == '\"')
+			{
+				g_status = 1;
+				dollar_error(mode->split_input[i], mode, "unset");
+				return ;
+			}
+			j++;
 		}
+		unset_aux(i, mode);
+		i++;
 	}
 }
 
 /* delete one variable in linked list from env */
 void	unset_aux(int i, t_struct *mode)
 {
-	char		*c_temp;
-	char		*name;
 	int			posi;
 	t_list_env	*temp;
 
-	c_temp = ft_strtrim(mode->split_input[i], "\'");
-	name = ft_strtrim(c_temp, "\"");
-	free_null(&c_temp);
 	posi = 0;
+	mode->tag = 0;
 	temp = mode->env;
 	while (temp != NULL)
 	{
-		if (cmp(temp->key, name) == 0)
+		if (cmp(temp->key, mode->split_input[i]) == 0)
+		{
+			mode->tag = 1;
 			break ;
+		}
 		posi++;
 		temp = temp->next;
 	}
-	free_null(&name);
-	if (posi == 0)
+	if (posi == 0 && mode->tag == 1)
 		delete_first(mode);
-	else if (temp->next == NULL)
+	else if (temp == NULL && mode->tag == 1)
 		delete_end(mode);
-	else
+	else if (mode->tag == 1)
 		delete_mid(mode, posi);
 }
 

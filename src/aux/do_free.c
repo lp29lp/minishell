@@ -6,11 +6,12 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 14:47:38 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/11 15:46:18 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "struct.h"
 
 void	do_free(t_struct *mode)
 {
@@ -19,7 +20,7 @@ void	do_free(t_struct *mode)
 	if (mode->size_env > 0)
 		free_env(mode);
 	free_split(mode);
-	exit(1);
+	exit(g_status);
 }
 
 void	free_split(t_struct *mode)

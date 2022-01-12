@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:51:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 17:00:46 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/11 16:26:41 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	dollar_error(char *name, t_struct *mode, char *builtin)
 		}
 		temp = temp->next;
 	}
-	printf("minishell: %s: `%s': not a valid identifier", builtin, info);
+	if (info != NULL)
+		printf("minishell: %s: `%s': not a valid identifier\n", builtin, info);
+	else
+		printf("minishell: %s: `%s': not a valid identifier\n", builtin, name);
 	free_null(&info);
 }
