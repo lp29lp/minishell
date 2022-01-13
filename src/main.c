@@ -25,10 +25,10 @@ int	main(int ac, char **av, char **env)
 		return (0);
 	init_struct(&mode);
 	save_env(&mode, env);
-	jump_sig(SIGINT, handle_sigint, &sa);
-	/* jump_sig(SIGQUIT, SIG_IGN, &sa); */
 	while (1)
 	{
+		jump_sig(SIGINT, handle_sigint, &sa);
+		jump_sig(SIGQUIT, SIG_IGN, &sa);
 		display_prompt(&mode);
 	}
 }
