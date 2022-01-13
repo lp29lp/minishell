@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/12 17:26:39 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:14:47 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,11 @@ void	parse_input_0(t_struct *mode)
 	else if (cmp(mode->split_input[0], "exit") == 0)
 		do_free(mode);
 	else
-		cmd_execve(mode);
+	{
+		if (cmd_execve(mode) == 1)
+		{
+			g_status = 127;
+			printf("minishell: %s: command not found\n", mode->split_two[0]);
+		}
+	}
 }

@@ -6,42 +6,36 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/13 22:01:35 by coder            ###   ########.fr       */
+/*   Updated: 2022/01/13 18:13:57 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    cmd_execve(t_struct *mode)
+int	cmd_execve(t_struct *mode)
 {
-    char    *path;
-    char    **env;
-    char    **arg;
-    int        pid;
-    int        ret;
+	char    *path;
+	char    **env;
+	char    **arg;
+	int        pid;
+	int        ret;
 
-    path = create_path(mode);
-    if (path == NULL)
-    {
-        g_status = 127;
-        printf("minishell: %s: command not found\n", mode->split_two[0]);
-        free_null(&path);
-        return ;
-    }
-    env = pointer_env(mode);
-    arg = create_arg(mode);
-    pid = fork();
-    if (pid == 0)
-        execve(path, arg, env);
-    {
-        if (execve(path, arg, env) != 0)
-            printf("minishell: %s: command not found\n", mode->split_two[0]);
-    }
-    free_null(&path);
-    free_double(env);
-    free_double(arg);
-    waitpid(pid, &ret, 0);
-    printf("%d\n", ret);
+	path = create_path(mode);
+	if (path == NULL)
+	{
+		free_null(&path);
+		return (1);
+	}
+	env = pointer_env(mode);
+	arg = create_arg(mode);
+	pid = fork();
+	if (pid == 0)
+		execve(path, arg, env);
+	free_null(&path);
+	free_double(env);
+	free_double(arg);
+	waitpid(pid, &ret, 0);
+	return (0);
 }
 
 char	*create_path(t_struct *mode)

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/13 06:41:56 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:13:55 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char		**pointer_env(t_struct *mode);
 char		**split_path(t_struct *mode);
 char		**create_arg(t_struct *mode);
 char		*create_path(t_struct *mode);
-void		cmd_execve(t_struct *mode);
+int			cmd_execve(t_struct *mode);
 
 /* Echo */
 void		cmd_echo(t_struct *mode);
