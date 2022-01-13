@@ -6,11 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/11 17:01:27 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/13 17:16:31 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	g_status;
 
 int	main(int ac, char **av, char **env)
 {
@@ -24,7 +26,7 @@ int	main(int ac, char **av, char **env)
 	init_struct(&mode);
 	save_env(&mode, env);
 	jump_sig(SIGINT, handle_sigint, &sa);
-	jump_sig(SIGQUIT, SIG_IGN, &sa);
+	/* jump_sig(SIGQUIT, SIG_IGN, &sa); */
 	while (1)
 	{
 		display_prompt(&mode);

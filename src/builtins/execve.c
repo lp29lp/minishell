@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/13 07:18:45 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:47:29 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	cmd_execve(t_struct *mode)
 	char	**env;
 	char	**arg;
 	int		pid;
-	/* int		ret; */
+	int		ret;
 
 	path = create_path(mode);
 	if (path == NULL)
@@ -27,7 +27,7 @@ void	cmd_execve(t_struct *mode)
 	arg = create_arg(mode);
 	pid = fork();
 	if (pid == 0)
-	{/*nao funciona devidamente com caminho invalido*/
+	{
 		if (execve(path, arg, env) != 0)
 			printf("minishell: %s: command not found\n", mode->split_two[0]);
 	}
@@ -35,6 +35,7 @@ void	cmd_execve(t_struct *mode)
 	free_double(env);
 	free_double(arg);
 	waitpid(pid, &ret, 0);
+	printf("%d\n", ret);
 }
 
 char	*create_path(t_struct *mode)

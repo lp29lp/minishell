@@ -6,14 +6,15 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 15:27:45 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/13 17:16:13 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-int	g_status;
+extern int	g_status;
+
 typedef struct s_list_env
 {
 	struct s_list_env	*next;
