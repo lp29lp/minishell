@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/12 16:50:28 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/13 06:42:18 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ char	**split_path(t_struct *mode)
 		temp = temp->next;
 	}
 	path = ft_split(aux, ':');
-	if (path != NULL)
-		return (path);
-	else
-		return (NULL);
+	free_null(&aux);
+	return (path);
 }

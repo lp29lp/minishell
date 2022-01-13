@@ -6,7 +6,7 @@
 #    By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/12 19:45:53 by dalves-s         ###   ########.fr        #
+#    Updated: 2022/01/13 07:19:42 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ $(P_OBJ)%.o:	$(P_SRC)%.c
 
 val:
 				valgrind --leak-check=full --show-leak-kinds=all -s --track-origins=yes --trace-children=yes --suppressions=readline.supp --log-file=valgrind-out.txt ./minishell
-#				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt --suppressions=readline.supp ./minishell
 
 clean:
 				@$(RM) $(P_OBJ)
@@ -68,6 +67,7 @@ clean:
 fclean:			clean
 				@$(RM) $(NAME)
 				@$(RM) vgcore* #remover depois
+				@$(RM) valgrind* #remover depois
 				@make --no-print-directory -C $(P_LIBFT) fclean
 
 re:				fclean all

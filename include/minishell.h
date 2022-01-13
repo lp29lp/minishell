@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/12 17:42:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/13 06:41:56 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void		handle_sigint(int num);
 void		get_space(t_struct *mode, int i);
 
 /* Execve */
-void		cmd_execve(t_struct *mode);
-char		**create_arg(t_struct *mode);
-char		*create_path(t_struct *mode);
 char		**pointer_env(t_struct *mode);
 char		**split_path(t_struct *mode);
+char		**create_arg(t_struct *mode);
+char		*create_path(t_struct *mode);
+void		cmd_execve(t_struct *mode);
 
 /* Echo */
 void		cmd_echo(t_struct *mode);
@@ -88,6 +88,7 @@ void		index_parse(t_struct *mode);
 void		free_split(t_struct *mode);
 void		free_env(t_struct *mode);
 void		do_free(t_struct *mode);
+void		free_double(char **str);
 
 /* Aux */
 void		dollar_error(char *name, t_struct *mode, char *builtin);
