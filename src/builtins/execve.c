@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/13 18:13:57 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/15 15:19:08 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	cmd_execve(t_struct *mode)
 	free_double(env);
 	free_double(arg);
 	waitpid(pid, &ret, 0);
+	g_status = WEXITSTATUS(ret);
 	return (0);
 }
 

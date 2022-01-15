@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/13 18:13:55 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:11:34 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
 int			main(int ac, char **av, char **env);
 void		handle_sigint(int num);
 void		get_space(t_struct *mode, int i);
+
+void	create_var(t_struct *mode);
+void	find_redirect(t_struct *mode);
 
 /* Execve */
 char		**pointer_env(t_struct *mode);
@@ -85,16 +88,18 @@ void		parse_input_0(t_struct *mode);
 void		index_parse(t_struct *mode);
 
 /* Deal errors */
-void		free_split(t_struct *mode);
+void		free_split(t_struct *mode, int flag);
 void		free_env(t_struct *mode);
 void		do_free(t_struct *mode);
 void		free_double(char **str);
+void		free_split_aux(char **split);
 
 /* Aux */
 void		dollar_error(char *name, t_struct *mode, char *builtin);
 int			cmp(const void *string1, const void *string2);
 int			count_split(t_struct *mode, int tag);
 void		free_null(char **s);
+
 /* Treatment */
 void		cat_jump(t_struct *mode, int i, int tag);
 int			d_quotes(t_struct *mode, int i);

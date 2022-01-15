@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/13 06:42:15 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:04:54 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,39 @@ void	do_free(t_struct *mode)
 	free(mode->line_read);
 	if (mode->size_env > 0)
 		free_env(mode);
-	free_split(mode);
+	free_split(mode, 0);
 	exit(g_status);
 }
 
-void	free_split(t_struct *mode)
+/* 0 = all */
+/* 1 = split_input */
+/* 2 = split_two */
+/* 3 = split_cpy */
+void	free_split(t_struct *mode, int flag)
+{
+	if ((mode->split_input != NULL && flag == 1)
+		|| (mode->split_input != NULL && flag == 0))
+		free_split_aux(mode->split_input);
+	if ((mode->split_two != NULL && flag == 2)
+		|| (mode->split_two != NULL && flag == 0))
+		free_split_aux(mode->split_two);
+	if ((mode->split_cpy != NULL && flag == 3)
+			|| (mode->split_cpy != NULL && flag == 0))
+		free_split_aux(mode->split_cpy);
+}
+
+void	free_split_aux(char **split)
 {
 	int	x;
 
 	x = 0;
-	if (mode->split_input != NULL)
+	while (split[x] != NULL)
 	{
-		while (mode->split_input[x] != NULL)
-		{
-			free(mode->split_input[x]);
-			x++;
-		}
-		free(mode->split_input);
-		mode->split_input = NULL;
+		free(split[x]);
+		x++;
 	}
-	x = 0;
-	if (mode->split_two != NULL)
-	{
-		while (mode->split_two[x] != NULL)
-		{
-			free(mode->split_two[x]);
-			x++;
-		}
-		free(mode->split_two);
-		mode->split_two = NULL;
-	}
+	free(split);
+	split = NULL;
 }
 
 void	free_env(t_struct *mode)
