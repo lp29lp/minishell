@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 18:21:00 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/09 19:02:36 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:16:59 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,10 @@ void	handle_sigint(int num)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
+}
+
+void	handle_exec(int num)
+{
+	(void)num;
+	ft_putendl_fd("", 1);
 }

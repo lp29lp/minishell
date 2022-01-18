@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/17 20:14:44 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:05:16 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
 int			main(int ac, char **av, char **env);
 void		handle_sigint(int num);
+void		handle_exec(int num);
 void		get_space(t_struct *mode, int i);
 
 

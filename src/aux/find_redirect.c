@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/17 23:04:44 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/18 16:57:41 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ void	handle_command(t_struct *mode)
 void	reset_fd(t_struct *mode)
 {
 	if (mode->arrow->right == 1 || mode->arrow->d_right == 1)
-	{
-		dup2(mode->in, 0);
 		dup2(mode->out, 1);
-	}
 	free(mode->arrow);
 	mode->arrow = ft_calloc(1, sizeof(t_redic));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/15 15:19:08 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:27:23 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	cmd_execve(t_struct *mode)
 	pid = fork();
 	if (pid == 0)
 		execve(path, arg, env);
+	reset_fd(mode);
 	free_null(&path);
 	free_double(env);
 	free_double(arg);

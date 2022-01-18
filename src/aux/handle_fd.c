@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/17 23:02:14 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:28:18 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	handle_fd(t_struct *mode)
 {
 	char	*path;
+	struct sigaction	sb;
 
 	if (mode->redic == 0)
 		return ;
@@ -27,12 +28,13 @@ void	handle_fd(t_struct *mode)
 	check_right(mode);
 	free_split(mode, 1);
 	mode->split_input = ft_split(mode->line_read, ' ');
-	printf("antes do h_fd: %s\n", mode->line_read);
 	if (mode->arrow->d_right == 1 || mode->arrow->right == 1)
 	{
-		dup2(mode->fd, STDIN_FILENO);
 		dup2(mode->fd, STDOUT_FILENO);
 		close(mode->fd);
+		ft_memset(&sb, 0, sizeof(&sb));
+		jump_sig(SIGINT, handle_exec, &sb);
+		jump_sig(SIGQUIT, handle_exec, &sb);
 	}
 }
 
