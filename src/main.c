@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/15 20:01:04 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/17 22:57:53 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ int	main(int ac, char **av, char **env)
 	t_struct			mode;
 	struct sigaction	sa;
 
+	g_status = 0;
 	ft_memset(&sa, 0, sizeof(sa));
 	ft_memset(&mode, 0, sizeof(mode));
+	mode.arrow = ft_calloc(1, sizeof(t_redic));
+	mode.in = dup(0);
+	mode.out = dup(1);
 	if (ac != 1 || av[1])
 		return (0);
 	init_struct(&mode);

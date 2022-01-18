@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/15 17:04:54 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/17 21:41:42 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	do_free(t_struct *mode)
 	if (mode->size_env > 0)
 		free_env(mode);
 	free_split(mode, 0);
+	if (mode->arrow != NULL)
+		free(mode->arrow);
 	exit(g_status);
 }
 
@@ -36,7 +38,7 @@ void	free_split(t_struct *mode, int flag)
 		|| (mode->split_two != NULL && flag == 0))
 		free_split_aux(mode->split_two);
 	if ((mode->split_cpy != NULL && flag == 3)
-			|| (mode->split_cpy != NULL && flag == 0))
+		|| (mode->split_cpy != NULL && flag == 0))
 		free_split_aux(mode->split_cpy);
 }
 

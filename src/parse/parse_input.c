@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/15 20:05:43 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/17 23:03:58 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	index_parse(t_struct *mode)
 			return ;
 		}
 	}
+	mode->split_two = ft_split(mode->line_read, ' ');
+	treatment(mode);
+	find_redirect(mode);
 	parse_input_0(mode);
 }
 
 /* See what was the input and redirect */
 void	parse_input_0(t_struct *mode)
 {
-	mode->split_two = ft_split(mode->line_read, ' ');
-	treatment(mode);
-	find_redirect(mode);
 	if (cmp(mode->split_input[0], "cd") == 0)
 		cmd_cd(mode);
 	else if (cmp(mode->split_input[0], "env") == 0)
@@ -66,4 +66,5 @@ void	parse_input_0(t_struct *mode)
 			printf("minishell: %s: command not found\n", mode->split_two[0]);
 		}
 	}
+	reset_fd(mode);
 }

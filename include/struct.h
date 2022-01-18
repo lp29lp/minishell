@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/15 20:05:32 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/17 22:56:46 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,15 @@ typedef struct s_struct
 	int			space;
 	int			tag;
 	int			bkp;
-
+	int			count;
+	char		*temp;
+	char		*aux;
+	int			in;
+	int			out;
 /* redirect session */
 	int			redic; //flag
 	char		**split_cpy;
 	int			fd;
-	int			save;
 }	t_struct;
 
 #endif

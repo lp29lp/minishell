@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/15 17:11:34 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/17 20:14:44 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 
+# include <fcntl.h>
+/* # include <sys/types.h> */ //deixar?
+
 # include "struct.h"
 # include "libft/libft.h"
 # include "ansi_color.h"
@@ -30,8 +33,14 @@ int			main(int ac, char **av, char **env);
 void		handle_sigint(int num);
 void		get_space(t_struct *mode, int i);
 
-void	create_var(t_struct *mode);
-void	find_redirect(t_struct *mode);
+
+/* redirect */
+void		find_redirect(t_struct *mode);
+void		handle_fd(t_struct *mode);
+void		check_right(t_struct *mode);
+void		do_open(t_struct *mode, int i);
+void		reset_fd(t_struct *mode);
+void		handle_command(t_struct *mode);
 
 /* Execve */
 char		**pointer_env(t_struct *mode);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/15 20:00:24 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/17 23:04:44 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	find_redirect(t_struct *mode)
 {
 	int	i;
 
-	mode->split_input = ft_split(mode->line_read, ' ');
 	mode->split_cpy = ft_split(mode->line_read, ' ');
+	mode->split_input = ft_split(mode->line_read, ' ');
 	mode->redic = 0;
 	i = 0;
 	while (mode->line_read[i] != '\0')
 	{
 		if (mode->line_read[i] == '>'
-				|| mode->line_read[i] == '<')
+			|| mode->line_read[i] == '<')
 		{
 			mode->redic = 1;
 			break ;
@@ -31,27 +31,45 @@ void	find_redirect(t_struct *mode)
 		i++;
 	}
 	if (mode->redic == 1)
-		create_var(mode);
+		handle_fd(mode);
 }
 
-void	create_var(t_struct *mode)
+/* Fix string removing unnecessary words to create the command */
+void	handle_command(t_struct *mode)
 {
-	int		i;
-	char	*cpy;
-
-	i = 0;
-	while (mode->line_read[i] != '\0')
+	mode->count = 0;
+	mode->bkp = 0;
+	while (mode->line_read[mode->count] != '\0')
 	{
-		if (mode->line_read[i] == '>' || mode->line_read[i] == '<')
+		if (mode->line_read[mode->count] == '>')
 		{
-			cpy = ft_substr(mode->line_read, 0, (i - 1));
-			free_null(&mode->line_read);
-			mode->line_read = ft_strdup(cpy);
-			free_null(&cpy);
-			break ;
+			mode->bkp = mode->count;
+			while (ft_isalnum(mode->line_read[mode->count]) != 1
+				&& mode->line_read[mode->count] != '\0')
+				mode->count++;
+			while (mode->line_read[mode->count] != ' '
+				&& mode->line_read[mode->count] != '\0')
+				mode->count++;
 		}
-		i++;
+		if (mode->bkp != 0)
+			break ;
+		mode->count++;
 	}
-	free_split(mode, 1);
-	mode->split_input = ft_split(mode->line_read, ' ');
+	mode->temp = ft_substr(mode->line_read, 0, (mode->bkp - 1));
+	mode->aux = ft_substr(mode->line_read, mode->count, ft_strlen(mode->line_read));
+	free_null(&mode->line_read);
+	mode->line_read = ft_strjoin(mode->temp, mode->aux);
+	free_null(&mode->temp);
+	free_null(&mode->aux);
+}
+
+void	reset_fd(t_struct *mode)
+{
+	if (mode->arrow->right == 1 || mode->arrow->d_right == 1)
+	{
+		dup2(mode->in, 0);
+		dup2(mode->out, 1);
+	}
+	free(mode->arrow);
+	mode->arrow = ft_calloc(1, sizeof(t_redic));
 }

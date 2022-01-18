@@ -6,7 +6,7 @@
 #    By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/15 17:17:55 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/17 20:16:14 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ F_PARSE			=	parse_input.c
 F_BUILTINS		=	env.c cd.c signal.c pwd.c export.c unset.c echo.c execve.c
 
 F_AUX			=	do_free.c aux_0.c aux_treatment.c treatment.c errors.c \
-					aux_1.c find_redirect.c
+					aux_1.c find_redirect.c handle_fd.c
 
 F_SRC			=	main.c $(AUX) $(BUILTINS) $(PARSE)
 

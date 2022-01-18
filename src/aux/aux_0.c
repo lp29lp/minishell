@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 19:10:54 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/17 21:26:49 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	init_struct(t_struct *mode)
 	mode->split_input = NULL;
 	mode->split_two = NULL;
 	mode->line_read = NULL;
+	mode->split_cpy = NULL;
 	mode->env = NULL;
 }
 
