@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/18 17:05:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:28:21 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ void		cmd_cd(t_struct *mode);
 /* pwd */
 void		print_pwd(t_struct *mode);
 
-/* Struct */
-void		init_struct(t_struct *mode);
-
 /* Prompt */
 void		display_prompt(t_struct *mode);
 
@@ -102,7 +99,6 @@ void		free_split(t_struct *mode, int flag);
 void		free_env(t_struct *mode);
 void		do_free(t_struct *mode);
 void		free_double(char **str);
-void		free_split_aux(char **split);
 
 /* Aux */
 void		dollar_error(char *name, t_struct *mode, char *builtin);

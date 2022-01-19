@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/18 17:27:23 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/19 15:29:42 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	cmd_execve(t_struct *mode)
 {
-	char    *path;
-	char    **env;
-	char    **arg;
-	int        pid;
-	int        ret;
+	char	*path;
+	char	**env;
+	char	**arg;
+	int		pid;
+	int		ret;
 
 	path = create_path(mode);
 	if (path == NULL)

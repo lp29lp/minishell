@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/17 21:41:42 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:35:47 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,13 @@ void	free_split(t_struct *mode, int flag)
 {
 	if ((mode->split_input != NULL && flag == 1)
 		|| (mode->split_input != NULL && flag == 0))
-		free_split_aux(mode->split_input);
+		free_double(mode->split_input);
 	if ((mode->split_two != NULL && flag == 2)
 		|| (mode->split_two != NULL && flag == 0))
-		free_split_aux(mode->split_two);
+		free_double(mode->split_two);
 	if ((mode->split_cpy != NULL && flag == 3)
 		|| (mode->split_cpy != NULL && flag == 0))
-		free_split_aux(mode->split_cpy);
-}
-
-void	free_split_aux(char **split)
-{
-	int	x;
-
-	x = 0;
-	while (split[x] != NULL)
-	{
-		free(split[x]);
-		x++;
-	}
-	free(split);
-	split = NULL;
+		free_double(mode->split_cpy);
 }
 
 void	free_env(t_struct *mode)

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/18 16:34:07 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:16:19 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int ac, char **av, char **env)
 	mode.out = dup(1);
 	if (ac != 1 || av[1])
 		return (0);
-	init_struct(&mode);
 	save_env(&mode, env);
 	while (1)
 	{
@@ -49,19 +48,19 @@ void	display_prompt(t_struct *mode)
 	aux = ft_strdup("\033[0;32mmini\033[0;37m@\033[0;32mshell\033[0;37m:");
 	aux1 = ft_strjoin("\033[0;31m", path);
 	temp = ft_strjoin(aux, aux1);
-	free(aux);
-	free(aux1);
+	free_null(&aux);
+	free_null(&aux1);
 	aux = ft_strjoin(temp, "\033[0;37m$\033[0m ");
-	free(temp);
+	free_null(&temp);
 	free_null(&mode->line_read);
 	mode->line_read = (char *)readline(aux);
-	free(aux);
+	free_null(&aux);
 	if (mode->line_read == NULL)
 	{
 		ft_putchar_fd('\n', 1);
 		do_free(mode);
 	}
-	if (mode->line_read)
+	if (mode->line_read && *mode->line_read)
 		add_history(mode->line_read);
 	index_parse(mode);
 }
