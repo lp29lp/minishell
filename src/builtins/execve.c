@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/19 15:29:42 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/20 21:45:06 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	cmd_execve(t_struct *mode)
 		execve(path, arg, env);
 	reset_fd(mode);
 	free_null(&path);
-	free_double(env);
-	free_double(arg);
+	free_double(&env);
+	free_double(&arg);
 	waitpid(pid, &ret, 0);
 	g_status = WEXITSTATUS(ret);
 	return (0);
@@ -61,7 +61,7 @@ char	*create_path(t_struct *mode)
 			break ;
 		i++;
 	}
-	free_double(path);
+	free_double(&path);
 	return (temp);
 }
 

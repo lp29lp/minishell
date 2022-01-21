@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/18 16:31:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:53:14 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ typedef struct s_list_env
 
 typedef struct s_redic
 {
-	int	left;
-	int	d_left;
-	int	right;
-	int d_right;
+	int		twice;
+	int		once;
+	int		left;
+	int		right;
+	char	redic;
 }	t_redic;
 
 typedef struct s_struct
@@ -52,7 +53,8 @@ typedef struct s_struct
 /* redirect session */
 	int			redic; //flag
 	char		**split_cpy;
-	int			fd;
+	int			fd2;
+	int			fd1;
 }	t_struct;
 
 #endif

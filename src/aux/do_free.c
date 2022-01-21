@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/19 16:35:47 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/20 21:39:30 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void	free_split(t_struct *mode, int flag)
 {
 	if ((mode->split_input != NULL && flag == 1)
 		|| (mode->split_input != NULL && flag == 0))
-		free_double(mode->split_input);
+		free_double(&mode->split_input);
 	if ((mode->split_two != NULL && flag == 2)
 		|| (mode->split_two != NULL && flag == 0))
-		free_double(mode->split_two);
+		free_double(&mode->split_two);
 	if ((mode->split_cpy != NULL && flag == 3)
 		|| (mode->split_cpy != NULL && flag == 0))
-		free_double(mode->split_cpy);
+		free_double(&mode->split_cpy);
 }
 
 void	free_env(t_struct *mode)
@@ -66,15 +66,17 @@ void	free_null(char **s)
 	*s = NULL;
 }
 
-void	free_double(char **str)
+void	free_double(char ***str)
 {
 	int	x;
 
 	x = 0;
-	while (str[x] != NULL)
+	while (str[0][x] != NULL)
 	{
-		free(str[x]);
+		free(str[0][x]);
+		str[0][x] = NULL;
 		x++;
 	}
-	free(str);
+	free(*str);
+	*str = NULL;
 }

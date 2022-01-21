@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/19 16:28:21 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/20 22:49:52 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ void		get_space(t_struct *mode, int i);
 
 
 /* redirect */
-void		find_redirect(t_struct *mode);
-void		handle_fd(t_struct *mode);
-void		check_right(t_struct *mode);
+void		aux_check_arrow(t_struct *mode, int i, int j);
 void		do_open(t_struct *mode, int i);
-void		reset_fd(t_struct *mode);
 void		handle_command(t_struct *mode);
+int			find_redirect(t_struct *mode);
+int			check_arrow(t_struct *mode, int size);
+int			handle_fd(t_struct *mode);
+void		reset_fd(t_struct *mode);
 
 /* Execve */
 char		**pointer_env(t_struct *mode);
@@ -98,7 +99,7 @@ void		index_parse(t_struct *mode);
 void		free_split(t_struct *mode, int flag);
 void		free_env(t_struct *mode);
 void		do_free(t_struct *mode);
-void		free_double(char **str);
+void		free_double(char ***str);
 
 /* Aux */
 void		dollar_error(char *name, t_struct *mode, char *builtin);

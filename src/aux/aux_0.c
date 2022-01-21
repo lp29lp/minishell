@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/17 21:26:49 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/20 22:47:24 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ int	count_split(t_struct *mode, int tag)
 	if (tag == 1)
 	{
 		while (mode->split_input[size] != NULL)
+			size++;
+		return (size);
+	}
+	else if (tag == 2)
+	{
+		while (mode->split_cpy[size] != NULL)
 			size++;
 		return (size);
 	}
