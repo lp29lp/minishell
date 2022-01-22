@@ -6,13 +6,14 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/20 17:53:14 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/22 17:01:37 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+#include "ansi_color.h"
 extern int	g_status;
 
 typedef struct s_list_env
@@ -39,6 +40,7 @@ typedef struct s_struct
 	char		*line_read;
 	char		**split_input;
 	char		**split_two;
+	char		**keywords;
 	char		quote;
 	char		*left;
 	char		*right;
@@ -46,6 +48,7 @@ typedef struct s_struct
 	int			tag;
 	int			bkp;
 	int			count;
+	int			count2;
 	char		*temp;
 	char		*aux;
 	int			in;
@@ -55,6 +58,9 @@ typedef struct s_struct
 	char		**split_cpy;
 	int			fd2;
 	int			fd1;
+	int			tag2;
+	int			size_keywords;
+	char		*xablau;
 }	t_struct;
 
 #endif

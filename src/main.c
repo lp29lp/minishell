@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/19 16:16:19 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/22 15:01:53 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	display_prompt(t_struct *mode)
 	char	*aux;
 	char	*aux1;
 
+	init_struct(mode);
 	getcwd(path, 3000);
 	aux = ft_strdup("\033[0;32mmini\033[0;37m@\033[0;32mshell\033[0;37m:");
 	aux1 = ft_strjoin("\033[0;31m", path);

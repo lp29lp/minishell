@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/13 06:42:18 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/22 15:09:46 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,22 @@ char	**split_path(t_struct *mode)
 	path = ft_split(aux, ':');
 	free_null(&aux);
 	return (path);
+}
+
+void	init_struct(t_struct *mode)
+{
+	mode->space = 0;
+	mode->tag = 0;
+	mode->tag2 = 0;
+	mode->bkp = 0;
+	mode->count = 0;
+	mode->count2 = 0;
+	mode->redic = 0;
+	mode->fd2 = 0;
+	mode->fd1 = 0;
+	mode->size_keywords = 0;
+	mode->arrow->twice = 0;
+	mode->arrow->once = 0;
+	mode->arrow->left = 0;
+	mode->arrow->right = 0;
 }

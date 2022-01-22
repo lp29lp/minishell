@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/20 22:49:52 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/22 17:10:17 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,24 @@
 
 void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
 int			main(int ac, char **av, char **env);
+void		get_space(t_struct *mode, int i);
 void		handle_sigint(int num);
 void		handle_exec(int num);
-void		get_space(t_struct *mode, int i);
 
 
 /* redirect */
 void		aux_check_arrow(t_struct *mode, int i, int j);
+int			check_arrow(t_struct *mode, int size);
+void		reset_fd(t_struct *mode, int flag);
 void		do_open(t_struct *mode, int i);
 void		handle_command(t_struct *mode);
 int			find_redirect(t_struct *mode);
-int			check_arrow(t_struct *mode, int size);
+int			fake_heredoc(t_struct *mode);
+void		double_left(t_struct *mode);
+int			do_heredoc(t_struct *mode);
 int			handle_fd(t_struct *mode);
-void		reset_fd(t_struct *mode);
+void		change_fd(t_struct *mode);
+void		fake_aux(t_struct *mode);
 
 /* Execve */
 char		**pointer_env(t_struct *mode);
@@ -53,9 +58,9 @@ int			cmd_execve(t_struct *mode);
 
 /* Echo */
 void		cmd_echo(t_struct *mode);
+int			echo_check(t_struct *mode, int i, int n);
 int			find_start(t_struct *mode, int tag);
 void		echo_print(t_struct *mode, int n);
-int			echo_check(t_struct *mode, int i, int n);
 
 /* Unset */
 void		delete_mid(t_struct *mode, int posi);
@@ -68,8 +73,8 @@ void		cmd_unset(t_struct *mode);
 void		check_var(char *var, t_struct *mode, int size_key, int rest);
 t_list_env	*new_node_export(t_struct *mode, char *key_v, char *c_temp);
 int			format_input(char *var, t_struct *mode);
-void		cmd_export(t_struct *mode);
 int			export_valid(t_struct *mode);
+void		cmd_export(t_struct *mode);
 void		do_export(t_struct *mode);
 
 /* env */
@@ -98,22 +103,23 @@ void		index_parse(t_struct *mode);
 /* Deal errors */
 void		free_split(t_struct *mode, int flag);
 void		free_env(t_struct *mode);
-void		do_free(t_struct *mode);
 void		free_double(char ***str);
+void		do_free(t_struct *mode);
 
 /* Aux */
 void		dollar_error(char *name, t_struct *mode, char *builtin);
 int			cmp(const void *string1, const void *string2);
 int			count_split(t_struct *mode, int tag);
+void		init_struct(t_struct *mode);
 void		free_null(char **s);
 
 /* Treatment */
 void		cat_jump(t_struct *mode, int i, int tag);
-int			d_quotes(t_struct *mode, int i);
 char		*fix_dollar(t_struct *mode, char *name);
 void		convert_dollar(t_struct *mode, int i);
-void		treatment(t_struct *mode);
-int			jump_space(t_struct *mode, int i);
 int			d_quote_cont(t_struct *mode, int i);
+int			jump_space(t_struct *mode, int i);
+int			d_quotes(t_struct *mode, int i);
+void		treatment(t_struct *mode);
 
 #endif

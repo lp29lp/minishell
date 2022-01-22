@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/20 22:47:24 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/22 15:00:26 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,6 @@ void	env_change_value(t_struct *mode, char *target, char *change)
 		temp = temp->next;
 	}
 	return ;
-}
-
-void	init_struct(t_struct *mode)
-{
-	g_status = 0;
-	mode->split_input = NULL;
-	mode->split_two = NULL;
-	mode->line_read = NULL;
-	mode->split_cpy = NULL;
-	mode->env = NULL;
 }
 
 /* The variable will be stored in the same stack that env are stored */

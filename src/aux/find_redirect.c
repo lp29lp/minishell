@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/20 22:07:45 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/22 17:10:25 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,37 +44,38 @@ int	find_redirect(t_struct *mode)
 /* Fix string removing unnecessary words to create the command */
 void	handle_command(t_struct *mode)
 {
-	mode->count = 0;
 	mode->bkp = 0;
-	while (mode->line_read[mode->count] != '\0')
+	while (mode->line_read[mode->count2] != '\0')
 	{
-		if (mode->line_read[mode->count] == '>'
-			|| mode->line_read[mode->count] == '<')
+		if (mode->line_read[mode->count2] == '>'
+			|| mode->line_read[mode->count2] == '<')
 		{
-			mode->bkp = mode->count;
-			while (ft_isalnum(mode->line_read[mode->count]) != 1
-				&& mode->line_read[mode->count] != '\0')
-				mode->count++;
-			while (mode->line_read[mode->count] != ' '
-				&& mode->line_read[mode->count] != '\0')
-				mode->count++;
+			mode->bkp = mode->count2;
+			while (ft_isalnum(mode->line_read[mode->count2]) != 1
+				&& mode->line_read[mode->count2] != '\0')
+				mode->count2++;
+			while (mode->line_read[mode->count2] != ' '
+				&& mode->line_read[mode->count2] != '\0')
+				mode->count2++;
 		}
 		if (mode->bkp != 0)
 			break ;
-		mode->count++;
+		mode->count2++;
 	}
 	mode->temp = ft_substr(mode->line_read, 0, (mode->bkp - 1));
-	mode->aux = ft_substr(mode->line_read, mode->count, ft_strlen(mode->line_read));
+	mode->aux = ft_substr(mode->line_read, mode->count2, ft_strlen(mode->line_read));
 	free_null(&mode->line_read);
 	mode->line_read = ft_strjoin(mode->temp, mode->aux);
 	free_null(&mode->temp);
 	free_null(&mode->aux);
 }
 
-void	reset_fd(t_struct *mode)
+void	reset_fd(t_struct *mode, int flag)
 {
 	dup2(mode->in, 0);
 	dup2(mode->out, 1);
+	if (mode->tag2 == 1 && flag == 1)
+		unlink("xablau");
 	free(mode->arrow);
 	mode->arrow = ft_calloc(1, sizeof(t_redic));
 }
