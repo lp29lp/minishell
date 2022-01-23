@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/22 17:06:56 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/22 22:56:06 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,10 @@ int	fake_heredoc(t_struct *mode)
 	{
 		mode->aux = readline("> ");
 		if (cmp(mode->aux, mode->keywords[mode->count2]) == 0)
+		{
+			mode->count2++;//veio para ca
 			fake_aux(mode);
+		}
 		if (mode->aux != NULL && mode->count2 < mode->size_keywords)
 			ft_putendl_fd(mode->aux, mode->fd1);
 		else
@@ -217,8 +220,7 @@ void	fake_aux(t_struct *mode)
 	}
 	while (mode->count2 < mode->size_keywords)
 	{
-		mode->count2++;
-		free_null(&mode->aux);
+		free_null(&mode->aux);//count daqui subiu
 		mode->aux = readline("> ");
 		if (cmp(mode->aux, mode->keywords[mode->count2]) == 0)
 		{
