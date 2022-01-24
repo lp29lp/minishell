@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/22 17:10:25 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/24 16:20:19 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,18 @@ int	find_redirect(t_struct *mode)
 	mode->count = 0;
 	while (mode->line_read[mode->count] != '\0')
 	{
+		if (mode->line_read[mode->count] == '\''
+		|| mode->line_read[mode->count] == '\"')
+			mode->tag2 = 1;
 		if (mode->line_read[mode->count] == '>'
-			|| mode->line_read[mode->count] == '<')
+		&& mode->tag2 != 1 ||mode->tag2 != 1
+		&& mode->line_read[mode->count] == '<')
 		{
 			mode->redic = 1;
 			break ;
 		}
 		mode->count++;
+		mode->tag2 = 0;
 	}
 	ft_memset(&sb, 0, sizeof(sb));
 	jump_sig(SIGINT, handle_exec, &sb);
@@ -70,12 +75,12 @@ void	handle_command(t_struct *mode)
 	free_null(&mode->aux);
 }
 
-void	reset_fd(t_struct *mode, int flag)
+void	reset_fd(t_struct *mode)
 {
 	dup2(mode->in, 0);
 	dup2(mode->out, 1);
-	if (mode->tag2 == 1 && flag == 1)
-		unlink("xablau");
+	if (mode->tag2 == 1)
+		unlink(".xablau");
 	free(mode->arrow);
 	mode->arrow = ft_calloc(1, sizeof(t_redic));
 }

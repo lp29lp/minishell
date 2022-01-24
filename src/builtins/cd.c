@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 18:59:27 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/24 16:00:11 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ void	cmd_cd(t_struct *mode)
 		ft_putendl_fd("minishell: cd: Too many arguments", 1);
 		return ;
 	}
-	if (size_split_input == 1 || cmp(mode->split_input[1], "~") == 0)
+	else if (size_split_input == 1 || cmp(mode->split_input[1], "~") == 0)
 	{
 		cd_home(mode);
 		return ;
 	}
-	if (cmp(mode->split_input[1], "-") == 0)
+	else if (cmp(mode->split_input[1], "-") == 0)
 	{
 		cd_oldpwd(mode);
 		return ;
 	}
-	else
+	else if (mode->split_input[1] != NULL)
 		cd_normal(mode);
 	return ;
 }

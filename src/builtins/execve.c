@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/22 17:10:55 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/24 15:25:37 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	cmd_execve(t_struct *mode)
 	pid = fork();
 	if (pid == 0)
 		execve(path, arg, env);
-	reset_fd(mode, 0);
 	free_null(&path);
 	free_double(&env);
 	free_double(&arg);
 	waitpid(pid, &ret, 0);
+	reset_fd(mode);
 	g_status = WEXITSTATUS(ret);
 	return (0);
 }
