@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/24 16:20:19 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:05:31 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,8 @@ int	find_redirect(t_struct *mode)
 
 	mode->split_cpy = ft_split(mode->line_read, ' ');
 	mode->split_input = ft_split(mode->line_read, ' ');
-	mode->redic = 0;
 	mode->count = 0;
-	while (mode->line_read[mode->count] != '\0')
-	{
-		if (mode->line_read[mode->count] == '\''
-		|| mode->line_read[mode->count] == '\"')
-			mode->tag2 = 1;
-		if (mode->line_read[mode->count] == '>'
-		&& mode->tag2 != 1 ||mode->tag2 != 1
-		&& mode->line_read[mode->count] == '<')
-		{
-			mode->redic = 1;
-			break ;
-		}
-		mode->count++;
-		mode->tag2 = 0;
-	}
+	/* check_redirect(mode); */
 	ft_memset(&sb, 0, sizeof(sb));
 	jump_sig(SIGINT, handle_exec, &sb);
 	jump_sig(SIGQUIT, handle_exec, &sb);
@@ -44,6 +29,35 @@ int	find_redirect(t_struct *mode)
 			return (1);
 	}
 	return (0);
+}
+
+void	check_redirect(t_struct *mode)
+{
+	mode->redic = 0;
+	while (mode->line_read[mode->count] != '\0')
+	{
+		if (mode->line_read[mode->count] == '\''
+			|| mode->line_read[mode->count] == '\"')
+		{
+			mode->count++;
+			mode->tag = 1;
+			while (mode->line_read[mode->count] != '\0')
+			{
+				if (mode->line_read[mode->count] == '\''
+					|| mode->line_read[mode->count] == '\"')
+				{
+					mode->tag = 2;
+					mode->count++;
+					break ;
+				}
+				mode->count++;
+			}
+		}
+		if (mode->line_read[mode->count] == '>'
+			|| mode->line_read[mode->count] == '<')
+			mode->redic = 1;
+		mode->count++;
+	}
 }
 
 /* Fix string removing unnecessary words to create the command */
