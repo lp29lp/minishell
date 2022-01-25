@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 16:16:28 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:26:08 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 /* Deal with void input or redirect */
 void	index_parse(t_struct *mode)
 {
-	free_split(mode, 0);
+	struct sigaction	sb;
+
+	ft_memset(&sb, 0, sizeof(sb));
+	jump_sig(SIGINT, handle_exec, &sb);
+	jump_sig(SIGQUIT, handle_exec, &sb);
+//
 	if (cmp(mode->line_read, "") == 0)
 	{
 		g_status = 0;
@@ -35,10 +40,12 @@ void	index_parse(t_struct *mode)
 	}
 	mode->split_two = ft_split(mode->line_read, ' ');
 	check_redirect(mode);
-	treatment(mode, &mode->line_read);
-	printf("teste: %s\n", mode->line_read);
-	if (find_redirect(mode) == 1)
-		return ;
+	mode->split_input = ft_split(mode->line_read, ' ');
+	if (mode->redic == 1)
+	{
+		if (handle_fd(mode) == 1)
+			return ;
+	}
 	parse_input_0(mode);
 }
 

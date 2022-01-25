@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 16:15:33 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:26:22 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 # include <signal.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-
 # include <fcntl.h>
-/* # include <sys/types.h> */ //deixar?
 
 # include "struct.h"
 # include "libft/libft.h"
@@ -30,7 +28,6 @@
 
 void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
 void		get_space(t_struct *mode, int i, char *str);
-/* void		get_space(t_struct *mode, int i); */
 int			main(int ac, char **av, char **env);
 void		handle_sigint(int num);
 void		handle_exec(int num);
@@ -42,7 +39,6 @@ int			check_arrow(t_struct *mode, int size);
 void		handle_command(t_struct *mode);
 void		check_redirect(t_struct *mode);
 void		do_open(t_struct *mode, int i);
-int			find_redirect(t_struct *mode);
 int			fake_heredoc(t_struct *mode);
 void		double_left(t_struct *mode);
 int			do_heredoc(t_struct *mode);
@@ -50,6 +46,7 @@ int			handle_fd(t_struct *mode);
 void		change_fd(t_struct *mode);
 void		reset_fd(t_struct *mode);
 void		fake_aux(t_struct *mode);
+void		cut_me(t_struct *mode);
 
 /* Execve */
 char		**pointer_env(t_struct *mode);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 16:34:42 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:44:39 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	treatment(t_struct *mode, char **str)
 	mode->space = 0;
 	mode->tag = 1;
 	mode->quote = '1';
-	printf("str: %s\n", *str);
 	while (str[0][i + 1] != '\0')
 	{
 		if (str[0][i] == '\'' || str[0][i]== '\"')

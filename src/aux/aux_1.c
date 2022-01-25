@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/22 15:09:46 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:22:31 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,7 @@ void	init_struct(t_struct *mode)
 	mode->arrow->once = 0;
 	mode->arrow->left = 0;
 	mode->arrow->right = 0;
+	free_null(&mode->line_read);
+	free_null(&mode->rest);
+	free_split(mode, 0);
 }

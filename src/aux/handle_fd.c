@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/24 15:30:13 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:48:06 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 /* reposicionar dup pois pode ter comando invalido */
 int	handle_fd(t_struct *mode)
 {
-	if (mode->redic == 0)
-		return (0);
+	mode->split_rest = ft_split(mode->rest, ' ');
 	mode->temp = create_path(mode);
 	if (mode->temp == NULL)
 		return (0);
@@ -31,10 +30,14 @@ int	handle_fd(t_struct *mode)
 	mode->split_input = ft_split(mode->line_read, ' ');
 	if (do_heredoc(mode) == 1)
 	{
-		/* exit(1); */
 		free_null(&mode->xablau);
 		return (1);
 	}
+	mode->temp = strdup(mode->line_read);
+	free_null(&mode->line_read);
+	mode->line_read = ft_strjoin(mode->temp, mode->rest);
+	printf("ficou: %s\n", mode->line_read);
+	free_null(&mode->temp);
 	change_fd(mode);
 	return (0);
 }
@@ -67,10 +70,10 @@ int	check_arrow(t_struct *mode, int	size)
 	while (mode->count < size)
 	{
 		j = 0;
-		while (mode->split_cpy[mode->count][j] != '\0')
+		while (mode->split_rest[mode->count][j] != '\0')
 		{
-			if (mode->split_cpy[mode->count][j] == '>'
-				|| mode->split_cpy[mode->count][j] == '<')
+			if (mode->split_rest[mode->count][j] == '>'
+				|| mode->split_rest[mode->count][j] == '<')
 			{
 				aux_check_arrow(mode, mode->count, j);
 				if (mode->fd1 == -1)
@@ -88,13 +91,13 @@ void	aux_check_arrow(t_struct *mode, int i, int j)
 {
 	mode->arrow->twice = 0;
 	mode->arrow->once = 0;
-	if (mode->split_cpy[i][j + 1] == '>' || mode->split_cpy[i][j + 1] == '<')
+	if (mode->split_rest[i][j + 1] == '>' || mode->split_rest[i][j + 1] == '<')
 		mode->arrow->twice = 1;
 	else
 		mode->arrow->once  = 1;
-	mode->arrow->redic = mode->split_cpy[i][j];
+	mode->arrow->redic = mode->split_rest[i][j];
 	do_open(mode, (i + 1));
-	if (mode->split_cpy[i][j] == '<')
+	if (mode->split_rest[i][j] == '<')
 		mode->arrow->left = 1;
 	else
 		mode->arrow->right = 1;
@@ -115,7 +118,7 @@ void	do_open(t_struct *mode, int i)
 	handle_command(mode);
 	getcwd(buf, 3000);
 	mode->temp = ft_strjoin(buf, "/");
-	mode->aux = ft_strjoin(mode->temp, mode->split_cpy[i]);
+	mode->aux = ft_strjoin(mode->temp, mode->split_rest[i]);
 	free_null(&mode->temp);
 	if (mode->fd2 != 0 && mode->arrow->redic == '>')
 		close(mode->fd2);
@@ -165,19 +168,19 @@ void	double_left(t_struct *mode)
 	if (mode->fd1 != 0)
 		close(mode->fd1);
 	mode->fd1 = open(mode->xablau, O_WRONLY | O_CREAT | O_APPEND, 0777);
-	while (mode->split_cpy[i] != NULL)
+	while (mode->split_rest[i] != NULL)
 	{
-		if (cmp(mode->split_cpy[i], "<<") == 0)
+		if (cmp(mode->split_rest[i], "<<") == 0)
 			mode->size_keywords++;
 		i++;
 	}
 	i = 0;
 	mode->keywords = (char **)ft_calloc((mode->size_keywords + 1), sizeof(char *));
-	while (mode->split_cpy[i] != NULL)
+	while (mode->split_rest[i] != NULL)
 	{
-		if (cmp(mode->split_cpy[i], "<<") == 0)
+		if (cmp(mode->split_rest[i], "<<") == 0)
 		{
-			mode->keywords[j] = ft_strdup(mode->split_cpy[i + 1]);
+			mode->keywords[j] = ft_strdup(mode->split_rest[i + 1]);
 			j++;
 		}
 		i++;

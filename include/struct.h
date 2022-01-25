@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/22 17:01:37 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:01:44 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_struct
 	t_list_env	*env;
 	int			size_env;
 	char		*line_read;
+	char		*rest;
 	char		**split_input;
 	char		**split_two;
 	char		**keywords;
@@ -55,7 +56,7 @@ typedef struct s_struct
 	int			out;
 /* redirect session */
 	int			redic; //flag
-	char		**split_cpy;
+	char		**split_rest;
 	int			fd2;
 	int			fd1;
 	int			tag2;

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/22 15:01:53 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:21:07 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	display_prompt(t_struct *mode)
 	free_null(&aux1);
 	aux = ft_strjoin(temp, "\033[0;37m$\033[0m ");
 	free_null(&temp);
-	free_null(&mode->line_read);
 	mode->line_read = (char *)readline(aux);
 	free_null(&aux);
 	if (mode->line_read == NULL)

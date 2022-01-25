@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/21 19:49:50 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:18:24 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	do_free(t_struct *mode)
 /* 0 = all */
 /* 1 = split_input */
 /* 2 = split_two */
-/* 3 = split_cpy */
+/* 3 = split_rest */
 void	free_split(t_struct *mode, int flag)
 {
 	if ((mode->split_input != NULL && flag == 1)
@@ -37,9 +37,9 @@ void	free_split(t_struct *mode, int flag)
 	if ((mode->split_two != NULL && flag == 2)
 		|| (mode->split_two != NULL && flag == 0))
 		free_double(&mode->split_two);
-	if ((mode->split_cpy != NULL && flag == 3)
-		|| (mode->split_cpy != NULL && flag == 0))
-		free_double(&mode->split_cpy);
+	if ((mode->split_rest != NULL && flag == 3)
+		|| (mode->split_rest != NULL && flag == 0))
+		free_double(&mode->split_rest);
 }
 
 void	free_env(t_struct *mode)
