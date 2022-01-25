@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/24 20:42:18 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:15:33 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 # include "ansi_color.h"
 
 void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
+void		get_space(t_struct *mode, int i, char *str);
+/* void		get_space(t_struct *mode, int i); */
 int			main(int ac, char **av, char **env);
-void		get_space(t_struct *mode, int i);
 void		handle_sigint(int num);
 void		handle_exec(int num);
 
@@ -115,12 +116,12 @@ void		init_struct(t_struct *mode);
 void		free_null(char **s);
 
 /* Treatment */
-void		cat_jump(t_struct *mode, int i, int tag);
+void		cat_jump(t_struct *mode, int i, int tag, char **str);
 char		*fix_dollar(t_struct *mode, char *name);
-void		convert_dollar(t_struct *mode, int i);
-int			d_quote_cont(t_struct *mode, int i);
-int			jump_space(t_struct *mode, int i);
-int			d_quotes(t_struct *mode, int i);
-void		treatment(t_struct *mode);
+void		convert_dollar(t_struct *mode, int i, char **str);
+int			d_quote_cont(t_struct *mode, int i, char **str);
+int			jump_space(t_struct *mode, int i, char **str);
+int			d_quotes(t_struct *mode, int i, char **str);
+void		treatment(t_struct *mode, char **str);
 
 #endif

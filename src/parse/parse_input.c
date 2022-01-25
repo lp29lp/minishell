@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/24 20:59:53 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:16:28 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	index_parse(t_struct *mode)
 	{
 		while (mode->line_read[mode->count] == ' ')
 			mode->count++;
-		cat_jump(mode, mode->count, 0);
+		cat_jump(mode, mode->count, 0, &mode->line_read);
 		if (cmp(mode->line_read, "") == 0)
 		{
 			g_status = 0;
@@ -35,7 +35,8 @@ void	index_parse(t_struct *mode)
 	}
 	mode->split_two = ft_split(mode->line_read, ' ');
 	check_redirect(mode);
-	treatment(mode);
+	treatment(mode, &mode->line_read);
+	printf("teste: %s\n", mode->line_read);
 	if (find_redirect(mode) == 1)
 		return ;
 	parse_input_0(mode);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/24 15:50:12 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:18:08 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	cmd_echo(t_struct *mode)
 		i = find_start(mode, 1);
 	else
 		i = find_start(mode, 0);
-	cat_jump(mode, i, 0);
+	cat_jump(mode, i, 0, &mode->line_read);
 	echo_print(mode, n);
 }
 

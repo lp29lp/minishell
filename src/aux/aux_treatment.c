@@ -6,32 +6,32 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 14:30:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 14:34:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:38:11 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /* remove space out of quotes and just leaves only one space or no space */
-int	jump_space(t_struct *mode, int i)
+int	jump_space(t_struct *mode, int i, char **str)
 {
-	while (mode->line_read[i] == ' ')
+	while (str[0][i] == ' ')
 	{
-		cat_jump(mode, i, 1);
+		cat_jump(mode, i, 1, str);
 	}
-	if (mode->line_read[i] == '\0')
+	if (str[0][i] == '\0')
 	{
-		cat_jump(mode, (i - 1), 1);
+		cat_jump(mode, (i - 1), 1, str);
 		return (i -= 2);
 	}
 	return (i);
 }
 
-void	get_space(t_struct *mode, int i)
+void	get_space(t_struct *mode, int i, char *str)
 {
 	if (mode->tag == 1)
 	{
-		while (mode->line_read[i] == ' ')
+		while (str[i] == ' ')
 		{
 			i++;
 			mode->space++;
@@ -43,24 +43,23 @@ void	get_space(t_struct *mode, int i)
 
 /* Tag != 1 when need remove space from beginning
  * if 1 will remove one character in specific in the string */
-void	cat_jump(t_struct *mode, int i, int tag)
+void	cat_jump(t_struct *mode, int i, int tag, char **str)
 {
 	if (tag == 1)
 	{
-		mode->left = ft_substr(mode->line_read, 0, i);
-		mode->right = ft_substr(mode->line_read, (i + 1),
-				ft_strlen(mode->line_read));
-		free_null(&mode->line_read);
-		mode->line_read = ft_strjoin(mode->left, mode->right);
+		mode->left = ft_substr(*str, 0, i);
+		mode->right = ft_substr(*str, (i + 1),
+				ft_strlen(*str));
+		free_null(&*str);
+		*str = ft_strjoin(mode->left, mode->right);
 		free_null(&mode->left);
 		free_null(&mode->right);
 	}
 	else
 	{
-		mode->right = ft_substr(mode->line_read, i,
-				ft_strlen(mode->line_read));
-		free_null(&mode->line_read);
-		mode->line_read = ft_strdup(mode->right);
+		mode->right = ft_substr(*str, i, ft_strlen(*str));
+		free_null(&*str);
+		*str = ft_strdup(mode->right);
 		free_null(&mode->right);
 	}
 	return ;
