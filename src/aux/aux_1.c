@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:22:31 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 21:50:43 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_struct(t_struct *mode)
 {
 	mode->space = 0;
 	mode->tag = 0;
+	mode->tag1 = 0;
 	mode->tag2 = 0;
 	mode->bkp = 0;
 	mode->count = 0;

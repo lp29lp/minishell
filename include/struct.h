@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:01:44 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 21:51:57 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_struct
 	char		*right;
 	int			space;
 	int			tag;
+	int			tag1;
 	int			bkp;
 	int			count;
 	int			count2;

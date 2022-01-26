@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:58:46 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 22:08:21 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	check_redirect(t_struct *mode)
 		mode->count++;
 	}
 	treatment(mode, &mode->line_read);
+	mode->count = 0;
 }
 
 void	cut_me(t_struct *mode)
@@ -82,7 +83,6 @@ void	handle_command(t_struct *mode)
 	mode->rest = ft_strjoin(mode->temp, mode->aux);
 	free_null(&mode->temp);
 	free_null(&mode->aux);
-	printf("rest: %s\n", mode->rest);
 }
 
 void	reset_fd(t_struct *mode)
@@ -90,7 +90,7 @@ void	reset_fd(t_struct *mode)
 	dup2(mode->in, 0);
 	dup2(mode->out, 1);
 	if (mode->tag2 == 1)
-		unlink(".xablau");
+		unlink("xablau");
 	free(mode->arrow);
 	mode->arrow = ft_calloc(1, sizeof(t_redic));
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:48:06 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/25 22:15:07 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	handle_fd(t_struct *mode)
 		printf("-minishell No such file or directory\n");
 		return (1);
 	}
-	free_split(mode, 1);
-	mode->split_input = ft_split(mode->line_read, ' ');
 	if (do_heredoc(mode) == 1)
 	{
 		free_null(&mode->xablau);
@@ -36,7 +34,6 @@ int	handle_fd(t_struct *mode)
 	mode->temp = strdup(mode->line_read);
 	free_null(&mode->line_read);
 	mode->line_read = ft_strjoin(mode->temp, mode->rest);
-	printf("ficou: %s\n", mode->line_read);
 	free_null(&mode->temp);
 	change_fd(mode);
 	return (0);
@@ -113,6 +110,7 @@ void	do_open(t_struct *mode, int i)
 	if (mode->arrow->twice == 1 && mode->arrow->redic == '<')
 	{
 		mode->tag = 1;
+		mode->tag1 = 1;
 		mode->tag2 = 1;
 	}
 	handle_command(mode);
@@ -123,7 +121,10 @@ void	do_open(t_struct *mode, int i)
 	if (mode->fd2 != 0 && mode->arrow->redic == '>')
 		close(mode->fd2);
 	if (mode->fd1 != 0 && mode->arrow->redic == '<' && mode->arrow->once == 1)
+	{
+		mode->tag1 = 0;
 		close(mode->fd1);
+	}
 	if (mode->arrow->redic == '<' && mode->arrow->once == 1)
 			mode->fd1 = open(mode->aux, O_RDONLY, 0777);
 	if (mode->arrow->redic == '>' && mode->arrow->once == 1)
@@ -136,11 +137,8 @@ void	do_open(t_struct *mode, int i)
 
 void change_fd(t_struct *mode)
 {
-	if (mode->tag2 == 1)
-	{
-		mode->fd1 = open(mode->xablau, O_RDONLY | O_CREAT | O_APPEND, 0777);
-		free_null(&mode->xablau);
-	}
+	if (mode->tag1 == 1)
+		mode->fd1 = open(mode->xablau, O_RDONLY, 0777);
 	if (mode->arrow->right == 1)
 	{
 		dup2(mode->fd2, STDOUT_FILENO);
@@ -151,6 +149,7 @@ void change_fd(t_struct *mode)
 		dup2(mode->fd1, STDIN_FILENO);
 		close(mode->fd1);
 	}
+	free_null(&mode->xablau);
 }
 
 void	double_left(t_struct *mode)
@@ -163,7 +162,7 @@ void	double_left(t_struct *mode)
 	i = 0;
 	getcwd(buf, 3000);
 	mode->temp = ft_strjoin(buf, "/");
-	mode->xablau = ft_strjoin(mode->temp, ".xablau");
+	mode->xablau = ft_strjoin(mode->temp, "xablau");
 	free_null(&mode->temp);
 	if (mode->fd1 != 0)
 		close(mode->fd1);
@@ -233,5 +232,4 @@ void	fake_aux(t_struct *mode)
 		else
 			return ;
 	}
-	close(mode->fd1);
 }
