@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 21:51:57 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 19:30:15 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCT_H
 
 #include "ansi_color.h"
+
 extern int	g_status;
 
 typedef struct s_list_env
@@ -36,7 +37,16 @@ typedef struct s_struct
 {
 	t_redic		*arrow;
 	t_list_env	*env;
+
 	int			size_env;
+	int			space;
+	int			tag;
+	int			tag1;
+	int			bkp;
+	int			count;
+	int			count2;
+	int			in;
+	int			out;
 	char		*line_read;
 	char		*rest;
 	char		**split_input;
@@ -45,24 +55,21 @@ typedef struct s_struct
 	char		quote;
 	char		*left;
 	char		*right;
-	int			space;
-	int			tag;
-	int			tag1;
-	int			bkp;
-	int			count;
-	int			count2;
 	char		*temp;
 	char		*aux;
-	int			in;
-	int			out;
-/* redirect session */
-	int			redic; //flag
-	char		**split_rest;
+
+	int			redic;
 	int			fd2;
 	int			fd1;
 	int			tag2;
 	int			size_keywords;
+	char		**split_rest;
 	char		*xablau;
+
+	int			pipe;
+	int			q_info;
+	int			x;
+	char		**split_pipe;
 }	t_struct;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:21:07 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:46:51 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int ac, char **av, char **env)
 	save_env(&mode, env);
 	while (1)
 	{
+		reset_fd(&mode);
 		jump_sig(SIGINT, handle_sigint, &sa);
 		jump_sig(SIGQUIT, SIG_IGN, &sa);
 		display_prompt(&mode);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 22:08:21 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:41:28 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	check_redirect(t_struct *mode)
 		if (mode->line_read[mode->count] == '\''
 			|| mode->line_read[mode->count] == '\"')
 		{
+			mode->quote = mode->line_read[mode->count];
 			mode->count++;
 			while (mode->line_read[mode->count] != '\0')
 			{
-				if (mode->line_read[mode->count] == '\''
-					|| mode->line_read[mode->count] == '\"')
+				if (mode->line_read[mode->count] == mode->quote)
 					break ;
 				mode->count++;
 			}
@@ -39,7 +39,6 @@ void	check_redirect(t_struct *mode)
 		mode->count++;
 	}
 	treatment(mode, &mode->line_read);
-	mode->count = 0;
 }
 
 void	cut_me(t_struct *mode)

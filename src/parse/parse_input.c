@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/26 15:36:56 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 18:30:26 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 /* Deal with void input or redirect */
 void	index_parse(t_struct *mode)
 {
-	/* struct sigaction	sb; */
 
-	/* ft_memset(&sb, 0, sizeof(sb)); */
-	/* jump_sig(SIGINT, handle_exec, &sb); */
-	/* jump_sig(SIGQUIT, handle_exec, &sb); */
-//
 	if (cmp(mode->line_read, "") == 0)
 	{
 		g_status = 0;
@@ -38,15 +33,37 @@ void	index_parse(t_struct *mode)
 			return ;
 		}
 	}
+	mode->pipe = 0;
+	count_pipe(mode);
+	if (mode->pipe != 0)
+	{
+		if (do_pipe(mode) == 1)
+			return ;
+	}
+	else if (command(mode) == 1)
+		return ;
+}
+
+int	command(t_struct *mode)
+{
+	struct sigaction	sb;
+
 	mode->split_two = ft_split(mode->line_read, ' ');
+	mode->count = 0;
 	check_redirect(mode);
 	if (mode->redic == 1)
 	{
+		mode->count = 0;
 		if (handle_fd(mode) == 1)
-			return ;
+			return (1);
 	}
+	ft_memset(&sb, 0, sizeof(sb));
+	jump_sig(SIGINT, handle_exec, &sb);
+	jump_sig(SIGQUIT, handle_exec, &sb);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	parse_input_0(mode);
+	init_struct(mode);
+	return (0);
 }
 
 /* See what was the input and redirect */

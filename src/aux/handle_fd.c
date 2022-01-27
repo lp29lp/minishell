@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/27 13:32:06 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 18:43:10 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int	handle_fd(t_struct *mode)
 	if (mode->temp == NULL)
 		return (0);
 	free_null(&mode->temp);
-	if (check_arrow(mode, count_split(mode, 2)) == 1)
+	if (check_redic_error(mode, count_split(mode, 2)) == 1)
 	{
-		printf("-minishell No such file or directory\n");
+		g_status = 2;
 		return (1);
 	}
+	if (check_arrow(mode, count_split(mode, 2)) == 1)
+		return (1);
 	if (do_heredoc(mode) == 1)
 	{
 		g_status= mode->tag;
@@ -40,7 +42,36 @@ int	handle_fd(t_struct *mode)
 	return (0);
 }
 
-// >
+int	check_redic_error(t_struct *mode, int size)
+{
+	while (mode->count < size)
+	{
+		if (mode->split_rest[mode->count][0] == '<'
+			|| mode->split_rest[mode->count][0] == '>')
+		{
+			mode->count++;
+			if (mode->split_rest[mode->count] == NULL)
+			{
+				ft_putendl_fd("minishell: syntax error", 2);
+				return (1);
+			}
+			mode->tag = 0;
+			while (mode->split_rest[mode->count][mode->tag] != '\0')
+			{
+				if (mode->split_rest[mode->count][mode->tag] == '<'
+						|| mode->split_rest[mode->count][mode->tag] == '>')
+				{
+					ft_putendl_fd("minishell: syntax error", 2);
+					return (1);
+				}
+				mode->tag++;
+			}
+		}
+		mode->count++;
+	}
+	return (0);
+}
+
 int	check_arrow(t_struct *mode, int	size)
 {
 	int		j;
@@ -56,7 +87,10 @@ int	check_arrow(t_struct *mode, int	size)
 			{
 				aux_check_arrow(mode, mode->count, j);
 				if (mode->fd1 == -1)
+				{
+					printf("-minishell No such file or directory\n");
 					return (1);
+				}
 				break ;
 			}
 			j++;
@@ -237,11 +271,11 @@ int	do_heredoc(t_struct *mode)
 			if (fake_heredoc(mode) == 1)
 				break ;
 		}
-		free_double(&mode->keywords);
 		exit(0);
 	}
 	waitpid(pid, &mode->count, 0);
 	g_status = WEXITSTATUS(mode->count);
+	free_double(&mode->keywords);
 	if (g_status == 130)
 	{
 		return (1);

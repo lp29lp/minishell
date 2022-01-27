@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 21:50:43 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:59:30 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	**split_path(t_struct *mode)
 
 void	init_struct(t_struct *mode)
 {
+	mode->x = 0;
 	mode->space = 0;
 	mode->tag = 0;
 	mode->tag1 = 0;

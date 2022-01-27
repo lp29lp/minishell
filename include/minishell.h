@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/27 13:32:50 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 19:29:03 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,24 @@
 # include "libft/libft.h"
 # include "ansi_color.h"
 
-void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
 void		get_space(t_struct *mode, int i, char *str);
 int			main(int ac, char **av, char **env);
-void		handle_sigint(int num);
-void		handle_exec(int num);
-void		handle_redic(int num);
 
+/* pipe */
+void		cut_me_pipe(t_struct *mode);
+void		count_pipe(t_struct *mode);
+int			exec_pipe(t_struct *mode);
+int			do_pipe(t_struct *mode);
+
+/* signal*/
+void		jump_sig(int sig, void (*handler)(int), struct sigaction *sa);
+void		handle_sigint(int num);
+void		handle_redic(int num);
+void		handle_exec(int num);
 
 /* redirect */
 void		aux_check_arrow(t_struct *mode, int i, int j);
+int			check_redic_error(t_struct *mode, int size);
 int			check_arrow(t_struct *mode, int size);
 void		handle_command(t_struct *mode);
 void		check_redirect(t_struct *mode);
@@ -57,10 +65,10 @@ char		*create_path(t_struct *mode);
 int			cmd_execve(t_struct *mode);
 
 /* Echo */
-void		cmd_echo(t_struct *mode);
 int			echo_check(t_struct *mode, int i, int n);
 int			find_start(t_struct *mode, int tag);
 void		echo_print(t_struct *mode, int n);
+void		cmd_echo(t_struct *mode);
 
 /* Unset */
 void		delete_mid(t_struct *mode, int posi);
@@ -99,6 +107,7 @@ void		display_prompt(t_struct *mode);
 /* Parse */
 void		parse_input_0(t_struct *mode);
 void		index_parse(t_struct *mode);
+int			command(t_struct *mode);
 
 /* Deal errors */
 void		free_split(t_struct *mode, int flag);
