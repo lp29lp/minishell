@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 21:00:06 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/26 15:36:56 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 /* Deal with void input or redirect */
 void	index_parse(t_struct *mode)
 {
-	struct sigaction	sb;
+	/* struct sigaction	sb; */
 
-	ft_memset(&sb, 0, sizeof(sb));
-	jump_sig(SIGINT, handle_exec, &sb);
-	jump_sig(SIGQUIT, handle_exec, &sb);
+	/* ft_memset(&sb, 0, sizeof(sb)); */
+	/* jump_sig(SIGINT, handle_exec, &sb); */
+	/* jump_sig(SIGQUIT, handle_exec, &sb); */
 //
 	if (cmp(mode->line_read, "") == 0)
 	{

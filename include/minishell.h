@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:26:22 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/26 21:17:40 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void		get_space(t_struct *mode, int i, char *str);
 int			main(int ac, char **av, char **env);
 void		handle_sigint(int num);
 void		handle_exec(int num);
+void		handle_redic(int num);
+int			find_file(t_struct *mode);
 
 
 /* redirect */
