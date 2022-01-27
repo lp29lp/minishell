@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 18:21:00 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/26 21:09:43 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:32:52 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	handle_redic(int num)
 {
 	(void)num;
 	ft_putendl_fd("", 1);
-	unlink("xablau");
-	exit(0);
+	exit(130);
 }
 
 void	handle_exec(int num)
 {
 	(void)num;
 	ft_putendl_fd("", 1);
+	exit(130);
 }

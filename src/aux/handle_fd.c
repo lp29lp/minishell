@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/26 21:08:25 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:32:06 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,25 +242,9 @@ int	do_heredoc(t_struct *mode)
 	}
 	waitpid(pid, &mode->count, 0);
 	g_status = WEXITSTATUS(mode->count);
-	if (find_file(mode) == 1)
+	if (g_status == 130)
 	{
 		return (1);
 	}
 	return (0);
-}
-
-int	find_file(t_struct *mode)
-{
-	char			path[3000];
-	struct	stat	statbuf;
-
-	getcwd(path, 3000);
-	mode->temp = ft_strjoin(path, "/xablau");
-	if (stat(mode->temp, &statbuf) == 0)
-	{
-		free_null(&mode->temp);
-		return (0);
-	}
-	free_null(&mode->temp);
-	return (1);
 }
