@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 16:27:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 17:03:04 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:06:22 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	exec_pipe(t_struct *mode)
 		x++;
 	}
 	free_double(&mode->split_pipe);
-	reset_fd(mode);
+	reset_fd(mode, 0);
 	mode->x = 0;
 	return (0);
 }

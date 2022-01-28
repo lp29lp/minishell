@@ -6,11 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 18:21:00 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 17:42:09 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:04:50 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minishell.h"
+#include <unistd.h>
 
 /* Add a specific handler to struct sigaction and send to sigaction function */
 void	jump_sig(int sig, void (*handler)(int), struct sigaction *sa)
@@ -23,7 +25,7 @@ void	jump_sig(int sig, void (*handler)(int), struct sigaction *sa)
 void	handle_sigint(int num)
 {
 	(void)num;
-	ft_putchar_fd('\n', 1);
+	ft_putendl_fd("", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
@@ -33,13 +35,13 @@ void	handle_sigint(int num)
 void	handle_redic(int num)
 {
 	(void)num;
-	ft_putchar_fd('\n', 1);
-	/* exit(130); */
+	unlink("xablau");
+	ft_putendl_fd("", 1);
+	exit(130);
 }
 
 void	handle_exec(int num)
 {
 	(void)num;
-	ft_putchar_fd('\n', 1);
 	g_status = 130;
 }

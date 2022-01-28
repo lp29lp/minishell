@@ -6,10 +6,11 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/27 16:41:28 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:04:15 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minishell.h"
 
 void	check_redirect(t_struct *mode)
@@ -84,7 +85,7 @@ void	handle_command(t_struct *mode)
 	free_null(&mode->aux);
 }
 
-void	reset_fd(t_struct *mode)
+void	reset_fd(t_struct *mode, int flag)
 {
 	dup2(mode->in, 0);
 	dup2(mode->out, 1);
@@ -92,4 +93,6 @@ void	reset_fd(t_struct *mode)
 		unlink("xablau");
 	free(mode->arrow);
 	mode->arrow = ft_calloc(1, sizeof(t_redic));
+	if (flag == 1)
+		ft_putendl_fd("", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 17:40:32 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:51:46 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,7 +262,7 @@ int	do_heredoc(t_struct *mode)
 
 	test = 0;
 	ft_memset(&sb, 0, sizeof(sb));
-	/* jump_sig(SIGINT, SIG_IGN, &sb); */
+	jump_sig(SIGINT, SIG_IGN, &sb);
 	mode->tag = 0;
 	pid = fork();
 	g_status = 0;

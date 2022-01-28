@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 16:07:38 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:04:13 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void		handle_exec(int num);
 void		aux_check_arrow(t_struct *mode, int i, int j);
 int			check_redic_error(t_struct *mode, int size);
 int			check_arrow(t_struct *mode, int size);
+void		reset_fd(t_struct *mode, int flag);
 void		handle_command(t_struct *mode);
 void		check_redirect(t_struct *mode);
 void		do_open(t_struct *mode, int i);
@@ -55,7 +56,6 @@ void		double_left(t_struct *mode);
 int			do_heredoc(t_struct *mode);
 int			handle_fd(t_struct *mode);
 void		change_fd(t_struct *mode);
-void		reset_fd(t_struct *mode);
 void		fake_aux(t_struct *mode);
 void		cut_me(t_struct *mode);
 
