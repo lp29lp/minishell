@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 16:27:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/27 18:40:36 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:03:04 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	do_pipe(t_struct *mode)
 {
-	mode->count = 0;
-	mode->split_pipe = (char **)ft_calloc((mode->pipe + 2), sizeof(char *));
 	while (mode->line_read[mode->count] != '\0')
 	{
 		if (mode->line_read[mode->count] == '\''
@@ -31,7 +29,11 @@ int	do_pipe(t_struct *mode)
 			}
 		}
 		if (mode->line_read[mode->count] == '|')
-			cut_me_pipe(mode);
+			if (check_pipe_error(mode) == 1)
+			{
+				ft_putendl_fd("-minishell: invalid usage of pipe", 2);
+				return (1);
+			}
 		mode->count++;
 	}
 	cut_me_pipe(mode);
@@ -41,26 +43,75 @@ int	do_pipe(t_struct *mode)
 	return (0);
 }
 
+int	check_pipe_error(t_struct *mode)
+{
+	mode->count3 = mode->count + 1;
+	while (mode->line_read[mode->count3] != '\0'
+		|| mode->line_read[mode->count3] == '\0')
+	{
+		if (mode->line_read[mode->count3] == '|'
+			|| mode->line_read[mode->count3] == '\0')
+		{
+			free_double(&mode->split_pipe);
+			return (1);
+		}
+		if (ft_isalnum(mode->line_read[mode->count3]) == 1)
+			break ;
+		mode->count3++;
+	}
+	cut_me_pipe(mode);
+	return (0);
+}
+
 int	exec_pipe(t_struct *mode)
 {
 	int	x;
 
 	x = 0;
-	printf("%s\n",mode->line_read);
 	while (mode->split_pipe[x] != NULL)
 	{
+		printf("%s\n", mode->split_pipe[x]);
 		free_null(&mode->line_read);
 		mode->line_read = ft_strdup(mode->split_pipe[x]);
-		printf("%s\n",mode->line_read);
+		if (mode->split_pipe[x + 1] != NULL)
+			p_fd(mode, 0);
+		else
+			p_fd(mode, 2);
 		if (command(mode) == 1)
 		{
 			free_double(&mode->split_pipe);
 			return (1);
 		}
+		if (mode->split_pipe[x + 1] != NULL)
+			p_fd(mode, 1);
 		x++;
 	}
 	free_double(&mode->split_pipe);
+	reset_fd(mode);
+	mode->x = 0;
 	return (0);
+}
+
+void	p_fd(t_struct *mode, int	flag)
+{
+	if (flag == 0)
+	{
+		pipe(mode->p_fd);
+		dup2(mode->p_fd[1], 1);
+	}
+	else if (flag == 1)
+	{
+		close(mode->p_fd[1]);
+		mode->p_in = dup(mode->p_fd[0]);
+		close(mode->p_fd[0]);
+		dup2(mode->p_in, 0);
+	}
+	else
+	{
+		dup2(mode->out, 1);
+		close(mode->p_fd[1]);
+		close(mode->p_fd[0]);
+	}
 }
 
 void	cut_me_pipe(t_struct *mode)
@@ -91,4 +142,8 @@ void	count_pipe(t_struct *mode)
 			mode->pipe++;
 		mode->count++;
 	}
+	mode->count = 0;
+	if (mode->pipe != 0)
+		mode->split_pipe = (char **)ft_calloc((mode->pipe + 2),
+			sizeof(char *));
 }

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/27 19:30:15 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:53:28 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,14 @@ typedef struct s_struct
 	char		**split_rest;
 	char		*xablau;
 
-	int			pipe;
 	int			q_info;
+	int			count3;
+	int			pipe;
 	int			x;
+	int			p_fd[2];
+	int			p_in;
 	char		**split_pipe;
+
 }	t_struct;
 
 #endif

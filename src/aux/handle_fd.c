@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/27 18:43:10 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:40:32 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ int	handle_fd(t_struct *mode)
 	}
 	if (check_arrow(mode, count_split(mode, 2)) == 1)
 		return (1);
-	if (do_heredoc(mode) == 1)
+	if (mode->tag2 == 1)
 	{
-		g_status= mode->tag;
-		free_null(&mode->xablau);
-		return (1);
+		if (do_heredoc(mode) == 1)
+		{
+			g_status= mode->tag;
+			free_null(&mode->xablau);
+			return (1);
+		}
 	}
 	g_status= mode->tag;
 	mode->temp = strdup(mode->line_read);
@@ -224,7 +227,7 @@ int	fake_heredoc(t_struct *mode)
 	{
 		mode->count2 = mode->size_keywords;
 		free_null(&mode->aux);
-		return (1);//terminou
+		return (1);
 	}
 	free_null(&mode->aux);
 	return (0);
@@ -259,12 +262,13 @@ int	do_heredoc(t_struct *mode)
 
 	test = 0;
 	ft_memset(&sb, 0, sizeof(sb));
-	jump_sig(SIGINT, SIG_IGN, &sb);
+	/* jump_sig(SIGINT, SIG_IGN, &sb); */
 	mode->tag = 0;
 	pid = fork();
 	g_status = 0;
 	if (pid == 0)
 	{
+		dup2(mode->out, 1);
 		jump_sig(SIGINT, handle_redic, &sb);
 		while (1)
 		{
