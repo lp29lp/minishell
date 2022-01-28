@@ -22,7 +22,6 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-
 /*
 	Retorna o tamanho da string do parametro.
 */

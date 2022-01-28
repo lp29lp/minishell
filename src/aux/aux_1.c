@@ -6,12 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/27 17:59:30 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:00:21 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Separete and cut the path variable from env list */
 char	**split_path(t_struct *mode)
 {
 	t_list_env	*temp;
@@ -34,6 +35,7 @@ char	**split_path(t_struct *mode)
 	return (path);
 }
 
+/* Reset some struct values */
 void	init_struct(t_struct *mode)
 {
 	mode->x = 0;

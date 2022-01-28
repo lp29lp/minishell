@@ -6,7 +6,7 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/27 17:09:51 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/28 18:17:42 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJ				=	$(addprefix $(P_OBJ), $(F_SRC:.c=.o))
 NAME			=	minishell
 
 INC				=	-I $(P_INCLUDE) -I $(P_LIBFT)
-LIBFT			=	-L $(P_LIBFT) -l $(FT) 		#$(P_LIBFT)libft.a
+LIBFT			=	-L $(P_LIBFT) -l $(FT)
 CFLAGS			=	-Wall -Wextra -Werror #-fsanitize=address
 P_GUARD			=	mkdir -p $(@D)
 RM				=	rm -rf

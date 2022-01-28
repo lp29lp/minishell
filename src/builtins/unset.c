@@ -6,12 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 18:00:55 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/11 16:27:17 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:48:18 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Remove one variable from env */
 void	cmd_unset(t_struct *mode)
 {
 	int	i;

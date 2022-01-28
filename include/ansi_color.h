@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 07:44:48 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2021/12/17 19:41:58 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:11:16 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@
 # define BHWHT "\e[1;97m"
 
 //Reset
-# define reset "\e[0m"
+# define RESET "\e[0m"
 #endif

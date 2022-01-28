@@ -6,12 +6,11 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 00:11:49 by lpaulo-d          #+#    #+#              #
-#    Updated: 2021/12/16 00:35:38 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/28 18:15:56 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 P_MANDATORY	=	mandatory/
-P_LINKED	=	linked_list/
 P_OBJ		=	./obj/
 
 F_MANDATORY	=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
@@ -23,14 +22,9 @@ F_MANDATORY	=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 				ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 				ft_putnbr_fd.c
 
-F_LINKED	=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-				ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-				ft_lstmap.c
-
-SRC			=	$(MANDATORY) $(LINKED)
+SRC			=	$(MANDATORY)
 
 MANDATORY	=	$(addprefix $(P_MANDATORY), $(F_MANDATORY))
-LINKED		=	$(addprefix $(P_LINKED), $(F_LINKED))
 
 OBJ			=	$(addprefix $(P_OBJ), $(SRC:.c=.o))
 

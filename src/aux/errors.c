@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:51:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/11 16:26:41 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:41:00 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	dollar_error(char *name, t_struct *mode, char *builtin)
 		{
 			info = ft_strdup(temp->value);
 			free(name);
-			break;
+			break ;
 		}
 		temp = temp->next;
 	}

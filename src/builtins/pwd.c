@@ -6,12 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 06:17:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 18:59:40 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:50:31 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/* Print the current directory */
 void	print_pwd(t_struct *mode)
 {
 	char	path[3000];

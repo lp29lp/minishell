@@ -6,12 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 21:42:51 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 16:18:08 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:58:03 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Print the parameters */
 void	cmd_echo(t_struct *mode)
 {
 	int		i;
@@ -39,6 +40,7 @@ void	cmd_echo(t_struct *mode)
 	echo_print(mode, n);
 }
 
+/* Deal with empty/spaces parameters */
 int	echo_check(t_struct *mode, int i, int n)
 {
 	if ((i == 2 && n == 1 && mode->space != 0) || (i == 1 && n == 0

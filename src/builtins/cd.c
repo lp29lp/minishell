@@ -6,13 +6,14 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:50:10 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/24 16:00:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:58:22 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "struct.h"
 
+/* Jump to a directory */
 void	cmd_cd(t_struct *mode)
 {
 	int	size_split_input;

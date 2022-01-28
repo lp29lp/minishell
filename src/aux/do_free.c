@@ -6,13 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:18:24 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:05:40 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "struct.h"
 
+/* Free all and close the program */
 void	do_free(t_struct *mode)
 {
 	rl_clear_history();
@@ -25,10 +25,11 @@ void	do_free(t_struct *mode)
 	exit(g_status);
 }
 
-/* 0 = all */
-/* 1 = split_input */
-/* 2 = split_two */
-/* 3 = split_rest */
+/* free splits
+0 = all
+1 = split_input
+2 = split_two
+3 = split_rest */
 void	free_split(t_struct *mode, int flag)
 {
 	if ((mode->split_input != NULL && flag == 1)
@@ -66,6 +67,7 @@ void	free_null(char **s)
 	*s = NULL;
 }
 
+/* Free a double pointer and set has null */
 void	free_double(char ***str)
 {
 	int	x;

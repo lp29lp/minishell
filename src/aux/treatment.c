@@ -6,14 +6,14 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:44:39 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:16:34 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
-/* Do a treatment on string input dealing with quote and dollar sing and space
- * for echo */
+
+/* Do a treatment on string from input, dealing with quote and dollar sing and
+ * space for echo */
 void	treatment(t_struct *mode, char **str)
 {
 	int	i;
@@ -24,7 +24,7 @@ void	treatment(t_struct *mode, char **str)
 	mode->quote = '1';
 	while (str[0][i + 1] != '\0')
 	{
-		if (str[0][i] == '\'' || str[0][i]== '\"')
+		if (str[0][i] == '\'' || str[0][i] == '\"')
 		{
 			get_space(mode, (i + 1), *str);
 			mode->quote = str[0][i];
@@ -70,7 +70,7 @@ void	convert_dollar(t_struct *mode, int i, char **str)
 }
 
 /* get value from key but if doesn't exist return void string but this
- * condition just exist when the previous position is double quote or nothing*/
+condition just exist when the previous position is double quote or nothing*/
 char	*fix_dollar(t_struct *mode, char *name)
 {
 	t_list_env	*temp;

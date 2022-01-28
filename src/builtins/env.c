@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:53:47 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/24 15:53:50 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:55:10 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	filter_env(char *env, t_struct *mode)
 	temp->next = new_node_env(env, mode, size_key, rest);
 }
 
-/* Can have NULL return in strdup need check: do_free */
+/* Create a node for env */
 t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 {
 	t_list_env	*new;
@@ -76,6 +76,7 @@ t_list_env	*new_node_env(char *env, t_struct *mode, int size_key, int rest)
 	return (new);
 }
 
+/* Print the envrionments variables */
 void	print_env(t_struct *mode)
 {
 	t_list_env	*temp;

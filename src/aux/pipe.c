@@ -6,12 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 16:27:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:06:22 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:16:19 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/* Verify if pipe is valid and redirect to execute */
 int	do_pipe(t_struct *mode)
 {
 	while (mode->line_read[mode->count] != '\0')
@@ -43,6 +44,7 @@ int	do_pipe(t_struct *mode)
 	return (0);
 }
 
+/* Check if pipe is correct */
 int	check_pipe_error(t_struct *mode)
 {
 	mode->count3 = mode->count + 1;
@@ -63,6 +65,7 @@ int	check_pipe_error(t_struct *mode)
 	return (0);
 }
 
+/* change files descriptors using pipe and dup and execute */
 int	exec_pipe(t_struct *mode)
 {
 	int	x;
@@ -92,6 +95,7 @@ int	exec_pipe(t_struct *mode)
 	return (0);
 }
 
+/* Use pipe() to create files descriptors and change stdin / stdout */
 void	p_fd(t_struct *mode, int	flag)
 {
 	if (flag == 0)
@@ -114,6 +118,7 @@ void	p_fd(t_struct *mode, int	flag)
 	}
 }
 
+/* Separate a command from the rest/pipe */
 void	cut_me_pipe(t_struct *mode)
 {
 	mode->split_pipe[mode->x] = ft_substr(mode->line_read, mode->bkp,
@@ -122,6 +127,7 @@ void	cut_me_pipe(t_struct *mode)
 	mode->x++;
 }
 
+/* Verify pipes valid to allocate memory */
 void	count_pipe(t_struct *mode)
 {
 	while (mode->line_read[mode->count] != '\0')

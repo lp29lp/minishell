@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:04:13 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:35:12 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		get_space(t_struct *mode, int i, char *str);
 int			main(int ac, char **av, char **env);
 
 /* pipe */
-void		p_fd(t_struct *mode, int	flag);
+void		p_fd(t_struct *mode, int flag);
 int			check_pipe_error(t_struct *mode);
 void		cut_me_pipe(t_struct *mode);
 void		count_pipe(t_struct *mode);

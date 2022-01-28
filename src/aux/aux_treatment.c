@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 14:30:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 16:38:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:00:48 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	jump_space(t_struct *mode, int i, char **str)
 	return (i);
 }
 
+/* Count spaces */
 void	get_space(t_struct *mode, int i, char *str)
 {
 	if (mode->tag == 1)
@@ -42,7 +43,7 @@ void	get_space(t_struct *mode, int i, char *str)
 }
 
 /* Tag != 1 when need remove space from beginning
- * if 1 will remove one character in specific in the string */
+if 1 will remove one character in specific in the string */
 void	cat_jump(t_struct *mode, int i, int tag, char **str)
 {
 	if (tag == 1)

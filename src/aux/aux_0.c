@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/25 18:08:32 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:59:11 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	cmp(const void *string1, const void *string2)
 	return (0);
 }
 
+/* Count pointers */
 int	count_split(t_struct *mode, int tag)
 {
 	int			size;

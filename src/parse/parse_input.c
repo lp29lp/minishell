@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:33:01 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:35:52 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /* Deal with input redirect it */
 void	index_parse(t_struct *mode)
 {
-
 	if (cmp(mode->line_read, "") == 0)
 	{
 		g_status = 0;

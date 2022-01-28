@@ -6,12 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 12:25:43 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/10 19:10:56 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:52:09 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Insert a variable in env list */
 void	cmd_export(t_struct *mode)
 {
 	int	i;
@@ -28,7 +29,7 @@ void	cmd_export(t_struct *mode)
 		do_export(mode);
 }
 
-/* Provavelmente deve ter mais caracteres q invalida o export alem de $ */
+/* Verify if is valid */
 int	export_valid(t_struct *mode)
 {
 	int	i;
@@ -51,6 +52,7 @@ int	export_valid(t_struct *mode)
 	return (1);
 }
 
+/* Start insert the variable in the list from env */
 void	do_export(t_struct *mode)
 {
 	int	i;

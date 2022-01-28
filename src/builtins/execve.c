@@ -6,12 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:04:34 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:54:11 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Prepare to execute execv */
 int	cmd_execve(t_struct *mode)
 {
 	char	*path;
@@ -40,19 +41,20 @@ int	cmd_execve(t_struct *mode)
 	return (0);
 }
 
+/* Create path and see if command is valid using stat() */
 char	*create_path(t_struct *mode)
 {
-	struct	stat	statbuf;
-	char			**path;
-	char			*temp;
-	char			*aux;
-	int				i;
+	struct stat	statbuf;
+	char		**path;
+	char		*temp;
+	char		*aux;
+	int			i;
 
 	i = 0;
 	path = split_path(mode);
 	while (path[i] != NULL)
 	{
-		aux = ft_strjoin(path[i],"/");
+		aux = ft_strjoin(path[i], "/");
 		temp = ft_strjoin(aux, mode->split_two[0]);
 		free_null(&aux);
 		if (stat(temp, &statbuf) != 0)
@@ -65,13 +67,14 @@ char	*create_path(t_struct *mode)
 	return (temp);
 }
 
+/* Create arg for execv */
 char	**create_arg(t_struct *mode)
 {
 	char	**ret;
 	int		i;
 
 	i = 0;
-	ret = (char **)ft_calloc((count_split(mode, 1) + 1), sizeof(char*));
+	ret = (char **)ft_calloc((count_split(mode, 1) + 1), sizeof(char *));
 	while (mode->split_input[i] != NULL)
 	{
 		ret[i] = (char *)ft_strdup(mode->split_input[i]);
@@ -80,6 +83,7 @@ char	**create_arg(t_struct *mode)
 	return (ret);
 }
 
+/* Create a double pointer from env list for execv */
 char	**pointer_env(t_struct *mode)
 {
 	t_list_env	*temp;

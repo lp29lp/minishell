@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 18:21:00 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:04:50 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:50:17 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	handle_sigint(int num)
 	g_status = 130;
 }
 
+/* Deal with C+c and display a new line when is in heredoc 
+and set status to C+c(130) */
 void	handle_redic(int num)
 {
 	(void)num;
@@ -40,6 +42,7 @@ void	handle_redic(int num)
 	exit(130);
 }
 
+/* Deal with C+c and set status to C+c(130) */
 void	handle_exec(int num)
 {
 	(void)num;

@@ -6,13 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:04:15 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:03:03 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
+/* find command and parameters to separate from redirect if exist*/
 void	check_redirect(t_struct *mode)
 {
 	mode->redic = 0;
@@ -42,11 +42,12 @@ void	check_redirect(t_struct *mode)
 	treatment(mode, &mode->line_read);
 }
 
+/* Separete command and parameters from redirect */
 void	cut_me(t_struct *mode)
 {
 	mode->temp = ft_substr(mode->line_read, 0, (mode->count - 1));
 	mode->rest = ft_substr(mode->line_read, mode->count,
-				ft_strlen(mode->line_read));
+			ft_strlen(mode->line_read));
 	free_null(&mode->line_read);
 	mode->line_read = ft_strdup(mode->temp);
 	free_null(&mode->temp);
@@ -85,6 +86,7 @@ void	handle_command(t_struct *mode)
 	free_null(&mode->aux);
 }
 
+/* Reset file descriptors, remove temp files and reset redic struct */
 void	reset_fd(t_struct *mode, int flag)
 {
 	dup2(mode->in, 0);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:06:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:47:23 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	g_status;
 
+/* initialise struct, set signal handlers and create a copy of env */
 int	main(int ac, char **av, char **env)
 {
 	t_struct			mode;
@@ -63,5 +64,6 @@ void	display_prompt(t_struct *mode)
 	}
 	if (mode->line_read && *mode->line_read)
 		add_history(mode->line_read);
+	mode->pipe = 0;
 	index_parse(mode);
 }

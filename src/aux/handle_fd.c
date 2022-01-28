@@ -6,13 +6,14 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 17:51:46 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:13:01 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 
+/* Guide to redirect */
 int	handle_fd(t_struct *mode)
 {
 	mode->split_rest = ft_split(mode->rest, ' ');
@@ -45,6 +46,7 @@ int	handle_fd(t_struct *mode)
 	return (0);
 }
 
+/* Verify if redirect is valid */
 int	check_redic_error(t_struct *mode, int size)
 {
 	while (mode->count < size)
@@ -75,6 +77,7 @@ int	check_redic_error(t_struct *mode, int size)
 	return (0);
 }
 
+/* Start check redirect and sent to execute it */
 int	check_arrow(t_struct *mode, int	size)
 {
 	int		j;
@@ -103,6 +106,7 @@ int	check_arrow(t_struct *mode, int	size)
 	return (0);
 }
 
+/*  */
 void	aux_check_arrow(t_struct *mode, int i, int j)
 {
 	mode->arrow->twice = 0;
@@ -121,6 +125,8 @@ void	aux_check_arrow(t_struct *mode, int i, int j)
 		double_left(mode);
 }
 
+/* Fix the redirect while open files if necessary and creates files
+descriptors */
 void	do_open(t_struct *mode, int i)
 {
 	char	buf[3000];
@@ -154,6 +160,7 @@ void	do_open(t_struct *mode, int i)
 	mode->count2 = 0;
 }
 
+/* Change stdin or stdout according to flags */
 void change_fd(t_struct *mode)
 {
 	if (mode->tag1 == 1)
@@ -171,6 +178,7 @@ void change_fd(t_struct *mode)
 	free_null(&mode->xablau);
 }
 
+/* Prepare heredoc creating the list to exit and open file descriptors */
 void	double_left(t_struct *mode)
 {
 	char	buf[3000];
@@ -205,6 +213,41 @@ void	double_left(t_struct *mode)
 	}
 }
 
+/* Execute heredoc in child process */
+int	do_heredoc(t_struct *mode)
+{
+	int	pid;
+	int	test;
+	struct sigaction sb;
+
+	test = 0;
+	ft_memset(&sb, 0, sizeof(sb));
+	jump_sig(SIGINT, SIG_IGN, &sb);
+	mode->tag = 0;
+	pid = fork();
+	g_status = 0;
+	if (pid == 0)
+	{
+		dup2(mode->out, 1);
+		jump_sig(SIGINT, handle_redic, &sb);
+		while (1)
+		{
+			if (fake_heredoc(mode) == 1)
+				break ;
+		}
+		exit(0);
+	}
+	waitpid(pid, &mode->count, 0);
+	g_status = WEXITSTATUS(mode->count);
+	free_double(&mode->keywords);
+	if (g_status == 130)
+	{
+		return (1);
+	}
+	return (0);
+}
+
+/* Execute and "open" mini-prompt to heredoc */
 int	fake_heredoc(t_struct *mode)
 {
 	mode->aux = readline("> ");
@@ -252,37 +295,4 @@ void	fake_aux(t_struct *mode)
 		else
 			return ;
 	}
-}
-
-int	do_heredoc(t_struct *mode)
-{
-	int	pid;
-	int	test;
-	struct sigaction sb;
-
-	test = 0;
-	ft_memset(&sb, 0, sizeof(sb));
-	jump_sig(SIGINT, SIG_IGN, &sb);
-	mode->tag = 0;
-	pid = fork();
-	g_status = 0;
-	if (pid == 0)
-	{
-		dup2(mode->out, 1);
-		jump_sig(SIGINT, handle_redic, &sb);
-		while (1)
-		{
-			if (fake_heredoc(mode) == 1)
-				break ;
-		}
-		exit(0);
-	}
-	waitpid(pid, &mode->count, 0);
-	g_status = WEXITSTATUS(mode->count);
-	free_double(&mode->keywords);
-	if (g_status == 130)
-	{
-		return (1);
-	}
-	return (0);
 }
