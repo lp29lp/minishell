@@ -6,13 +6,13 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:06:29 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:33:01 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Deal with void input or redirect */
+/* Deal with input redirect it */
 void	index_parse(t_struct *mode)
 {
 
@@ -33,7 +33,6 @@ void	index_parse(t_struct *mode)
 			return ;
 		}
 	}
-	mode->pipe = 0;
 	count_pipe(mode);
 	if (mode->pipe != 0)
 	{
@@ -44,6 +43,7 @@ void	index_parse(t_struct *mode)
 		return ;
 }
 
+/* Do the treatment and redirect to execute */
 int	command(t_struct *mode)
 {
 	struct sigaction	sb;
