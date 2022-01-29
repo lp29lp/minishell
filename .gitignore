@@ -1,9 +1,0 @@
-./obj
-*.o
-minishell
-vgcore*
-.vscode
-readline.supp
-compile_flags.txt
-tags
-xablau
