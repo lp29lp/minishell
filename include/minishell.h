@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:35:12 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 21:13:44 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ void		do_open(t_struct *mode, int i);
 int			fake_heredoc(t_struct *mode);
 void		double_left(t_struct *mode);
 int			do_heredoc(t_struct *mode);
-int			handle_fd(t_struct *mode);
+void		open_files(t_struct *mode);
 void		change_fd(t_struct *mode);
+int			redirect(t_struct *mode);
 void		fake_aux(t_struct *mode);
+void		keywords(t_struct *mode);
+void		redic_c(t_struct *mode);
 void		cut_me(t_struct *mode);
 
 /* Execve */

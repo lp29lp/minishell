@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 19:00:21 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 20:58:15 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	**split_path(t_struct *mode)
 /* Reset some struct values */
 void	init_struct(t_struct *mode)
 {
+	mode->j = 0;
+	mode->i = 0;
 	mode->x = 0;
 	mode->space = 0;
 	mode->tag = 0;

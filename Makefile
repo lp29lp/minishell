@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/28 18:17:42 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/28 21:28:12 by dalves-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 P_SRC			=	src/
 P_INCLUDE		=	include/
 P_AUX			=	aux/
+P_UTILS			=	$(P_AUX)utils/
 P_PARSE			=	parse/
 P_BUILTINS		=	builtins/
 P_OBJ			=	./obj/
@@ -22,16 +23,19 @@ P_LIBFT			=	$(P_INCLUDE)libft/
 
 F_PARSE			=	parse_input.c
 
-F_BUILTINS		=	env.c cd.c signal.c pwd.c export.c unset.c echo.c execve.c
+F_BUILTINS		=	env.c cd.c pwd.c export.c unset.c echo.c execve.c
 
-F_AUX			=	do_free.c aux_0.c aux_treatment.c treatment.c errors.c \
-					aux_1.c cut_check.c handle_fd.c pipe.c
+F_AUX			=	do_free.c treatment.c signal.c redirect.c pipe.c
 
-F_SRC			=	main.c $(AUX) $(BUILTINS) $(PARSE)
+F_UTILS			=	aux_0.c aux_treatment.c aux_1.c cut_check.c aux_2_redic.c \
+					aux_redirect.c
+
+F_SRC			=	main.c $(AUX) $(BUILTINS) $(UTILS) $(PARSE)
 
 BUILTINS		=	$(addprefix $(P_BUILTINS), $(F_BUILTINS))
 PARSE			=	$(addprefix $(P_PARSE), $(F_PARSE))
 AUX				=	$(addprefix $(P_AUX), $(F_AUX))
+UTILS			=	$(addprefix $(P_UTILS), $(F_UTILS))
 
 OBJ				=	$(addprefix $(P_OBJ), $(F_SRC:.c=.o))
 
@@ -49,12 +53,12 @@ all:			$(NAME)
 $(NAME):		$(OBJ)
 				@make --no-print-directory -C $(P_LIBFT)
 				@echo '.o created and moved to obj folder'
-				@$(CC) $(CFLAGS) -g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
+				$(CC) $(CFLAGS) -g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
 				@echo 'File(minishell) created'
 
 $(P_OBJ)%.o:	$(P_SRC)%.c
 				@$(P_GUARD)
-				@$(CC) $(CFLAGS) -g $(INC) -c $< -o $@
+				$(CC) $(CFLAGS) -g $(INC) -c $< -o $@
 
 val:
 				valgrind --leak-check=full --show-leak-kinds=all -s --track-origins=yes --trace-children=yes --suppressions=readline.supp --log-file=valgrind-out.txt ./minishell
@@ -66,8 +70,8 @@ clean:
 
 fclean:			clean
 				@$(RM) $(NAME)
-				@$(RM) vgcore* #remover depois
-				@$(RM) valgrind* #remover depois
+				@$(RM) vgcore*
+				@$(RM) valgrind*
 				@make --no-print-directory -C $(P_LIBFT) fclean
 
 re:				fclean all

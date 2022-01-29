@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 16:27:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 19:16:19 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 20:37:26 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ int	do_pipe(t_struct *mode)
 			}
 		}
 		if (mode->line_read[mode->count] == '|')
+		{
 			if (check_pipe_error(mode) == 1)
-			{
-				ft_putendl_fd("-minishell: invalid usage of pipe", 2);
 				return (1);
-			}
+		}
 		mode->count++;
 	}
 	cut_me_pipe(mode);
-	mode->count = 0;
 	if (exec_pipe(mode) == 1)
 		return (1);
 	return (0);
@@ -55,6 +53,7 @@ int	check_pipe_error(t_struct *mode)
 			|| mode->line_read[mode->count3] == '\0')
 		{
 			free_double(&mode->split_pipe);
+			ft_putendl_fd("-minishell: invalid usage of pipe", 2);
 			return (1);
 		}
 		if (ft_isalnum(mode->line_read[mode->count3]) == 1)
@@ -71,6 +70,7 @@ int	exec_pipe(t_struct *mode)
 	int	x;
 
 	x = 0;
+	mode->count = 0;
 	while (mode->split_pipe[x] != NULL)
 	{
 		printf("%s\n", mode->split_pipe[x]);
@@ -91,12 +91,11 @@ int	exec_pipe(t_struct *mode)
 	}
 	free_double(&mode->split_pipe);
 	reset_fd(mode, 0);
-	mode->x = 0;
 	return (0);
 }
 
 /* Use pipe() to create files descriptors and change stdin / stdout */
-void	p_fd(t_struct *mode, int	flag)
+void	p_fd(t_struct *mode, int flag)
 {
 	if (flag == 0)
 	{
@@ -122,34 +121,7 @@ void	p_fd(t_struct *mode, int	flag)
 void	cut_me_pipe(t_struct *mode)
 {
 	mode->split_pipe[mode->x] = ft_substr(mode->line_read, mode->bkp,
-		(mode->count - mode->bkp));
+			(mode->count - mode->bkp));
 	mode->bkp = (mode->count + 1);
 	mode->x++;
-}
-
-/* Verify pipes valid to allocate memory */
-void	count_pipe(t_struct *mode)
-{
-	while (mode->line_read[mode->count] != '\0')
-	{
-		if (mode->line_read[mode->count] == '\''
-			|| mode->line_read[mode->count] == '\"')
-		{
-			mode->quote = mode->line_read[mode->count];
-			mode->count++;
-			while (mode->line_read[mode->count] != '\0')
-			{
-				if (mode->line_read[mode->count] == mode->quote)
-					break ;
-				mode->count++;
-			}
-		}
-		if (mode->line_read[mode->count] == '|')
-			mode->pipe++;
-		mode->count++;
-	}
-	mode->count = 0;
-	if (mode->pipe != 0)
-		mode->split_pipe = (char **)ft_calloc((mode->pipe + 2),
-			sizeof(char *));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:35:52 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/28 21:11:32 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	command(t_struct *mode)
 	if (mode->redic == 1)
 	{
 		mode->count = 0;
-		if (handle_fd(mode) == 1)
+		if (redirect(mode) == 1)
 			return (1);
 	}
 	ft_memset(&sb, 0, sizeof(sb));
