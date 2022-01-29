@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 19:05:40 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/29 21:31:38 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 void	do_free(t_struct *mode)
 {
 	rl_clear_history();
-	free(mode->line_read);
+	free_null(&mode->line_read);
+	free_null(&mode->rest);
 	if (mode->size_env > 0)
 		free_env(mode);
 	free_split(mode, 0);
 	if (mode->arrow != NULL)
 		free(mode->arrow);
+	unlink("xablau");
 	exit(g_status);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 21:17:54 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/01/29 22:13:32 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,17 +120,17 @@ void	double_left(t_struct *mode)
 /* Execute heredoc in child process */
 int	do_heredoc(t_struct *mode)
 {
-	int					pid;
 	struct sigaction	sb;
 
 	ft_memset(&sb, 0, sizeof(sb));
 	jump_sig(SIGINT, SIG_IGN, &sb);
 	mode->tag = 0;
-	pid = fork();
 	g_status = 0;
-	if (pid == 0)
+	mode->pid = fork();
+	if (mode->pid == 0)
 	{
 		dup2(mode->out, 1);
+		jump_sig(SIGQUIT, handle_redic, &sb);
 		jump_sig(SIGINT, handle_redic, &sb);
 		while (1)
 		{
@@ -139,7 +139,7 @@ int	do_heredoc(t_struct *mode)
 		}
 		exit(0);
 	}
-	waitpid(pid, &mode->count, 0);
+	waitpid(mode->pid, &mode->count, 0);
 	g_status = WEXITSTATUS(mode->count);
 	free_double(&mode->keywords);
 	if (g_status == 130)

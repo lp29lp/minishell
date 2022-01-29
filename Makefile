@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/29 15:41:50 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/29 20:53:12 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,9 @@ $(P_OBJ)%.o:	$(P_SRC)%.c
 
 val:
 				valgrind --leak-check=full --show-leak-kinds=all -s --track-origins=yes --trace-children=yes --suppressions=readline.supp --log-file=valgrind-out.txt ./minishell
+
+child:
+				valgrind --leak-check=full --show-leak-kinds=all -s --track-origins=yes --suppressions=readline.supp --log-file=valgrind-out.txt ./minishell
 
 clean:
 				@$(RM) $(P_OBJ)

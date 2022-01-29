@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/29 15:54:27 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:02:22 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ char	*create_path(t_struct *mode)
 	int			i;
 
 	i = 0;
-	if (stat(mode->line_read, &statbuf) == 0)
+	if (stat(mode->split_input[0], &statbuf) == 0)
 	{
-		mode->aux = ft_strdup(mode->line_read);
+		mode->aux = ft_strdup(mode->split_input[0]);
 		return (mode->aux);
 	}
 	path = split_path(mode);

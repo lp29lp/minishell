@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_2_redic.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 20:37:09 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/01/28 21:18:05 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:30:55 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	count_pipe(t_struct *mode)
 		}
 		if (mode->line_read[mode->count] == '|')
 			mode->pipe++;
-		mode->count++;
+		if (mode->line_read[mode->count] != '\0')
+			mode->count++;
 	}
 	mode->count = 0;
 	if (mode->pipe != 0)

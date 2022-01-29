@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 16:51:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 21:14:08 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/01/29 21:21:51 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	open_files(t_struct *mode)
 void	keywords(t_struct *mode)
 {
 	mode->i = 0;
+	mode->j = 0;
 	mode->keywords = (char **)ft_calloc((mode->size_keywords + 1),
 			sizeof(char *));
 	while (mode->split_rest[mode->i] != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 21:11:32 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:15:19 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	command(t_struct *mode)
 	mode->split_two = ft_split(mode->line_read, ' ');
 	mode->count = 0;
 	check_redirect(mode);
+	mode->split_input = ft_split(mode->line_read, ' ');
 	if (mode->redic == 1)
 	{
 		mode->count = 0;
@@ -59,7 +60,6 @@ int	command(t_struct *mode)
 	ft_memset(&sb, 0, sizeof(sb));
 	jump_sig(SIGINT, handle_exec, &sb);
 	jump_sig(SIGQUIT, handle_exec, &sb);
-	mode->split_input = ft_split(mode->line_read, ' ');
 	parse_input_0(mode);
 	init_struct(mode);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 19:03:03 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:33:06 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	check_redirect(t_struct *mode)
 			cut_me(mode);
 			break ;
 		}
-		mode->count++;
+		if (mode->line_read[mode->count] != '\0')
+			mode->count++;
 	}
 	treatment(mode, &mode->line_read);
 }
