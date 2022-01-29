@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 16:27:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 20:37:26 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/01/29 15:43:08 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	exec_pipe(t_struct *mode)
 	mode->count = 0;
 	while (mode->split_pipe[x] != NULL)
 	{
-		printf("%s\n", mode->split_pipe[x]);
 		free_null(&mode->line_read);
 		mode->line_read = ft_strdup(mode->split_pipe[x]);
 		if (mode->split_pipe[x + 1] != NULL)

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:54:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/29 15:54:27 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,28 @@ char	*create_path(t_struct *mode)
 {
 	struct stat	statbuf;
 	char		**path;
-	char		*temp;
-	char		*aux;
 	int			i;
 
 	i = 0;
+	if (stat(mode->line_read, &statbuf) == 0)
+	{
+		mode->aux = ft_strdup(mode->line_read);
+		return (mode->aux);
+	}
 	path = split_path(mode);
 	while (path[i] != NULL)
 	{
-		aux = ft_strjoin(path[i], "/");
-		temp = ft_strjoin(aux, mode->split_two[0]);
-		free_null(&aux);
-		if (stat(temp, &statbuf) != 0)
-			free_null(&temp);
+		mode->aux = ft_strjoin(path[i], "/");
+		mode->temp = ft_strjoin(mode->aux, mode->split_two[0]);
+		free_null(&mode->aux);
+		if (stat(mode->temp, &statbuf) != 0)
+			free_null(&mode->temp);
 		else
 			break ;
 		i++;
 	}
 	free_double(&path);
-	return (temp);
+	return (mode->temp);
 }
 
 /* Create arg for execv */

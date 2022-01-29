@@ -6,7 +6,7 @@
 #    By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/28 22:02:18 by dalves-s         ###   ########.fr        #
+#    Updated: 2022/01/29 15:41:50 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,12 +53,12 @@ all:			$(NAME)
 $(NAME):		$(OBJ)
 				@make --no-print-directory -C $(P_LIBFT)
 				@echo '.o created and moved to obj folder'
-				$(CC) $(CFLAGS) -g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
+				@$(CC) $(CFLAGS) -g -lreadline $(INC) $(OBJ) $(LIBFT) -o $(NAME)
 				@echo 'File(minishell) created'
 
 $(P_OBJ)%.o:	$(P_SRC)%.c
 				@$(P_GUARD)
-				$(CC) $(CFLAGS) -g $(INC) -c $< -o $@
+				@$(CC) $(CFLAGS) -g $(INC) -c $< -o $@
 
 val:
 				valgrind --leak-check=full --show-leak-kinds=all -s --track-origins=yes --trace-children=yes --suppressions=readline.supp --log-file=valgrind-out.txt ./minishell
