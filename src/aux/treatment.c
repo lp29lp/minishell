@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/29 23:23:34 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:26:21 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	d_quote_cont(t_struct *mode, int i, char **str)
 		if (mode->quote == '\"' && str[0][i] == '$'
 			&& str[0][i + 1] != ' '
 			&& str[0][i + 1] != mode->quote)
-				convert_dollar(mode, i, str);
+			convert_dollar(mode, i, str);
 		else
 			i++;
 	}

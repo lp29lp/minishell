@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 03:03:05 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:31:11 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@ char	**split_path(t_struct *mode)
 	t_list_env	*temp;
 	char		*aux;
 	char		**path;
-	int			a;
 
 	temp = mode->env;
 	aux = NULL;
-	a = 0;
+	mode->l = 0;
 	while (temp)
 	{
 		if (cmp(temp->key, "PATH") == 0)
 		{
 			aux = ft_strdup(temp->value);
-			a = 1;
+			mode->l = 1;
 			break ;
 		}
 		temp = temp->next;
 	}
-	if (a == 1)
+	if (mode->l == 1)
 	{
 		path = ft_split(aux, ':');
 		free_null(&aux);

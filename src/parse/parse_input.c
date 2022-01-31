@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/29 20:15:19 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:28:38 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	command(t_struct *mode)
 
 	mode->split_two = ft_split(mode->line_read, ' ');
 	mode->count = 0;
+	mode->redic = 0;
 	check_redirect(mode);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	if (mode->redic == 1)

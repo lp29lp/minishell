@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:39:49 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 03:07:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:30:38 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_struct
 	int			in;
 	int			out;
 	int			k;
+	int			l;
 	char		*line_read;
 	char		*rest;
 	char		**split_input;

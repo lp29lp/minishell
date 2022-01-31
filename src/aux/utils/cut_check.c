@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/29 20:33:06 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:28:31 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /* find command and parameters to separate from redirect if exist*/
 void	check_redirect(t_struct *mode)
 {
-	mode->redic = 0;
 	while (mode->line_read[mode->count] != '\0')
 	{
 		if (mode->line_read[mode->count] == '\''
