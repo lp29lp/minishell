@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 03:28:38 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:55:05 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ int	command(t_struct *mode)
 	{
 		mode->count = 0;
 		if (redirect(mode) == 1)
+		{
+			free_double(&mode->keywords);
+			free_null(&mode->xablau);
 			return (1);
+		}
 	}
 	ft_memset(&sb, 0, sizeof(sb));
 	jump_sig(SIGINT, handle_exec, &sb);
@@ -92,5 +96,5 @@ void	parse_input_0(t_struct *mode)
 		}
 	}
 	if (mode->pipe != 0)
-		reset_fd(mode, 0);
+		reset_fd(mode);
 }

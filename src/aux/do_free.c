@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/29 21:31:38 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:43:21 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,15 @@ void	free_double(char ***str)
 	int	x;
 
 	x = 0;
-	while (str[0][x] != NULL)
+	if (str[0] != NULL)
 	{
-		free(str[0][x]);
-		str[0][x] = NULL;
-		x++;
+		while (str[0][x] != NULL)
+		{
+			free(str[0][x]);
+			str[0][x] = NULL;
+			x++;
+		}
+		free(*str);
+		*str = NULL;
 	}
-	free(*str);
-	*str = NULL;
 }

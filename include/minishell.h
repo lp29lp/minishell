@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 21:13:44 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:54:31 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
@@ -47,7 +48,6 @@ void		handle_exec(int num);
 void		aux_check_arrow(t_struct *mode, int i, int j);
 int			check_redic_error(t_struct *mode, int size);
 int			check_arrow(t_struct *mode, int size);
-void		reset_fd(t_struct *mode, int flag);
 void		handle_command(t_struct *mode);
 void		check_redirect(t_struct *mode);
 void		do_open(t_struct *mode, int i);
@@ -58,6 +58,7 @@ void		open_files(t_struct *mode);
 void		change_fd(t_struct *mode);
 int			redirect(t_struct *mode);
 void		fake_aux(t_struct *mode);
+void		reset_fd(t_struct *mode);
 void		keywords(t_struct *mode);
 void		redic_c(t_struct *mode);
 void		cut_me(t_struct *mode);

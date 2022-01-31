@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:40:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 03:28:31 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:54:35 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	handle_command(t_struct *mode)
 }
 
 /* Reset file descriptors, remove temp files and reset redic struct */
-void	reset_fd(t_struct *mode, int flag)
+void	reset_fd(t_struct *mode)
 {
 	dup2(mode->in, 0);
 	dup2(mode->out, 1);
@@ -95,6 +95,4 @@ void	reset_fd(t_struct *mode, int flag)
 		unlink("xablau");
 	free(mode->arrow);
 	mode->arrow = ft_calloc(1, sizeof(t_redic));
-	if (flag == 1)
-		ft_putendl_fd("", 1);
 }

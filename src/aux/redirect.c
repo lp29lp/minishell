@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/29 22:13:32 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:38:27 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	redirect(t_struct *mode)
 		return (1);
 	if (mode->tag2 == 1)
 	{
+		dup2(mode->in, 0);
 		if (do_heredoc(mode) == 1)
 		{
 			g_status = mode->tag;
