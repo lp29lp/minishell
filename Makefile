@@ -6,14 +6,14 @@
 #    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/01/29 20:53:12 by lpaulo-d         ###   ########.fr        #
+#    Updated: 2022/01/31 02:38:01 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 P_SRC			=	src/
 P_INCLUDE		=	include/
 P_AUX			=	aux/
-P_UTILS			=	$(P_AUX)utils/
+P_UTILS			=	utils/
 P_PARSE			=	parse/
 P_BUILTINS		=	builtins/
 P_OBJ			=	./obj/
@@ -35,7 +35,7 @@ F_SRC			=	main.c $(AUX) $(BUILTINS) $(UTILS) $(PARSE)
 BUILTINS		=	$(addprefix $(P_BUILTINS), $(F_BUILTINS))
 PARSE			=	$(addprefix $(P_PARSE), $(F_PARSE))
 AUX				=	$(addprefix $(P_AUX), $(F_AUX))
-UTILS			=	$(addprefix $(P_UTILS), $(F_UTILS))
+UTILS			=	$(addprefix $(P_AUX)$(P_UTILS), $(F_UTILS))
 
 OBJ				=	$(addprefix $(P_OBJ), $(F_SRC:.c=.o))
 

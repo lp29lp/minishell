@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:31:28 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 20:58:15 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:03:05 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,29 @@ char	**split_path(t_struct *mode)
 	t_list_env	*temp;
 	char		*aux;
 	char		**path;
+	int			a;
 
 	temp = mode->env;
 	aux = NULL;
+	a = 0;
 	while (temp)
 	{
 		if (cmp(temp->key, "PATH") == 0)
 		{
 			aux = ft_strdup(temp->value);
+			a = 1;
 			break ;
 		}
 		temp = temp->next;
 	}
-	path = ft_split(aux, ':');
-	free_null(&aux);
-	return (path);
+	if (a == 1)
+	{
+		path = ft_split(aux, ':');
+		free_null(&aux);
+		return (path);
+	}
+	mode->temp = NULL;
+	return (NULL);
 }
 
 /* Reset some struct values */
