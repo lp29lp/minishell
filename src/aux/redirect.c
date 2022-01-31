@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:50:27 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 19:38:27 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:39:06 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,11 @@ int	do_heredoc(t_struct *mode)
 			if (fake_heredoc(mode) == 1)
 				break ;
 		}
+		do_free_heredoc(mode);
 		exit(0);
 	}
 	waitpid(mode->pid, &mode->count, 0);
 	g_status = WEXITSTATUS(mode->count);
-	free_double(&mode->keywords);
 	if (g_status == 130)
 		return (1);
 	return (0);

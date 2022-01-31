@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 19:43:21 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:46:04 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	do_free(t_struct *mode)
 	rl_clear_history();
 	free_null(&mode->line_read);
 	free_null(&mode->rest);
+	free_null(&mode->xablau);
+	free_double(&mode->keywords);
 	if (mode->size_env > 0)
 		free_env(mode);
 	free_split(mode, 0);

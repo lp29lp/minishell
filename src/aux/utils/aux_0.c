@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_0.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:56:54 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/28 18:59:11 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:46:13 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,17 @@ t_list_env	*new_node_export(t_struct *mode, char *key_v, char *c_temp)
 		do_free(mode);
 	}
 	return (new);
+}
+
+void	do_free_heredoc(t_struct *mode)
+{
+	free_null(&mode->line_read);
+	free_null(&mode->rest);
+	free_null(&mode->xablau);
+	free_double(&mode->keywords);
+	if (mode->size_env > 0)
+		free_env(mode);
+	free_split(mode, 0);
+	if (mode->arrow != NULL)
+		free(mode->arrow);
 }
