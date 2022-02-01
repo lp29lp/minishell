@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/02/01 22:13:34 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/01 18:33:46 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	command(t_struct *mode)
 		mode->count = 0;
 		if (redirect(mode) == 1)
 		{
-			free_double(mode, &mode->keywords, 0);
+			free_double(&mode->keywords);
 			free_null(&mode->xablau);
 			return (1);
 		}

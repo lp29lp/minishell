@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 16:27:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/02/01 21:53:35 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/01 18:33:26 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_pipe_error(t_struct *mode)
 		if (mode->line_read[mode->count3] == '|'
 			|| mode->line_read[mode->count3] == '\0')
 		{
-			free_double(mode, &mode->split_pipe, 0);
+			free_double(&mode->split_pipe);
 			ft_putendl_fd("-minishell: invalid usage of pipe", 2);
 			return (1);
 		}
@@ -81,14 +81,14 @@ int	exec_pipe(t_struct *mode)
 			p_fd(mode, 2);
 		if (command(mode) == 1)
 		{
-			free_double(mode, &mode->split_pipe, 0);
+			free_double(&mode->split_pipe);
 			return (1);
 		}
 		if (mode->split_pipe[x + 1] != NULL)
 			p_fd(mode, 1);
 		x++;
 	}
-	free_double(mode, &mode->split_pipe, 0);
+	free_double(&mode->split_pipe);
 	reset_fd(mode);
 	return (0);
 }

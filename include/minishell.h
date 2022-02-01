@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/02/01 22:11:48 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/01 18:31:37 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,10 @@ int			command(t_struct *mode);
 
 /* Deal errors */
 void		free_split(t_struct *mode, int flag);
+void		free_double_env(char ***str, int x);
 void		do_free_heredoc(t_struct *mode);
+void		free_double(char ***str);
 void		free_env(t_struct *mode);
-void		free_double(t_struct *mode, char ***str, int flag);
 void		do_free(t_struct *mode);
 
 /* Aux */

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: coder <coder@student.42.fr>                +#+  +:+       +#+         #
+#    By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:56:37 by lpaulo-d          #+#    #+#              #
-#    Updated: 2022/02/01 22:10:43 by coder            ###   ########.fr        #
+#    Updated: 2022/02/01 18:30:13 by lpaulo-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ F_BUILTINS		=	env.c cd.c pwd.c export.c unset.c echo.c execve.c
 F_AUX			=	do_free.c treatment.c signal.c redirect.c pipe.c
 
 F_UTILS			=	aux_0.c aux_treatment.c aux_1.c cut_check.c aux_2_redic.c \
-					aux_redirect.c
+					aux_redirect.c aux_free.c
 
 F_SRC			=	main.c $(AUX) $(BUILTINS) $(UTILS) $(PARSE)
 

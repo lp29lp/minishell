@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:58:39 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/02/01 21:53:02 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/01 18:33:41 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	cmd_execve(t_struct *mode)
 	if (pid == 0)
 		execve(path, arg, env);
 	free_null(&path);
-	free_double(mode, &env, 1);
-	free_double(mode, &arg, 0);
+	free_double_env(&env, mode->size_env);
+	free_double(&arg);
 	waitpid(pid, &ret, 0);
 	reset_fd(mode);
 	g_status = WEXITSTATUS(ret);
@@ -67,7 +67,7 @@ char	*create_path(t_struct *mode)
 			break ;
 		mode->k++;
 	}
-	free_double(mode, &path, 0);
+	free_double(&path);
 	return (mode->temp);
 }
 
