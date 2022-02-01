@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:44:05 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 19:54:47 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/02/01 21:30:59 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	main(int ac, char **av, char **env)
 	g_status = 0;
 	ft_memset(&sa, 0, sizeof(sa));
 	ft_memset(&mode, 0, sizeof(mode));
+	if (ac != 1 || av[1])
+		return (0);
 	mode.arrow = ft_calloc(1, sizeof(t_redic));
 	mode.in = dup(0);
 	mode.out = dup(1);
-	if (ac != 1 || av[1])
-		return (0);
 	save_env(&mode, env);
 	while (1)
 	{

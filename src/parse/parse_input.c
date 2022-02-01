@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 21:39:36 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/02/01 15:22:16 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/02/01 22:13:34 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int	command(t_struct *mode)
 	check_redirect(mode);
 	mode->split_input = ft_split(mode->line_read, ' ');
 	if (mode->split_input[0] == NULL)
-			return 1;
+		return (1);
 	if (mode->redic == 1)
 	{
 		mode->count = 0;
 		if (redirect(mode) == 1)
 		{
-			free_double(&mode->keywords);
+			free_double(mode, &mode->keywords, 0);
 			free_null(&mode->xablau);
 			return (1);
 		}

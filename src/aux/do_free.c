@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 04:29:25 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 17:46:04 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/02/01 22:06:05 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	do_free(t_struct *mode)
 	free_null(&mode->line_read);
 	free_null(&mode->rest);
 	free_null(&mode->xablau);
-	free_double(&mode->keywords);
+	free_double(mode, &mode->keywords, 0);
 	if (mode->size_env > 0)
 		free_env(mode);
 	free_split(mode, 0);
@@ -38,13 +38,13 @@ void	free_split(t_struct *mode, int flag)
 {
 	if ((mode->split_input != NULL && flag == 1)
 		|| (mode->split_input != NULL && flag == 0))
-		free_double(&mode->split_input);
+		free_double(mode, &mode->split_input, 0);
 	if ((mode->split_two != NULL && flag == 2)
 		|| (mode->split_two != NULL && flag == 0))
-		free_double(&mode->split_two);
+		free_double(mode, &mode->split_two, 0);
 	if ((mode->split_rest != NULL && flag == 3)
 		|| (mode->split_rest != NULL && flag == 0))
-		free_double(&mode->split_rest);
+		free_double(mode, &mode->split_rest, 0);
 }
 
 void	free_env(t_struct *mode)
@@ -72,20 +72,37 @@ void	free_null(char **s)
 }
 
 /* Free a double pointer and set has null */
-void	free_double(char ***str)
+void	free_double(t_struct *mode, char ***str, int flag)
 {
 	int	x;
 
 	x = 0;
-	if (str[0] != NULL)
+	if (flag == 0)
 	{
-		while (str[0][x] != NULL)
+		if (str[0] != NULL)
 		{
-			free(str[0][x]);
-			str[0][x] = NULL;
-			x++;
+			while (str[0][x] != NULL)
+			{
+				free(str[0][x]);
+				str[0][x] = NULL;
+				x++;
+			}
+			free(*str);
+			*str = NULL;
 		}
-		free(*str);
-		*str = NULL;
+	}
+	else
+	{
+		if(str[0] != NULL)
+		{
+			while (x <= mode->size_env)
+			{
+				free(str[0][x]);
+				str[0][x] = NULL;
+				x++;
+			}
+			free(*str);
+			*str = NULL;
+		}
 	}
 }

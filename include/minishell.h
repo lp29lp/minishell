@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 23:38:09 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 17:38:47 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/02/01 22:11:48 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include "libft/libft.h"
 # include "ansi_color.h"
 
-void		get_space(t_struct *mode, int i, char *str);
 int			main(int ac, char **av, char **env);
 
 /* pipe */
@@ -119,7 +118,7 @@ int			command(t_struct *mode);
 void		free_split(t_struct *mode, int flag);
 void		do_free_heredoc(t_struct *mode);
 void		free_env(t_struct *mode);
-void		free_double(char ***str);
+void		free_double(t_struct *mode, char ***str, int flag);
 void		do_free(t_struct *mode);
 
 /* Aux */
@@ -131,11 +130,12 @@ void		free_null(char **s);
 
 /* Treatment */
 void		cat_jump(t_struct *mode, int i, int tag, char **str);
-char		*fix_dollar(t_struct *mode, char *name);
 void		convert_dollar(t_struct *mode, int i, char **str);
 int			d_quote_cont(t_struct *mode, int i, char **str);
 int			jump_space(t_struct *mode, int i, char **str);
+void		get_space(t_struct *mode, int i, char *str);
 int			d_quotes(t_struct *mode, int i, char **str);
+char		*fix_dollar(t_struct *mode, char *name);
 void		treatment(t_struct *mode, char **str);
 
 #endif
