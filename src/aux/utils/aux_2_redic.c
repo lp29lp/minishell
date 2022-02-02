@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 20:37:09 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/01/31 19:36:34 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/02/01 20:42:01 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /* Verify pipes valid to allocate memory */
 void	count_pipe(t_struct *mode)
 {
+	mode->count = 0;
 	while (mode->line_read[mode->count] != '\0')
 	{
 		if (mode->line_read[mode->count] == '\''

@@ -6,7 +6,7 @@
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 19:13:41 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/01/31 03:26:21 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/02/01 21:30:28 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	d_quotes(t_struct *mode, int i, char **str)
 	}
 	i = d_quote_cont(mode, i, str);
 	if (str[0][i + 1] == '\0' && str[0][i] == mode->quote
-		&& str[0][i - 1] == 2)
+		&& i == 0)
 	{
 		free(*str);
 		*str = ft_strdup("");

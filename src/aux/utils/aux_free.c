@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_aux.c                                         :+:      :+:    :+:   */
+/*   aux_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpaulo-d <lpaulo-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 18:28:16 by lpaulo-d          #+#    #+#             */
-/*   Updated: 2022/02/01 18:28:52 by lpaulo-d         ###   ########.fr       */
+/*   Updated: 2022/02/01 20:29:53 by lpaulo-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	do_free_heredoc(t_struct *mode)
 	free_null(&mode->line_read);
 	free_null(&mode->rest);
 	free_null(&mode->xablau);
-	free_double(mode, &mode->keywords, 0);
+	free_double(&mode->keywords);
 	if (mode->size_env > 0)
 		free_env(mode);
 	free_split(mode, 0);
